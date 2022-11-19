@@ -1,0 +1,120 @@
+---
+import Container from './Container.astro';
+import SocialLinks from './SocialLinks.astro';
+import Logo from '../images/mk-dark.svg';
+import { Icon } from 'astro-icon';
+
+const services = [
+    {
+        title: "Commercial Scaffolding",
+        url: "/commercial-scaffolding",
+    },
+    {
+        title: "Domestic Scaffolding",
+        url: "/domestic-scaffolding",
+    },
+    {
+        title: "Industrial Scaffolding",
+        url: "/industrial-scaffolding",
+    },
+    {
+        title: "Specialist Scaffolding",
+        url: "/specialist-scaffolding",
+    },
+]
+
+const information = [
+    {
+        title: "Home",
+        url: "/",
+    },
+    {
+        title: "About Us",
+        url: "/about"
+    },
+    {
+        title: "Gallery",
+        url: "/gallery"
+    },
+    {
+        title: "Contact",
+        url: "/contact"
+    }
+]
+
+const linkStyle = "text-base text-zinc-400 hover:text-white";
+---
+
+<footer class="bg-zinc-800" aria-labelledby="footer-heading">
+    <h2 id="footer-heading" class="sr-only">Footer</h2>
+    <Container className="py-12 lg:py-16">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+
+            <div class="grid grid-cols-1 gap-8 sm:col-span-2 sm:grid-cols-2 sm:gap-8">
+                <div>
+                    <h3 class="text-base font-medium text-white">Services</h3>
+                    <ul class="mt-4 space-y-4">
+                        {services.map((service) => (
+                            <li>
+                                <a href={service.url} class:list={[linkStyle]}>{service.title}</a>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-base font-medium text-white">Information</h3>
+                    <ul class="mt-4 space-y-4">
+                        {information.map((page) => (
+                            <li>
+                                <a href="{page.url}" class:list={[linkStyle]}>{page.title}</a>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+            </div>
+            <div class="col-span-2 grid grid-cols-1 md:grid-cols-2 gap-8 order-first lg:order-last">
+                <div>
+                    <h3 class="text-base font-medium text-white">Headquarters</h3>
+                    <div class="grid sm:max-md:grid-cols-2 sm:max-md:gap-4">
+
+                        <p class="text-base text-zinc-400 mt-4">
+                            Stables 4
+                            Howbery Park, Crowmarsh,
+                            Wallingford, Oxon,
+                            OX10 8BA
+                        </p>
+                        <ul class="mt-4 space-y-4">
+                            <li>
+                                <a href="tel:01908224709" class:list={[linkStyle, "flex items-center gap-2"]}>
+                                    <Icon name="fa:phone-square" size={16} />
+                                    <span>01908 224 709</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="mailto:info@mkscaffolding.com" class:list={[linkStyle, "flex items-center gap-2"]}>
+                                    <Icon name="fa:envelope-square" size={16} />
+                                    <span>info@mkscaffolding.com</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+                <div class="order-first md:order-last">
+                    <a href="">
+                        <img src={Logo} alt="" class="max-w-xs">
+                    </a>
+    
+                </div>
+            </div>
+        </div>
+        <div class="mt-8 border-t border-zinc-700 pt-8 md:flex md:items-center md:justify-between">
+            <div class="flex space-x-6 md:order-2">
+                <SocialLinks className="text-zinc-400 hover:text-zinc-500" />
+            </div>
+            <p class="mt-8 text-base text-zinc-400 md:order-1 md:mt-0">
+                &copy; 2022 Milton Keynes Scaffolding Specialists LTD. All rights reserved. Design by <a href="">Omnific</a>
+            </p>
+        </div>
+    </Container>
+</footer>

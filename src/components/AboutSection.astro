@@ -1,0 +1,86 @@
+---
+import Grid from './Grid.astro'
+import FeatureList from './FeatureList.astro';
+import Container from './Container.astro';
+const features = [
+	{
+		title: 'Fully Guaranteed',
+		body: 'All our work is fully insured and guaranteed.',
+	},
+	{
+		title: 'Customer Satisfaction',
+		body: '90% of our customers are extremely satisfied with our service.',
+	},
+	{
+		title: 'Outstanding Safety',
+		body: 'We have an outstanding safety record with no reports of any accidents or health & safety incidents in our entire tenure of trading.'
+	},
+	{
+		title: 'COVID 19',
+		body: 'COVID 19: keeping you safe. We’ve taken every possible measure to ensure our customers are safe during the current health crisis.'
+	}
+]
+
+const certificates = [
+	{
+		name: 'CHAS',
+		src: '/images/chas.png'
+	},
+	{
+		name: 'Safe Contractor',
+		src: '/images/safe.png'
+	},
+	{
+		name: 'CITB',
+		src: '/images/citb.png'
+	},
+
+]
+---
+
+<section class="py-24 bg-zinc-50 relative">
+    <div class="absolute w-1/4 top-0 left-0 h-full text-zinc-200">
+        <Grid size="100" id="about-bg" />
+    </div>
+
+    <Container className="relative z-10">
+        <div class="flex flex-col-reverse md:grid md:grid-cols-2 gap-12" >
+            <div>
+                <div class="py-8 px-6 sm:py-12 sm:px-8 shadow-lg bg-zinc-800 rounded-3xl">
+                    <FeatureList items={features} dark={true} />
+                </div>
+            </div>
+            <div>
+                <div class="-mt-40">
+
+                    <img src="/images/layher.jpg" alt="" class="bars-mask">
+                </div>
+                <h1 class="text-4xl font-bold text-zinc-800 mt-8"><div class="text-orange-500 text-lg mb-2">Milton Keynes</div> Scaffolding Specialists</h1>
+                <p class="mt-4 text-zinc-500">Our Milton Keynes Head Quarters are conveniently located to get us to Birmingham, London and Leicester within an hour</p>
+                <p class="mt-2 text-zinc-500">Our commercial jobs are project managed 24/7 giving you peace of mind every step of the way.</p>
+
+                <div class="flex items-center gap-8 mt-8">
+                    {certificates.map(cert => (
+                        <div class="h-24 w-24">
+                            <img src={cert.src} alt="{cert.name}" class="h-full w-full object-contain" />
+                        </div>
+                    ))}
+                </div>
+                
+            </div>
+
+        </div>
+    </Container>
+</section>
+
+<style>
+    .bars-mask {
+        width:100%;
+
+        aspect-ratio: 4 / 2.5;
+        object-fit: cover;
+        mask-image: url(/images/bars.svg);
+        mask-repeat: no-repeat;
+        mask-size: contain;
+    }
+</style>

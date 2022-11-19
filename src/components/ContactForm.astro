@@ -1,0 +1,261 @@
+---
+import { Icon } from 'astro-icon';
+---
+
+<form action="" id="contact-form" class="p-4 relative" data-cf-status novalidate>
+    <div data-alert class="hidden absolute top-0 left-0 bottom-0 right-0 w-full h-full z-50 justify-center items-center">
+        <div class="bg-white p-4 rounded-xl shadow-xl">
+            <header class="flex justify-between items-center">
+                <p class="font-semibold capitalize"></p>
+                <button data-alert-close>
+                    <span class="sr-only">Close alert</span>
+                    <Icon name="eva:close-circle-outline" size="24" />
+                </button>
+            </header>
+            <div class="mt-2" data-alert-message>
+
+            </div>
+        </div>
+    </div>
+    <div class="space-y-4">
+        <div class="space-y-4">
+            <label class="block">
+                <span>Full name</span>
+                <span data-cf-error></span>
+                <input type="text" name="cf_name" id="cf_name" class="block w-full rounded-xl border-zinc-400 focus:border-orange-300 focus:ring focus:ring-orange-200 focus:ring-opacity-50 valid:border-green-500" minlength="3" pattern="^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$" required>
+            </label>
+        
+            <label class="block">
+                <span>Email address</span>
+                <span data-cf-error></span>
+                <input type="email" name="cf_email" id="cf_email" class="block w-full rounded-xl border-zinc-400 focus:border-orange-300 focus:ring focus:ring-orange-200 focus:ring-opacity-50 valid:border-green-500" required>
+            </label>
+        
+            <label class="block">
+                <span>Phone number</span>
+                <span data-cf-error></span>
+                <input type="tel" name="cf_phone" id="cf_phone" class="block w-full rounded-xl border-zinc-400 focus:border-orange-300 focus:ring focus:ring-orange-200 focus:ring-opacity-50 valid:border-green-500" minlength="10" maxlength="17" pattern="[+ 0-9]{10,17}" required>
+            </label>
+        </div>
+        <div class="space-y-4">
+            <label class="block">
+                <span>Message</span>
+                <span data-cf-error></span>
+                <textarea name="cf_message" id="cf_message" rows="6" class="block w-full rounded-xl border-zinc-400 focus:border-orange-300 focus:ring focus:ring-orange-200 focus:ring-opacity-50 valid:border-green-500" minlength="30" required></textarea>
+            </label>
+
+            <button type="submit" id="submit" class="bg-orange-500 rounded-xl text-white py-2 px-4">
+                <span class="hidden items-center">
+                    <Icon name="eos-icons:loading" size={26} class="mr-3"/>
+                    Sending message...
+                </span>
+                <span>Send message</span>
+            </button>
+        </div>
+    </div>
+</form>
+
+<script>
+    import axios from 'axios';
+
+    const contactForm : HTMLFormElement = document.forms['contact-form'];
+
+    const cfName : HTMLInputElement = contactForm.elements['cf_name'];
+    const cfNameError : HTMLSpanElement = cfName.parentNode.querySelector('[data-cf-error]');
+    const cfEmail : HTMLInputElement = contactForm.elements['cf_email'];
+    const cfEmailError : HTMLSpanElement = cfEmail.parentNode.querySelector('[data-cf-error]');
+    const cfPhone : HTMLInputElement = contactForm.elements['cf_phone'];
+    const cfPhoneError : HTMLSpanElement = cfPhone.parentNode.querySelector('[data-cf-error]');
+    const cfMessage : HTMLTextAreaElement = contactForm.elements['cf_message'];
+    const cfMessageError : HTMLSpanElement = cfMessage.parentNode.querySelector('[data-cf-error]');
+    const cfAlert : HTMLDivElement = contactForm.querySelector('[data-alert]');
+    const cfAlertMessage : HTMLDivElement = cfAlert.querySelector('[data-alert-message]');
+    const cfAlertClose : HTMLButtonElement = cfAlert.querySelector('[data-alert-close]');
+    const cfAlertHeader : HTMLParagraphElement = cfAlert.querySelector('header > p');
+
+    cfAlertClose.addEventListener('click', (event) => {
+        event.preventDefault()
+        contactForm.setAttribute('data-cf-status', '');
+        cfAlertMessage.innerHTML = ""
+    })
+    
+    const sendSuccess = (msg: string, status: string) => {
+
+        contactForm.setAttribute('data-cf-status', status);
+        cfAlertHeader.textContent = status;
+        cfAlertMessage.textContent = msg;
+        contactForm.reset();
+
+        setTimeout(() => {
+            contactForm.setAttribute('data-cf-status', '');
+        }, 3000)
+    }
+
+    interface Errors {
+        location: string;
+        msg: string;
+        param: string;
+        value: string
+    }
+
+    const sendFailed = (errors: Errors[], status: string) => {
+        contactForm.setAttribute('data-cf-status', status);
+        cfAlertHeader.textContent = status;
+        errors.forEach((error) => {
+            const err = document.createElement("p");
+            err.textContent = error.msg;
+            cfAlertMessage.appendChild(err)
+        })
+    }
+
+    cfEmail.addEventListener('input', (event) => {
+        if (cfEmail.validity.valid) {
+            cfEmailError.textContent = "";
+            cfEmailError.setAttribute('data-cf-error', '');
+        } else {
+            emailError();
+        }
+    })
+
+    cfName.addEventListener('input', (event) => {
+        if (cfName.validity.valid) {
+            cfNameError.textContent = "";
+            cfNameError.setAttribute('data-cf-error', '');
+        } else {
+            nameError();
+        }
+    })
+
+    cfPhone.addEventListener('input', (event) => {
+        if (cfPhone.validity.valid) {
+            cfPhoneError.textContent = "";
+            cfPhoneError.setAttribute('data-cf-error', '');
+        } else {
+            phoneError();
+        }
+    })
+
+    cfMessage.addEventListener('input', (event) => {
+        if (cfMessage.validity.valid) {
+            cfMessageError.textContent = "";
+            cfMessageError.setAttribute('data-cf-error', '')
+        } else {
+            messageError();
+        }
+    })
+
+    const emailError = () => {
+        if (cfEmail.validity.valueMissing) {
+            cfEmailError.textContent = "Please enter an e-mail address.";
+        } else if (cfEmail.validity.typeMismatch) {
+            cfEmailError.textContent = "Entered value needs to be an e-mail address."
+        }
+        cfEmailError.setAttribute('data-cf-error', 'active');
+    }
+
+    const nameError = () => {
+        if (cfName.validity.valueMissing) {
+            cfNameError.textContent = "Please enter your full name."
+        } else if (cfName.validity.patternMismatch) {
+            cfNameError.textContent = "Entered value needs to be a name."
+        } else if (cfName.validity.tooShort) {
+            cfNameError.textContent = `Name should be at least ${cfName.minLength} characters; you entered ${cfName.value.length}.`;
+        }
+        cfNameError.setAttribute('data-cf-error', 'active');
+    }
+
+    const phoneError = () => {
+        if (cfPhone.validity.valueMissing) {
+            cfPhoneError.textContent = "Please enter your phone number."
+        } else if (cfPhone.validity.typeMismatch) {
+            cfPhoneError.textContent = "Entered value need to be a valid phone number."
+        } else if (cfPhone.validity.patternMismatch) {
+            cfPhoneError.textContent = "Entered value need to be a valid phone number."
+        }
+        cfPhoneError.setAttribute('data-cf-error', 'active');
+    }
+
+    const messageError = () => {
+        if (cfMessage.validity.valueMissing) {
+            cfMessageError.textContent = "Dont forget to enter a message."
+        } else if (cfMessage.validity.tooShort) {
+            cfMessageError.textContent = `Message should be at least ${cfMessage.minLength} characters; you entered ${cfMessage.value.length}.`;
+        }
+        cfMessageError.setAttribute('data-cf-error', 'active');
+    }
+
+    const submitForm = (form: HTMLFormElement) => {
+
+        const mail = {
+            name: cfName.value,
+            email: cfEmail.value,
+            phone: cfPhone.value,
+            message: cfMessage.value,
+        }
+
+        contactForm.setAttribute('data-cf-status', "sending");
+
+        axios.post("http://localhost:3002/send", mail)
+        .then(function (response) {
+            const msg = `Thank you ${mail.name}. Your message successfully sent.`;
+            const status = response.data.status;
+            sendSuccess(msg, status);
+        })
+        .catch(function (error) {
+            const errors = error.response.data.errors;
+            sendFailed(errors, 'failed')
+        })
+    }
+
+    contactForm.addEventListener('submit', (e) => {
+
+        e.preventDefault()
+
+        if (!cfName.validity.valid) {
+            nameError()
+        } else if (!cfEmail.validity.valid) {
+            emailError()
+        } else if (!cfPhone.validity.valid) {
+            phoneError()
+        } else if (!cfMessage.validity.valid) {
+            messageError()
+        } else {
+            submitForm(contactForm);
+        }
+        
+    })
+
+
+</script>
+
+<style>
+    label {
+        @apply relative;
+    }
+    [data-cf-status="sending"] #submit span:first-of-type {
+        @apply flex items-center;
+    }
+    [data-cf-status="sending"] #submit span:last-of-type {
+        @apply hidden;
+    }
+
+    [data-cf-error] {
+        @apply hidden absolute top-full left-0 text-red-600 text-sm bg-red-200 border-red-600 border rounded-xl py-2 px-3 z-50;
+    }
+    [data-cf-error="active"] {
+        @apply block;
+    }
+    [data-cf-error="active"] + :invalid {
+        @apply border-red-500;
+    }
+    [data-cf-status="failed"] [data-alert],
+    [data-cf-status="success"] [data-alert] {
+        @apply flex ;
+    }
+    [data-cf-status="success"] [data-alert] > div {
+        @apply bg-green-300 border border-green-600 text-green-600;
+    }
+    [data-cf-status="failed"] [data-alert] > div {
+        @apply bg-red-300 border border-red-600 text-red-600;
+    }
+</style>

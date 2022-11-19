@@ -1,0 +1,72 @@
+---
+import Grid from './Grid.astro'
+import Container from './Container.astro';
+import { Icon } from 'astro-icon'
+
+const services = [
+    {
+        heading: 'Commercial Scaffolding',
+        text: 'Our years of experience in the commercial sector means our customers are in safe hands. We will take care of your project from start to finish, leaving you to concentrate on the things that really matter.',
+        image: '/images/6129.jpeg'
+    },
+    {
+        heading: 'Industrial Scaffolding',
+        text: 'Carrying out works of a specialist or sensitive nature isn’t a problem for us. Having a workforce of a highly trained professionals gives us the versatility to complete a variety of projects.',
+        image: '/images/mk2-uai.jpg'
+    },
+    {
+        heading: 'Domestic Scaffolding',
+        text: 'For residential projects, you needn’t look any further than Milton Keynes Scaffolding Specialists. Our residential scaffolding service offers customers a seamless and stress-free experience.',
+        image: '/images/scaff.jpeg'
+    },
+    {
+        heading: 'Specialist Scaffolding',
+        text: 'For bespoke scaffolds like suspended, truss-out and free-standing structures, Milton Keynes Scaffolding Specialists has the expertise to deliver precisely what you need.',
+        image: '/images/fashion1.jpg'
+    }, 
+]
+---
+
+
+
+<section class=" bg-zinc-100 py-16 lg:py-24 relative overflow-hidden">
+    <div class="absolute w-1/4 h-1/2 top-0 left-0 text-zinc-200">
+        <Grid size="100" id="services-bg-top" />
+    </div>
+    <div class="absolute w-1/4 h-1/2 bottom-0 right-0 text-zinc-200">
+        <Grid size="100" id="services-bg-bottom" />
+    </div>
+
+    <Container className="relative z-10">
+        <h1 class="font-bold text-orange-500 text-lg">Scaffolding Services</h1>
+        <p class="text-4xl font-bold text-zinc-800 mt-2">Our Expertise</p>
+
+        <div class="grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-4 md:gap-4 lg:gap-2 mt-12">
+
+            {services.map(service => (
+                <div class="bg-white rounded-3xl overflow-hidden relative h-96">
+                    <a href="" class="group">
+                        <img src={service.image} alt="" class="w-full h-full object-cover absolute top-0 left-0" />
+                        <div class="absolute h-full w-full top-0 left-0 bg-gradient-to-b from-transparent to-zinc-900 flex flex-col justify-end">
+    
+                            <div class="p-4">
+                                <h2 class="text-xl font-bold mb-2 text-white">{service.heading}</h2>
+                                <p class="text-xs text-zinc-100 mb-2">{service.text}</p>
+                                <div class="float-right">
+                                    <Icon name="bi:arrow-up-right-circle" size={30} class="text-orange-500 shrink-0 grow-0 flex group-hover:hidden" />
+                                    <Icon name="bi:arrow-up-right-circle-fill" size={30} class="text-orange-500 shrink-0 grow-0  hidden group-hover:flex" />
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+
+                </div>
+            ))}
+
+        </div>
+    </Container>
+</section>
+
+
+
+

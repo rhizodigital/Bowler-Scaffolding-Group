@@ -1,0 +1,28 @@
+---
+import { Icon } from 'astro-icon'
+export interface Props {
+    items: {
+        title: string
+        body: string
+        icon?: string
+    }[]
+    dark?: boolean
+}
+const { items, dark } = Astro.props;
+---
+
+<dl class="space-y-10">
+    {
+        items.map((item) => (
+            <div class="relative">
+                <dt>
+                    <div class="absolute flex h-8 w-8 sm:h-12 sm:w-12 items-center justify-center rounded-lg border-2 border-orange-500 text-orange-500">
+                        <Icon name={item.icon || "heroicons-solid:check"} size={48} class="h-6 w-6 sm:h-8 sm:w-8" />
+                    </div>
+                    <p class:list={['ml-12 sm:ml-16 text-base sm:text-lg font-medium leading-6', dark ? 'text-white' : 'text-zinc-900']}>{item.title}</p>
+                </dt>
+                <dd class:list={['mt-2 ml-12 sm:ml-16 text-sm sm:text-base', dark ? 'text-zinc-400' : 'text-zinc-500']}>{item.body}</dd>
+            </div>
+        ))
+    }
+</dl>

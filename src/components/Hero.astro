@@ -1,0 +1,23 @@
+
+<section class="relative pt-16">
+    <div class="absolute top-0 left-0 right-0 bottom-0 bg-zinc-800 h-full w-full bg-frame -z-50"></div>
+    <div class="max-w-7xl mx-auto px-4 md:px-6">
+        <div class="grid grid-cols-2">
+            <div>
+                <h1 class="text-gray-50 text-5xl">Hello world</h1>
+            </div>
+            <div>
+                <img src="/images/scaff.jpeg" alt="" class="img-frame">
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+	.img-frame {
+		clip-path: polygon(0% 0%, 100% 0%, 100% 70%, 0% 100%);
+	}
+    .bg-frame {
+        clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 70%);
+    }
+</style>

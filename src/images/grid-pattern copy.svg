@@ -1,0 +1,7 @@
+<svg width="100%" height="100%">
+
+    <pattern id="grid" patternUnits="userSpaceOnUse" width="200" height="200" viewBox="0 0 200 200">
+        <path id="grid-lines" d="M200 99.88h-99.88V0h-.24v99.88H0v.24h99.88V200h.24v-99.88H200v-.24z"></path>
+    </pattern>
+    <use x="0" y="0" xlink:href="#grid-lines"></use>
+</svg>

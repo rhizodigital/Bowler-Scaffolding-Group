@@ -1,0 +1,71 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ContactForm from '../components/ContactForm.astro';
+import Container from '../components/Container.astro';
+import Testimonials from '../components/Testimonials.astro';
+import Grid from '../components/Grid.astro';
+import { Icon } from 'astro-icon';
+
+const contactInfo = [
+    {
+        icon: "fa-solid:map-marker-alt",
+        heading: "Our address",
+        info: "Stables 4 Howbery Park, Crowmarsh, Wallingford, Oxon, OX10 8BA",
+    },
+    {
+        icon: "fa-solid:phone",
+        heading: "Let's talk",
+        info: `<a href="tel:01908224709">01908 224 709</a>`,
+    },
+    {
+        icon: "fa-solid:envelope",
+        heading: "Email us",
+        info: `<a href="mailto:info@mkscaffolding.com">info@mkscaffolding.com</a>`,
+    }, 
+]
+---
+
+<Layout title="Contact us">
+	<main>
+        <div class="relative bg-zinc-800 py-16 md:py-24">
+            <div class="w-full h-full absolute top-0 bottom-0 left-0 right-0 text-zinc-700 opacity-40">
+                <Grid size="100" id="slide-pattern" />
+            </div>
+            <Container className="relative">
+                <div class="grid md:grid-cols-2 md:grid-rows-2 gap-8 items-start">
+                    <div>
+                        <h1 class="text-5xl text-white font-bold">Get in touch with us <span class="text-orange-500">today</span></h1>
+                        <p class="text-xl text-zinc-400 mt-8">Our team is happy to answer your questions. Fill out the form detailing your scaffolding enquiry, and we'll be in touch as soon as possible.</p>
+
+                    </div>
+                    <div class="order-3 md:order-2 md:col-start-1">
+                        <h2 class="text-xl text-zinc-200 font-semibold leading-none">Contact information:</h2>
+                        <dl class="mt-6 space-y-6">
+                            {
+                                contactInfo.map(item => (
+                                    <div class="relative pl-12">
+                                        <dt class="text-white font-semibold">
+                                            <div class="w-8 h-8 bg-orange-500 rounded-md flex items-center justify-center text-white absolute top-0 left-0">
+                                                <Icon name={item.icon} size="20" />
+                                            </div>
+                                            {item.heading}
+                                        </dt>
+                                        <dd class="text-zinc-400">
+                                            <Fragment set:html={item.info} />
+                                        </dd>
+                                    </div>
+                                ))
+                            }
+
+                        </dl>
+                    </div>
+                    <div class="bg-zinc-50 rounded-2xl py-4 px-4 md:col-start-2 md:row-start-1 md:row-span-2 shadow-xl">
+                        <ContactForm />
+                    </div>
+                </div>
+            </Container>
+        </div>
+        <Testimonials />
+	</main>
+</Layout>
+

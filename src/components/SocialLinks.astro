@@ -1,0 +1,37 @@
+---
+import { Icon } from 'astro-icon';
+
+export interface Props {
+	className?: string
+    size?: number
+}
+
+const { className, size } = Astro.props;
+
+const links = [
+    {
+        network: "Facebook",
+        icon: "fa-brands:facebook-square",
+        url: "https://www.facebook.com/mkscaff/"
+    },
+    {
+        network: "Twitter",
+        icon: "fa-brands:twitter-square",
+        url: "https://twitter.com/mkscaffolding"
+    },
+    {
+        network: "Instagram",
+        icon: "fa-brands:instagram-square",
+        url: "https://www.instagram.com/mkscaffoldingspecialists/"
+    },
+]
+---
+
+{
+    links.map((link) => (
+        <a href={link.url} class={className}>
+            <span class="sr-only">{link.network}</span>
+            <Icon name={link.icon} size={size || 24} />
+        </a>
+    ))
+}
