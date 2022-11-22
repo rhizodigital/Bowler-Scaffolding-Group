@@ -1,23 +1,33 @@
+---
+import Container from '../components/Container.astro';
+import Grid from '../components/Grid.astro';
+import { LastWord } from '../utils/lastword';
 
-<section class="relative pt-16">
-    <div class="absolute top-0 left-0 right-0 bottom-0 bg-zinc-800 h-full w-full bg-frame -z-50"></div>
-    <div class="max-w-7xl mx-auto px-4 md:px-6">
-        <div class="grid grid-cols-2">
+export interface Props {
+    heading: string;
+    subheading: string;
+    image: string;
+}
+
+const { heading, subheading, image } = Astro.props;
+---
+
+<div class="bg-zinc-800 py-24 relative">
+    <div class="absolute inset-0 text-zinc-700 opacity-40">
+        <Grid size="100" id="header-pattern" />
+    </div>
+    <Container className="relative">
+        <div class="grid grid-cols-2 gap-16 items-center">
             <div>
-                <h1 class="text-gray-50 text-5xl">Hello world</h1>
+                <h1 class="text-white text-5xl font-semibold" set:html={LastWord(heading)}></h1>
+                <p class="text-zinc-400 mt-6 text-xl" set:html={subheading}>With two decades of experience in the scaffolding industry, we are able to offer a dynamic, seamless service and one that our customers have come to rely on.</p>
             </div>
             <div>
-                <img src="/images/scaff.jpeg" alt="" class="img-frame">
+                <div>
+                    <img src={image} class="h-full w-full object-cover rounded-2xl">
+                </div>
+
             </div>
         </div>
-    </div>
-</section>
-
-<style>
-	.img-frame {
-		clip-path: polygon(0% 0%, 100% 0%, 100% 70%, 0% 100%);
-	}
-    .bg-frame {
-        clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 70%);
-    }
-</style>
+    </Container>
+</div>
