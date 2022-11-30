@@ -1,0 +1,20 @@
+---
+export interface Props {
+    list: string[]
+}
+const { list } = Astro.props;
+
+const halfList = list.length / 2;
+---
+
+<ul role="list" class="my-0">
+    {list.slice(0, halfList).map((item) => (
+        <li class="marker:text-orange-500">{item}</li>
+    ))}
+</ul>
+<ul role="list" class="my-0">
+    {list.slice(halfList, ).map((item) => (
+        <li class="marker:text-orange-500">{item}</li>
+    ))}
+</ul>
+

@@ -3,38 +3,53 @@ import Layout from '../layouts/Layout.astro';
 import Hero from '../components/Hero.astro';
 import Container from '../components/Container.astro';
 import Grid from '../components/Grid.astro';
+import SplitList from '../components/SplitList.astro';
 
 const pageContent = {
     heading: "Industrial Scaffolding",
     subheading: "With two decades of experience in the scaffolding industry, we are able to offer a dynamic, seamless service and one that our customers have come to rely on.",
-    heroimage: "/images/industrial-01.jpg"
+    heroimage: "/images/industrial-01.jpg",
+    ctaLink: "/contact",
+    ctaText: "Contact us",
+    features: [
+        "maintenance work in power plants",
+        "lift shaft and void access scaffold",
+        "stairwell scaffolding",
+        "confined/isolated spaces",
+        "protection/storage gantries",
+        "demolition works",
+        "tank access scaffold",
+        "asbestos removal",
+        "oil rig works",
+        "concrete, formwork and shoring",
+        "slung access scaffolds",
+        "lifting gantries",
+    ]
 }
 ---
 
 <Layout title="Industrial Scaffolding">
 	<main>
-        <Hero heading={pageContent.heading} subheading={pageContent.subheading} image={pageContent.heroimage} />
+        <Hero 
+            heading={pageContent.heading} 
+            subheading={pageContent.subheading} 
+            image={pageContent.heroimage} 
+            ctaLink={pageContent.ctaLink}
+            ctaText={pageContent.ctaText}
+        />
 
-
+        
         <div class="py-12">
             <Container>
-                <div class="grid grid-cols-2 gap-8">
-                    <div class="prose prose-zinc">
+                <div class="grid grid-cols-6 gap-8">
+                    <div class="prose prose-zinc col-span-4">
                         <p> The staff here at Milton Keynes Scaffolding Specialists are qualified and certified in working to every specification – from confined spaces to National Grid scale projects, asbestos removal and demolition works.</p>
-                        <ul role="list" class="grid grid-cols-2">
-                            <li>maintenance work in power plants</li>
-                            <li>lift shaft and void access scaffold</li>
-                            <li>stairwell scaffolding</li>
-                            <li>confined/isolated spaces</li>
-                            <li>protection/storage gantries</li>
-                            <li>demolition works</li>
-                            <li>tank access scaffold</li>
-                            <li>asbestos removal</li>
-                            <li>oil rig works</li>
-                            <li>concrete, formwork and shoring</li>
-                            <li>slung access scaffolds</li>
-                            <li>lifting gantries</li>
-                        </ul>
+
+                        <div class="py-2 px-6 bg-zinc-800 text-white rounded-2xl">
+                            <div class="md:grid md:grid-cols-2 md:gap-4">
+                                <SplitList list={pageContent.features} />
+                            </div>
+                        </div>
                     </div>
                     <div>
                         <p>Img placeholder</p>
@@ -44,4 +59,6 @@ const pageContent = {
         </div>
 	</main>
 </Layout>
+
+
 

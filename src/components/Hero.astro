@@ -7,26 +7,28 @@ export interface Props {
     heading: string;
     subheading: string;
     image: string;
+    ctaText?: string;
+    ctaLink?: string;
 }
 
-const { heading, subheading, image } = Astro.props;
+const { heading, subheading, image, ctaLink, ctaText } = Astro.props;
 ---
 
-<div class="bg-zinc-800 py-24 relative">
+<div class="bg-zinc-800 py-20 md:py-24 relative">
     <div class="absolute inset-0 text-zinc-700 opacity-40">
         <Grid size="100" id="header-pattern" />
     </div>
     <Container className="relative">
-        <div class="grid grid-cols-2 gap-16 items-center">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
             <div>
                 <h1 class="text-white text-5xl font-semibold" set:html={LastWord(heading)}></h1>
-                <p class="text-zinc-400 mt-6 text-xl" set:html={subheading}>With two decades of experience in the scaffolding industry, we are able to offer a dynamic, seamless service and one that our customers have come to rely on.</p>
+                <p class="text-zinc-400 mt-6 text-xl" set:html={subheading}></p>
+                {ctaLink && <a href={ctaLink} class="py-2 px-4 bg-orange-500 mt-6 inline-block rounded-xl font-semibold text-white">{ctaText}</a>}
             </div>
             <div>
                 <div>
                     <img src={image} class="h-full w-full object-cover rounded-2xl">
                 </div>
-
             </div>
         </div>
     </Container>
