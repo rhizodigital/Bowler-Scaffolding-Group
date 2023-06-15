@@ -1,0 +1,18 @@
+---
+export interface Props {
+    list: string[];
+    cols?: boolean;
+}
+const { list, cols = false } = Astro.props;
+
+const columns = cols ? 'md:columns-2' : '';
+---
+
+
+<div class="py-4 px-6 bg-zinc-800 text-white rounded-2xl">
+    <ul role="list" class:list={[columns, 'gap-8 mb-2']}>
+        {list.map((item) => (
+            <li class="marker:text-orange-500 break-inside-avoid-column list-disc list-outside ml-6 pl-2 mt-2">{item}</li>
+        ))}
+    </ul>
+</div>

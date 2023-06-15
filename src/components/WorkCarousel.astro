@@ -1,0 +1,76 @@
+---
+
+import 'swiper/css';
+
+
+export interface Props {
+	slides: {
+            image: string;
+            caption: string;
+        }[];
+}
+
+const { slides }  = Astro.props;
+
+---
+
+<div class="swiper aspect-square">
+    <div class="swiper-wrapper">
+
+        {
+            slides.map((slide) => (
+                <div class="swiper-slide relative">
+                    <div class="rounded-xl overflow-hidden">
+                        <img src={slide.image} alt="" class="w-full aspect-square object-cover" />
+                    </div>
+
+                    <div class="absolute bottom-0 right-0 bg-white p-4 inset-caption">
+                        <svg class="inset-corner-bl" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M0 100h100V0c0 55.23-44.77 100-100 100Z" /></svg>
+                        <svg class="inset-corner-tr" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M0 100h100V0c0 55.23-44.77 100-100 100Z" /></svg>
+                        <p class="font-bold">{slide.caption}</p>
+                    </div>       
+                </div>
+            ))
+
+        }
+
+    </div>
+</div>
+
+<style>
+    .inset-caption {
+        border-top-left-radius: 1rem;
+        transform: translateY(.05rem);
+    }
+    .inset-caption svg {
+        fill:white;
+        width:1rem;
+        height:auto;
+        position:absolute;
+        overflow: hidden;
+    }
+    .inset-corner-bl {
+        bottom:0;
+        left: -1rem;
+        transform: translateX(.05rem);
+    }
+    .inset-corner-tr {
+        right:0;
+        top:-1rem;
+        transform: translateY(.05rem);
+    }
+</style>
+<script>
+    import Swiper, { Autoplay } from 'swiper';
+    
+    var swiper1 = new Swiper('.swiper', {
+        modules: [Autoplay],
+        spaceBetween: 0,
+        centeredSlides: false,
+
+        autoplay: {
+            delay: 7500,
+            disableOnInteraction: false,
+        }
+    });
+</script>

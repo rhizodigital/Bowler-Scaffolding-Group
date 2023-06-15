@@ -18,11 +18,15 @@ const menu = [
             },
             {
                 name: "Commerical Scaffolding",
-                url: "commercial-scaffolding"
+                url: "/commercial-scaffolding"
             },
             {
                 name: "Domestic Scaffolding",
-                url: "domestic-scaffolding"
+                url: "/domestic-scaffolding"
+            },
+            {
+                name: "Specialist Scaffolding",
+                url: "/specialist-scaffolding"
             }
         ]
     },
@@ -39,10 +43,10 @@ const menu = [
 
 <header class="relative" id="header">
     <Container>
-        <div class="h-16 flex items-center justify-between">
+        <div class="h-16 lg:h-24 xl:h-28 flex items-center justify-between">
             <div class="flex justify-between items-center w-full h-full md:w-auto">
                 <a href="">
-                    <img src={LightLogo} alt="" class="h-10">
+                    <img src={LightLogo} alt="" class="h-10 lg:h-14 xl:h-16">
                 </a>
     
                 <button class="md:hidden relative z-50" aria-expanded="false" data-mobile-toggle>

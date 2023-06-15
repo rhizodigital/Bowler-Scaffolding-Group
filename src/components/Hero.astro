@@ -6,12 +6,13 @@ import { LastWord } from '../utils/lastword';
 export interface Props {
     heading: string;
     subheading: string;
-    image: string;
+    imageTall: string;
+    imageWide: string;
     ctaText?: string;
     ctaLink?: string;
 }
 
-const { heading, subheading, image, ctaLink, ctaText } = Astro.props;
+const { heading, subheading, imageTall, imageWide, ctaLink, ctaText } = Astro.props;
 ---
 
 <div class="bg-zinc-800 py-20 md:py-24 relative">
@@ -26,9 +27,23 @@ const { heading, subheading, image, ctaLink, ctaText } = Astro.props;
                 {ctaLink && <a href={ctaLink} class="py-2 px-4 bg-orange-500 mt-6 inline-block rounded-xl font-semibold text-white">{ctaText}</a>}
             </div>
             <div>
-                <div>
-                    <img src={image} class="h-full w-full object-cover rounded-2xl">
+                <div class="grid grid-cols-12 gap-4 items-center">
+                    <div class="col-span-5">
+                        <div class="grid grid-cols-1 gap-4">
+                            <img src={imageWide} alt="" class="w-full object-cover aspect-square rounded-2xl">
+                            <div class="ml-auto">
+                                <div class="w-24 h-24 bg-zinc-500 rounded-2xl opacity-50"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-span-7">
+                        <div class="grid grid-cols-1 gap-4">
+
+                            <img src={imageTall} alt="" class="block max-w-full h-auto align-middle rounded-2xl">
+                        </div>
+                    </div>
                 </div>
+
             </div>
         </div>
     </Container>

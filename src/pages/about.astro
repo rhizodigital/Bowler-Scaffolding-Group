@@ -1,12 +1,62 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Header from '../components/Header.astro';
+import Layout from "../layouts/Layout.astro";
+import Hero from "../components/Hero.astro";
+import Container from "../components/Container.astro";
+import WorkCarousel from "../components/WorkCarousel.astro";
+import Grid from "../components/Grid.astro";
 
+const pageContent = {
+	heading: "About",
+	subheading:
+		"We are Milton Keynes Scaffolding Specialists and we are committed to providing customers with a reliable, first class service from start to finish, showcasing good working practices and an outstanding level of Health and Safety. It is our policy to ensure that all works are carried out in a manner which avoids, reduces, and controls all risks to our customers, employees, subcontractors, and public.",
+	heroImageWide: "/images/about-1.jpg",
+	heroImageTall: "/images/about-2.jpg",
+	ctaLink: "/contact",
+	ctaText: "Contact us",
+
+};
+
+const slides = [
+	{
+		image: "/images/about-1.jpg",
+		caption: "MK Scaffolding Specialists",
+	},
+
+];
 ---
 
-<Layout title="Milton Keynes Scaffolding Specialists LTD">
+<Layout title="Industrial Scaffolding">
 	<main>
-		<h1>Milton Keynes Scaffolding Specialists LTD</h1>
+		<Hero
+			heading={pageContent.heading}
+			subheading={pageContent.subheading}
+			imageWide={pageContent.heroImageWide}
+			imageTall={pageContent.heroImageTall}
+			ctaLink={pageContent.ctaLink}
+			ctaText={pageContent.ctaText}
+		/>
+
+		<div class="py-16 relative isolate bg-white">
+			<div class="absolute w-1/4 top-0 left-0 h-full text-zinc-100">
+				<Grid size="100" id="about-bg" />
+			</div>
+			<Container className="relative">
+				<div
+					class="grid grid-cols-1 md:grid-cols-2 h-full items-center gap-16"
+				>
+					<div>
+						<p class="text-zinc-600 mb-12 text-lg">
+							We are proud to have no reports of any accidents or health & safety incidents in our entire tenure of trading which is testament to our dedicated, vigilant, and professional staff. We are COVID secure and offer a socially distanced service, giving you peace of mind.
+						</p>
+						<p class="text-zinc-600 mb-12 text-lg">
+							The value of our company is based on the trust our customers have with us to do what we say we will do. We use the term ‘Specialists’ because we know that whatever the challenge, however big, small or complex, we will always rise to the occasion, delivering an award-winning scaffold service from beginning to end.
+						</p>
+					</div>
+					<div>
+						<WorkCarousel slides={slides} />
+					</div>
+				</div>
+			</Container>
+		</div>
 	</main>
 </Layout>
-

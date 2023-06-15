@@ -1,0 +1,93 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Hero from "../components/Hero.astro";
+import Container from "../components/Container.astro";
+import WorkCarousel from "../components/WorkCarousel.astro";
+import Grid from "../components/Grid.astro";
+
+const pageContent = {
+    heading: "Commercial Scaffolding",
+    subheading:
+        "From shops and offices to factories and art galleries, Milton Keynes Scaffolding Specialists have worked on numerous projects in the commercial sector. With expertise built up over two decades, our customers rely on us, for those hard-to-do jobs, that require that extra precision and skill.",
+    heroImageWide: "/images/commercial-4.png",
+    heroImageTall: "/images/commercial-2.jpg",
+    ctaLink: "/contact",
+    ctaText: "Contact us",
+    features: [
+        'office blocks and schools',
+        'warehouses and factories',
+        'residential developments',
+        'retail outlet refurbishments',
+        'art galleries and museums',
+        'confined spaces',
+        'temporary roofs',
+        'church repairs',
+        'public access staircases',
+        'birdcage scaffolds',
+    ],
+};
+
+const slides = [
+    {
+        image: "/images/commercial-1.jpg",
+        caption: "Commercial Scaffolding",
+    },
+    {
+        image: "/images/commercial-3.jpg",
+        caption: "Commercial Scaffolding",
+    },
+    {
+        image: "/images/commercial-5.jpeg",
+        caption: "Commercial Scaffolding",
+    },
+];
+---
+
+<Layout title="Commercial Scaffolding">
+    <main>
+        <Hero
+            heading={pageContent.heading}
+            subheading={pageContent.subheading}
+            imageWide={pageContent.heroImageWide}
+            imageTall={pageContent.heroImageTall}
+            ctaLink={pageContent.ctaLink}
+            ctaText={pageContent.ctaText}
+        />
+
+        <div class="py-16 relative isolate bg-white">
+            <div class="absolute w-1/4 top-0 left-0 h-full text-zinc-100">
+                <Grid size="100" id="about-bg" />
+            </div>
+            <Container className="relative">
+                <div
+                    class="grid grid-cols-1 md:grid-cols-2 items-center gap-16"
+                >
+                    <div>
+                        <p class="text-zinc-600 mb-12 text-lg">
+                            We will see your project through from beginning to end, and our project manager will be on call 24/7 happy to work alongside you every step of the way. We are COVID secure and offer a socially distanced service to give you and your customers peace of mind.
+                        </p>
+                        <WorkCarousel slides={slides} />
+                    </div>
+                    <div>
+                        <div class="bg-zinc-800 rounded-2xl px-12 py-12">
+                            <p class="font-bold text-lg text-orange-500">
+                                Experienced in:
+                            </p>
+                            <ul
+                                class="list-disc marker:text-orange-600 text-zinc-200 mt-4"
+                            >
+                                {
+                                    pageContent.features.map((item) => (
+                                        <li class="ml-5 capitalize mb-4 text-lg">
+                                            {item}
+                                        </li>
+                                    ))
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </Container>
+        </div>
+    </main>
+</Layout>

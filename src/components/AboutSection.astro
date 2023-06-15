@@ -2,6 +2,8 @@
 import Grid from './Grid.astro'
 import FeatureList from './FeatureList.astro';
 import Container from './Container.astro';
+import BarsMask from './BarsMask.astro';
+
 const features = [
 	{
 		title: 'Fully Guaranteed',
@@ -52,8 +54,7 @@ const certificates = [
             </div>
             <div>
                 <div class="-mt-40">
-
-                    <img src="/images/layher.jpg" alt="" class="bars-mask">
+                    <BarsMask image="/images/layher.jpg" alt="Milton Keynes Scaffolding Specialists" />
                 </div>
                 <h1 class="text-4xl font-bold text-zinc-800 mt-8"><div class="text-orange-500 text-lg mb-2">Milton Keynes</div> Scaffolding Specialists</h1>
                 <p class="mt-4 text-zinc-500">Our Milton Keynes Head Quarters are conveniently located to get us to Birmingham, London and Leicester within an hour</p>
@@ -72,15 +73,3 @@ const certificates = [
         </div>
     </Container>
 </section>
-
-<style>
-    .bars-mask {
-        width:100%;
-
-        aspect-ratio: 4 / 2.5;
-        object-fit: cover;
-        mask-image: url(/images/bars.svg);
-        mask-repeat: no-repeat;
-        mask-size: contain;
-    }
-</style>

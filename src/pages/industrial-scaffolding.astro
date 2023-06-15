@@ -2,13 +2,14 @@
 import Layout from '../layouts/Layout.astro';
 import Hero from '../components/Hero.astro';
 import Container from '../components/Container.astro';
+import WorkCarousel from '../components/WorkCarousel.astro';
 import Grid from '../components/Grid.astro';
-import SplitList from '../components/SplitList.astro';
 
 const pageContent = {
     heading: "Industrial Scaffolding",
     subheading: "With two decades of experience in the scaffolding industry, we are able to offer a dynamic, seamless service and one that our customers have come to rely on.",
-    heroimage: "/images/industrial-01.jpg",
+    heroImageWide: "/images/industrial-01.jpg",
+    heroImageTall: "/images/scaffolding-tower.jpg",
     ctaLink: "/contact",
     ctaText: "Contact us",
     features: [
@@ -26,6 +27,17 @@ const pageContent = {
         "lifting gantries",
     ]
 }
+
+const slides = [
+    {
+        image: "/images/industrial-slide-1.jpeg",
+        caption: "Industrial Scaffolding"
+    },
+    {
+        image: "/images/industrial-slide-2.jpeg",
+        caption: "Industrial Scaffolding"
+    },
+]
 ---
 
 <Layout title="Industrial Scaffolding">
@@ -33,32 +45,39 @@ const pageContent = {
         <Hero 
             heading={pageContent.heading} 
             subheading={pageContent.subheading} 
-            image={pageContent.heroimage} 
+            imageWide={pageContent.heroImageWide}
+            imageTall={pageContent.heroImageTall}
             ctaLink={pageContent.ctaLink}
             ctaText={pageContent.ctaText}
         />
 
-        
-        <div class="py-12">
-            <Container>
-                <div class="grid grid-cols-6 gap-8">
-                    <div class="prose prose-zinc col-span-4">
-                        <p> The staff here at Milton Keynes Scaffolding Specialists are qualified and certified in working to every specification – from confined spaces to National Grid scale projects, asbestos removal and demolition works.</p>
-
-                        <div class="py-2 px-6 bg-zinc-800 text-white rounded-2xl">
-                            <div class="md:grid md:grid-cols-2 md:gap-4">
-                                <SplitList list={pageContent.features} />
-                            </div>
-                        </div>
+        <div class="py-16 relative isolate bg-white">
+            <div class="absolute w-1/4 top-0 left-0 h-full text-zinc-100">
+                <Grid size="100" id="about-bg" />
+            </div>
+            <Container className="relative">
+                <div class="grid grid-cols-1 md:grid-cols-2 h-full items-center gap-16">
+                    <div>
+                        <p class="text-zinc-600 mb-12 text-lg">The staff here at <span class="text-orange-500 font-semibold">Milton Keynes Scaffolding Specialists</span> are qualified and certified in working to every specification – from confined spaces to National Grid scale projects, asbestos removal and demolition works.</p>
+                        <WorkCarousel slides={slides} />
                     </div>
                     <div>
-                        <p>Img placeholder</p>
+                        <div class="bg-zinc-800 rounded-2xl px-12 py-12">
+                            <p class="font-bold text-lg text-orange-500">Experienced in:</p>
+                            <ul class="list-disc marker:text-orange-600 text-zinc-200 mt-4">
+                                {pageContent.features.map((item) => (
+                                    <li class="ml-5 capitalize mb-4 text-lg">{item}</li>
+                                ))}
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </Container>
         </div>
+
 	</main>
 </Layout>
+
 
 
 

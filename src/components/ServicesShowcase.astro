@@ -7,22 +7,26 @@ const services = [
     {
         heading: 'Commercial Scaffolding',
         text: 'Our years of experience in the commercial sector means our customers are in safe hands. We will take care of your project from start to finish, leaving you to concentrate on the things that really matter.',
-        image: '/images/6129.jpeg'
+        image: '/images/6129.jpeg',
+        url: '/commercial-scaffolding'
     },
     {
         heading: 'Industrial Scaffolding',
         text: 'Carrying out works of a specialist or sensitive nature isn’t a problem for us. Having a workforce of a highly trained professionals gives us the versatility to complete a variety of projects.',
-        image: '/images/mk2-uai.jpg'
+        image: '/images/mk2-uai.jpg',
+        url: '/industrial-scaffolding'
     },
     {
         heading: 'Domestic Scaffolding',
         text: 'For residential projects, you needn’t look any further than Milton Keynes Scaffolding Specialists. Our residential scaffolding service offers customers a seamless and stress-free experience.',
-        image: '/images/scaff.jpeg'
+        image: '/images/scaff.jpeg',
+        url: '/domestic-scaffolding'
     },
     {
         heading: 'Specialist Scaffolding',
         text: 'For bespoke scaffolds like suspended, truss-out and free-standing structures, Milton Keynes Scaffolding Specialists has the expertise to deliver precisely what you need.',
-        image: '/images/fashion1.jpg'
+        image: '/images/fashion1.jpg',
+        url: '/specialist-scaffolding'
     }, 
 ]
 ---
@@ -42,7 +46,7 @@ const services = [
 
             {services.map(service => (
                 <div class="bg-white rounded-3xl overflow-hidden relative hover:shadow-xl lg:hover:-translate-y-2 transiton-all">
-                    <a href="#" class="group ">
+                    <a href={service.url} class="group ">
                         <img src={service.image} alt="" class="w-full aspect-video lg:aspect-[4/3] object-cover rounded-3xl" />
 
                         <div class="w-12 h-12 absolute top-2 right-2 flex items-center justify-center rounded-full backdrop-blur-lg">
