@@ -195,9 +195,13 @@ import { Icon } from 'astro-icon';
 
         contactForm.setAttribute('data-cf-status', "sending");
 
-        axios.post("http://localhost:3002/send", mail)
+        axios.post(`${import.meta.env.PUBLIC_MAILER_URL}`, mail, {
+            headers: {
+                'X-Requested-With' : 'XMLHttpRequest',
+            }
+        })
         .then(function (response) {
-            const msg = `Thank you ${mail.name}. Your message successfully sent.`;
+            const msg = response.data.message;
             const status = response.data.status;
             sendSuccess(msg, status);
         })
