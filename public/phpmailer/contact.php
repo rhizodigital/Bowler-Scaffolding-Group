@@ -16,7 +16,7 @@ $fromName = 'Michael Sables';
 $toEmail = 'rhizodigital@gmail.com';
 $toName = 'Michael Sables';
 // The message subject line
-$subject = 'Hello from this website';
+$subject = 'Message from Milton Keynes Scaffolding Contact Form';
 
 
 // SMTP Settings

@@ -1,13 +1,18 @@
 ---
 interface Props {
     image: string;
+    fallback: string;
     alt: string;
 }
 
-const { image, alt } = Astro.props;
+const { image, fallback, alt } = Astro.props;
 ---
+<picture>
+    <source srcset={image} type="image/webp">
+    <source srcset={fallback} type="image/jpeg">
+    <img src={fallback} alt={alt} class="w-full object-cover aspect-[4/2.6] bars-mask">
+</picture>
 
-<img src={image} alt={alt} class="w-full object-cover aspect-[4/2.6] bars-mask">
 
 <style>
     .bars-mask {

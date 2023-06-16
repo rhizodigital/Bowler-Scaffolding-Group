@@ -25,7 +25,11 @@ import Container from './Container.astro';
                 <div class="basis-2/3 h-full flex items-center">
                     <div class="w-full aspect-video relative">
                         <img src={bars} alt="" class="absolute bottom-0 right-0 h-12 w-auto translate-y-6 -translate-x-6">
-                        <img src="/images/scaff.jpeg" alt="" class="h-full w-full object-cover rounded-3xl md:rounded-l-3xl shadow-2xl">
+                        <picture>
+                            <source srcset="/images/home/scaff-1200-900.webp" type="image/webp">
+                            <source srcset="/images/home/scaff-1200-900.jpg" type="image/jpeg">
+                            <img src="/images/home/scaff-1200-900.jpg" alt="Milton Keynes Scaffolding Specialists" class="h-full w-full object-cover rounded-3xl md:rounded-l-3xl shadow-2xl">
+                        </picture>
                     </div>
                 </div>
             </div>
