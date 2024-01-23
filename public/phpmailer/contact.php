@@ -13,8 +13,8 @@ require 'src/SMTP.php';
 $fromEmail = 'michael.sables@omnific.studio';
 $fromName = 'Michael Sables';
 // Who message will be sent to
-$toEmail = 'rhizodigital@gmail.com';
-$toName = 'Michael Sables';
+$toEmail = 'info@mkscaffolding.com';
+$toName = 'MK Scaffolding';
 // The message subject line
 $subject = 'Message from Milton Keynes Scaffolding Contact Form';
 
