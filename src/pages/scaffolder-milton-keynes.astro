@@ -1,0 +1,97 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Hero from "../components/Hero.astro";
+import CtaLarge from "../components/CtaLarge.astro";
+import Container from "../components/Container.astro";
+import WorkCarousel from "../components/WorkCarousel.astro";
+import Grid from "../components/Grid.astro";
+import HeroSquare from "../images/domestic/domestic-square-1.jpeg";
+import HeroTall from "../images/domestic/domestic-tall-1.jpeg";
+import Slide1 from "../images/domestic/domestic-slide-1.jpeg";
+import Slide2 from "../images/domestic/domestic-slide-2.jpeg";
+
+const pageContent = {
+	heading: "Reliable Scaffolding Company in Milton Keynes",
+	subheading:
+		"Looking for a scaffolder in Milton Keynes? You've come to the right place. We are a trusted local scaffolding company in Milton Keynes providing comprehensive scaffolding services tailored to meet the needs of both residential and commercial clients. Our experienced team ensures every project is handled safely, efficiently, and with the highest standards of professionalism.",
+	heroImageWide: HeroSquare,
+	heroImageTall: HeroTall,
+	ctaLink: "/contact",
+	ctaText: "Contact us",
+	features: [
+		"elevation repairs",
+		"roof repairs",
+		"facia painting",
+		"glazing installations",
+		"solar panel installations",
+		"thatch installations/repairs",
+		"chimney stack painting/repairs",
+		"bridging over conservatories/extensions",
+		"temporary roofs",
+		"handrails/disabled access",
+	],
+};
+
+const slides = [
+    {
+        image: Slide1,
+        caption: "Scaffolder Milton Keynes"
+    },
+    {
+        image: Slide2,
+        caption: "Scaffolder Milton Keynes"
+    },
+]
+const description = "Trusted Milton Keynes scaffolder and scaffolding company offering reliable, safe, and professional scaffolding services for residential and commercial projects. Contact us today!";
+---
+
+<Layout title="Scaffolder Milton Keynes" description={description}>
+	<main>
+		<Hero
+			heading={pageContent.heading}
+			subheading={pageContent.subheading}
+			imageWide={pageContent.heroImageWide}
+			imageTall={pageContent.heroImageTall}
+			ctaLink={pageContent.ctaLink}
+			ctaText={pageContent.ctaText}
+		/>
+
+		<div class="py-16 relative isolate bg-white">
+			<div class="absolute w-1/4 top-0 left-0 h-full text-zinc-100">
+				<Grid size="100" id="about-bg" />
+			</div>
+            <Container className="relative">
+                <div class="grid grid-cols-1 md:grid-cols-2 items-center gap-16">
+                    <div>
+                        <h2 class="font-bold text-lg text-orange-500 mb-4">Why Choose Milton Keynes Scaffolding Specialists?</h2>
+                        <p class="text-zinc-600 mb-4">As a leading scaffolding firm in Milton Keynes, we pride ourselves on delivering exceptional scaffolding solutions. Whether you're planning a large construction project or a small renovation, our team has the expertise to provide the scaffolding you need. We offer a range of services, including:</p>
+                        <ul class="list-disc marker:text-orange-600 text-zinc-600 mt-4 *:ml-5 mb-8">
+                            <li>Temporary scaffolding structures for all types of buildings</li>
+                            <li>Scaffolding erection and dismantling by skilled scaffolders</li>
+                            <li>Bespoke scaffolding solutions designed to suit your specific project</li>
+                            <li>Safety inspections and compliance checks</li>
+                        </ul>
+                        <WorkCarousel slides={slides} />
+                    </div>
+                    <div>
+                        <div class="bg-zinc-800 rounded-2xl px-12 py-12">
+							<h2 class="font-bold text-lg text-orange-500 mb-4">Professional Scaffolder Milton Keynes</h2>
+							<p class="text-zinc-200 mb-4">When you work with our scaffolder in Milton Keynes, you get a team committed to quality and safety. Our scaffolders are fully trained, qualified, and insured, ensuring that every scaffolding installation is secure and reliable. No matter the size or complexity of the job, we take pride in delivering results that exceed expectations.</p>
+                            <p class="font-bold text-lg text-orange-500">Experienced in:</p>
+                            <ul class="list-disc marker:text-orange-600 text-zinc-200 mt-4">
+                                {pageContent.features.map((item) => (
+                                    <li class="ml-5 capitalize mb-4 text-lg">{item}</li>
+                                ))}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </Container>
+		</div>
+		<CtaLarge>
+			<h2 class="text-white text-4xl font-semibold tracking-tight text-balance sm:text-5xl">Contact Our Scaffolding Firm in Milton Keynes</h2>
+			<p class="mx-auto mt-6 max-w-xl text-pretty text-lg/8 text-zinc-800">If you’re searching for a reliable scaffolding firm in Milton Keynes, look no further. We are dedicated to providing top-tier scaffolding services with a focus on safety, efficiency, and customer satisfaction. Get in touch with us today to discuss your project needs and get a free, no-obligation quote.</p>
+			<div class="mt-10"><a href="/contact" class="rounded-lg bg-white px-3.5 py-2.5 text-sm font-semibold shadow-sm">Get in touch</a></div>
+		</CtaLarge>
+	</main>
+</Layout>
