@@ -1,8 +1,13 @@
 ---
+import { Image } from 'astro:assets';
 import Grid from './Grid.astro'
 import FeatureList from './FeatureList.astro';
 import Container from './Container.astro';
 import BarsMask from './BarsMask.astro';
+import Chas from '../images/chas.png';
+import Safe from '../images/safe.png';
+import Citb from '../images/citb.png';
+import Layher from '../images/layher.jpg';
 
 const features = [
 	{
@@ -25,16 +30,16 @@ const features = [
 
 const certificates = [
 	{
-		name: 'CHAS',
-		src: '/images/chas.png'
+		name: 'Chas',
+		imgsrc: Chas,
 	},
 	{
 		name: 'Safe Contractor',
-		src: '/images/safe.png'
+		imgsrc: Safe
 	},
 	{
 		name: 'CITB',
-		src: '/images/citb.png'
+		imgsrc: Citb
 	},
 
 ]
@@ -54,7 +59,7 @@ const certificates = [
             </div>
             <div>
                 <div class="-mt-40">
-                    <BarsMask image="/images/layher.webp" fallback="/images/layher.jpg" alt="Milton Keynes Scaffolding Specialists" />
+                    <BarsMask image={Layher}  alt="Milton Keynes Scaffolding Specialists" />
                 </div>
                 <h1 class="text-4xl font-bold text-zinc-800 mt-8"><div class="text-orange-500 text-lg mb-2">Milton Keynes</div> Scaffolding Specialists</h1>
                 <p class="mt-4 text-zinc-500">Our Milton Keynes Head Quarters are conveniently located to get us to Birmingham, London and Leicester within an hour</p>
@@ -63,7 +68,7 @@ const certificates = [
                 <div class="flex items-center gap-8 mt-8">
                     {certificates.map(cert => (
                         <div class="h-24 w-24">
-                            <img src={cert.src} alt="{cert.name}" class="h-full w-full object-contain" />
+                            <Image src={cert.imgsrc} alt="{cert.name}" class="h-full w-full object-contain" />
                         </div>
                     ))}
                 </div>

@@ -4,13 +4,17 @@ import Hero from "../components/Hero.astro";
 import Container from "../components/Container.astro";
 import WorkCarousel from "../components/WorkCarousel.astro";
 import Grid from "../components/Grid.astro";
+import HeroSquare from "../images/domestic/domestic-square-1.jpeg";
+import HeroTall from "../images/domestic/domestic-tall-1.jpeg";
+import Slide1 from "../images/domestic/domestic-slide-1.jpeg";
+import Slide2 from "../images/domestic/domestic-slide-2.jpeg";
 
 const pageContent = {
 	heading: "Domestic Scaffolding",
 	subheading:
 		"From a simple scaffold for minor repair works to a scaffolding structure for your entire property – we can cater for your every need. From design to dismantle, our team has the expertise to take care of you and your structure, every step of the way.",
-	heroImageWide: "/images/domestic-square-1.jpeg",
-	heroImageTall: "/images/domestic-tall-1.jpeg",
+	heroImageWide: HeroSquare,
+	heroImageTall: HeroTall,
 	ctaLink: "/contact",
 	ctaText: "Contact us",
 	features: [
@@ -29,17 +33,18 @@ const pageContent = {
 
 const slides = [
     {
-        image: "/images/domestic-slide-1.jpeg",
+        image: Slide1,
         caption: "Domestic Scaffolding"
     },
     {
-        image: "/images/domestic-slide-2.jpeg",
+        image: Slide2,
         caption: "Domestic Scaffolding"
     },
 ]
+const description = "Milton Keynes-based domestic scaffolding experts offering safe, affordable solutions for home renovations, repairs, and access needs.";
 ---
 
-<Layout title="Domestic Scaffolding">
+<Layout title="Domestic Scaffolding" description={description}>
 	<main>
 		<Hero
 			heading={pageContent.heading}

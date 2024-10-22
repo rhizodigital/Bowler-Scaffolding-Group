@@ -4,13 +4,15 @@ import Hero from "../components/Hero.astro";
 import Container from "../components/Container.astro";
 import WorkCarousel from "../components/WorkCarousel.astro";
 import Grid from "../components/Grid.astro";
+import AboutImage1 from "../images/about/about-1.jpg";
+import AboutImage2 from "../images/about/about-2.jpg";
 
 const pageContent = {
 	heading: "About",
 	subheading:
 		"We are Milton Keynes Scaffolding Specialists and we are committed to providing customers with a reliable, first class service from start to finish, showcasing good working practices and an outstanding level of Health and Safety. It is our policy to ensure that all works are carried out in a manner which avoids, reduces, and controls all risks to our customers, employees, subcontractors, and public.",
-	heroImageWide: "/images/about-1.jpg",
-	heroImageTall: "/images/about-2.jpg",
+	heroImageWide: AboutImage1,
+	heroImageTall: AboutImage2,
 	ctaLink: "/contact",
 	ctaText: "Contact us",
 
@@ -18,14 +20,15 @@ const pageContent = {
 
 const slides = [
 	{
-		image: "/images/about-1.jpg",
+		image: AboutImage1,
 		caption: "MK Scaffolding Specialists",
 	},
 
 ];
+const description = "Milton Keynes Scaffolding Specialists deliver expert scaffolding services for industrial, commercial, and domestic projects, with a focus on safety and quality."
 ---
 
-<Layout title="Industrial Scaffolding">
+<Layout title="Industrial Scaffolding" description={description}>
 	<main>
 		<Hero
 			heading={pageContent.heading}

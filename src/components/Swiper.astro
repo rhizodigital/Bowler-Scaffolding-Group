@@ -1,10 +1,10 @@
 ---
-
+import { Image } from 'astro:assets';
 import 'swiper/css';
 import Grid from "../components/Grid.astro";
-import bars from '../images/bars.svg';
+import Bars from './bars.astro';
 import Container from './Container.astro';
-
+import SlideOneImage from '../images/home/scaff-1200-900.jpg'
 ---
 
 <div class="swiper swiper1 w-full lg:h-[45vw] lg:max-h-[600px]">
@@ -24,20 +24,13 @@ import Container from './Container.astro';
                 </div>
                 <div class="basis-2/3 h-full flex items-center">
                     <div class="w-full aspect-video relative">
-                        <img src={bars} alt="" class="absolute bottom-0 right-0 h-12 w-auto translate-y-6 -translate-x-6">
-                        <picture>
-                            <source srcset="/images/home/scaff-1200-900.webp" type="image/webp">
-                            <source srcset="/images/home/scaff-1200-900.jpg" type="image/jpeg">
-                            <img src="/images/home/scaff-1200-900.jpg" alt="Milton Keynes Scaffolding Specialists" class="h-full w-full object-cover rounded-3xl md:rounded-l-3xl shadow-2xl">
-                        </picture>
+                        <Bars class="absolute bottom-0 right-0 h-12 w-auto translate-y-6 -translate-x-6 fill-orange-500" />
+                        <Image src={SlideOneImage} loading='eager' alt="Milton Keynes Scaffolding Specialists" class="h-full w-full object-cover rounded-3xl md:rounded-l-3xl shadow-2xl">
                     </div>
                 </div>
             </div>
         </Container>
       </div>
-
-
-
     </div>
 </div>
 

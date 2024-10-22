@@ -4,13 +4,16 @@ import Hero from "../components/Hero.astro";
 import Container from "../components/Container.astro";
 import WorkCarousel from "../components/WorkCarousel.astro";
 import Grid from "../components/Grid.astro";
+import SpecialistImage1 from "../images/specialist/specialist-1.jpg";
+import SpecialistImage2 from "../images/specialist/specialist-2.jpeg";
+import SpecialistImage3 from "../images/specialist/specialist-3.jpg";
 
 const pageContent = {
     heading: "Specialist Scaffolding",
     subheading:
         "For bespoke scaffolds like suspended, truss-out and free-standing structures, Milton Keynes Scaffolding Specialists has the expertise to deliver precisely what you need. Using tube & fitting and the Layher System of scaffolding, we utilise the best of both systems, to get your scaffold spot-on. Plus, you won’t have to worry about the finishing touches, as we supply hoarding and signage – which is part of our 360-degree service.",
-    heroImageWide: "/images/specialist-1.jpg",
-    heroImageTall: "/images/specialist-2.jpeg",
+    heroImageWide: SpecialistImage1,
+    heroImageTall: SpecialistImage2,
     ctaLink: "/contact",
     ctaText: "Contact us",
     features: [
@@ -32,14 +35,15 @@ const pageContent = {
 
 const slides = [
     {
-        image: "/images/specialist-3.jpg",
+        image: SpecialistImage3,
         caption: "Specialist Scaffolding",
     },
 
 ];
+const description = "Milton Keynes-based specialist scaffolding solutions for complex projects, ensuring safety, precision, and tailored access for unique requirements.";
 ---
 
-<Layout title="Specialist Scaffolding">
+<Layout title="Specialist Scaffolding" description={description}>
     <main>
         <Hero
             heading={pageContent.heading}

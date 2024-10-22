@@ -4,12 +4,16 @@ import Hero from '../components/Hero.astro';
 import Container from '../components/Container.astro';
 import WorkCarousel from '../components/WorkCarousel.astro';
 import Grid from '../components/Grid.astro';
+import IndustrialHeroImage from '../images/industrial/industrial-01.jpg';
+import IndustrialHeroImage2 from '../images/industrial/scaffolding-tower.jpg';
+import IndustrialSlide1 from '../images/industrial/industrial-slide-1.jpeg';
+import IndustrialSlide2 from '../images/industrial/industrial-slide-2.jpeg';
 
 const pageContent = {
     heading: "Industrial Scaffolding",
     subheading: "With two decades of experience in the scaffolding industry, we are able to offer a dynamic, seamless service and one that our customers have come to rely on.",
-    heroImageWide: "/images/industrial-01.jpg",
-    heroImageTall: "/images/scaffolding-tower.jpg",
+    heroImageWide: IndustrialHeroImage,
+    heroImageTall: IndustrialHeroImage2,
     ctaLink: "/contact",
     ctaText: "Contact us",
     features: [
@@ -30,17 +34,19 @@ const pageContent = {
 
 const slides = [
     {
-        image: "/images/industrial-slide-1.jpeg",
+        image: IndustrialSlide1,
         caption: "Industrial Scaffolding"
     },
     {
-        image: "/images/industrial-slide-2.jpeg",
+        image: IndustrialSlide2,
         caption: "Industrial Scaffolding"
     },
 ]
+
+const description = "Milton Keynes-based experts in industrial scaffolding, offering safe, reliable solutions for construction, maintenance, and access needs.";
 ---
 
-<Layout title="Industrial Scaffolding">
+<Layout title="Industrial Scaffolding" description={description}>
 	<main>
         <Hero 
             heading={pageContent.heading} 

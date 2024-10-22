@@ -1,11 +1,11 @@
 ---
-
+import { Image } from 'astro:assets';
 import 'swiper/css';
 
 
 export interface Props {
 	slides: {
-            image: string;
+            image:ImageMetadata;
             caption: string;
         }[];
 }
@@ -21,7 +21,7 @@ const { slides }  = Astro.props;
             slides.map((slide) => (
                 <div class="swiper-slide relative">
                     <div class="rounded-xl overflow-hidden">
-                        <img src={slide.image} alt="" class="w-full aspect-square object-cover" />
+                        <Image src={slide.image} alt={slide.caption} loading="eager" class="w-full aspect-square object-cover" />
                     </div>
 
                     <div class="absolute bottom-0 right-0 bg-white p-4 inset-caption">

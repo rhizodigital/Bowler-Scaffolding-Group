@@ -1,35 +1,38 @@
 ---
+import { Image } from 'astro:assets';
 import Grid from './Grid.astro'
 import Container from './Container.astro';
 import { Icon } from 'astro-icon'
+
+import CommercialImage from '../images/home/6129-1200-900.jpg';
+import IndustrialImage from '../images/home/mk2-uai-900-900.jpg';
+import DomesticImage from '../images/home/domestic-tall-1000-1500.jpg';
+import SpecialistImage from '../images/home/fashion1-1000-743.jpg';
 
 const services = [
     {
         heading: 'Commercial Scaffolding',
         text: 'With extensive experience in the commercial sector, our seasoned team ensures your project is in capable hands. We manage every aspect from initiation to completion, allowing you to focus on what truly matters.',
-        image: '/images/home/6129-1200-900.webp',
-        fallback: '/images/home/6129-1200-900.jpg',
+        image: CommercialImage,
         url: '/commercial-scaffolding'
     },
     {
         heading: 'Industrial Scaffolding',
         text: 'Handling specialized or sensitive projects poses no challenge for us. Our team of extensively trained professionals equips us with the flexibility to successfully execute a wide array of tasks.',
-        image: '/images/home/mk2-uai-900-900.webp',
-        fallback: '/images/home/mk2-uai-900-900.jpg',
+        image: IndustrialImage,
         url: '/industrial-scaffolding'
     },
     {
         heading: 'Domestic Scaffolding',
         text: 'When it comes to residential projects, Milton Keynes Scaffolding Specialists is your go-to choice. Our residential scaffolding service guarantees customers a smooth and hassle-free experience.',
-        image: '/images/home/domestic-tall-1000-1500.webp',
-        fallback: '/images/home/domestic-tall-1000-1500.jpg',
+        image: DomesticImage,
+
         url: '/domestic-scaffolding'
     },
     {
         heading: 'Specialist Scaffolding',
         text: 'Milton Keynes Scaffolding Specialists possesses the expertise to provide tailored scaffolds, including suspended, truss-out, and free-standing structures, meeting your precise requirements.',
-        image: '/images/home/fashion1-1000-743.webp',
-        fallback: '/images/home/fashion1-1000-743.jpg',
+        image: SpecialistImage,
         url: '/specialist-scaffolding'
     }, 
 ]
@@ -51,11 +54,8 @@ const services = [
             {services.map(service => (
                 <div class="bg-white rounded-3xl overflow-hidden relative hover:shadow-xl lg:hover:-translate-y-2 transiton-all">
                     <a href={service.url} class="group ">
-                        <picture>
-                            <source srcset={service.image} type="image/webp">
-                            <source srcset={service.fallback} type="image/jpeg">
-                            <img src={service.image} alt={service.heading} class="w-full aspect-video lg:aspect-[4/3] object-cover rounded-3xl" />
-                        </picture>
+                        <Image src={service.image} alt={service.heading} loading='eager' class="w-full aspect-video lg:aspect-[4/3] object-cover rounded-3xl" />
+
 
                         <div class="w-12 h-12 absolute top-2 right-2 flex items-center justify-center rounded-full backdrop-blur-lg">
                             <div class="group-hover:bg-white flex items-center justify-center rounded-full w-8 h-8 transition-all">

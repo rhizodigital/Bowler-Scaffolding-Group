@@ -1,16 +1,22 @@
 ---
+import { Image } from "astro:assets";
 import Layout from "../layouts/Layout.astro";
 import Hero from "../components/Hero.astro";
 import Container from "../components/Container.astro";
 import WorkCarousel from "../components/WorkCarousel.astro";
 import Grid from "../components/Grid.astro";
+import CommercialImage1 from "../images/commercial/commercial-1.jpg";
+import CommercialImage2 from "../images/commercial/commercial-2.jpg";
+import CommercialImage3 from "../images/commercial/commercial-3.jpg";
+import CommercialImage4 from "../images/commercial/commercial-4.png";
+import CommercialImage5 from "../images/commercial/commercial-5.jpeg";
 
 const pageContent = {
     heading: "Commercial Scaffolding",
     subheading:
         "From shops and offices to factories and art galleries, Milton Keynes Scaffolding Specialists have worked on numerous projects in the commercial sector. With expertise built up over two decades, our customers rely on us, for those hard-to-do jobs, that require that extra precision and skill.",
-    heroImageWide: "/images/commercial-4.png",
-    heroImageTall: "/images/commercial-2.jpg",
+    heroImageWide: CommercialImage4,
+    heroImageTall: CommercialImage2,
     ctaLink: "/contact",
     ctaText: "Contact us",
     features: [
@@ -29,21 +35,22 @@ const pageContent = {
 
 const slides = [
     {
-        image: "/images/commercial-1.jpg",
+        image: CommercialImage1,
         caption: "Commercial Scaffolding",
     },
     {
-        image: "/images/commercial-3.jpg",
+        image: CommercialImage3,
         caption: "Commercial Scaffolding",
     },
     {
-        image: "/images/commercial-5.jpeg",
+        image: CommercialImage5,
         caption: "Commercial Scaffolding",
     },
 ];
+const description = "Milton Keynes-based specialists in commercial scaffolding, providing safe and efficient solutions for construction and maintenance projects.";
 ---
 
-<Layout title="Commercial Scaffolding">
+<Layout title="Commercial Scaffolding" description={description}>
     <main>
         <Hero
             heading={pageContent.heading}

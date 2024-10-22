@@ -1,7 +1,8 @@
 ---
+import { Image } from 'astro:assets';
 import Container from './Container.astro';
 import SocialLinks from './SocialLinks.astro';
-import Logo from '../images/mk-dark.svg';
+import Logo from './Logo.astro';
 import { Icon } from 'astro-icon';
 
 const services = [
@@ -95,8 +96,8 @@ const linkStyle = "text-base text-zinc-400 hover:text-white";
 
                 </div>
                 <div class="order-first md:order-last">
-                    <a href="/">
-                        <img src={Logo} alt="" class="max-w-xs">
+                    <a href="/" class="*:max-w-96" title="Milton Keynes Scaffolding Homepage">
+                        <Logo theme="light" />
                     </a>
     
                 </div>
