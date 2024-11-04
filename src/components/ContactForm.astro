@@ -22,7 +22,7 @@ import { Icon } from 'astro-icon';
             <label class="block">
                 <span>Full name</span>
                 <span data-cf-error></span>
-                <input type="text" name="cf_name" id="cf_name" class="block w-full rounded-xl border-zinc-400 focus:border-orange-300 focus:ring focus:ring-orange-200 focus:ring-opacity-50 valid:border-green-500" minlength="3" pattern="^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$" required>
+                <input type="text" name="cf_name" id="cf_name" class="block w-full rounded-xl border-zinc-400 focus:border-orange-300 focus:ring focus:ring-orange-200 focus:ring-opacity-50 valid:border-green-500" minlength="3" pattern="^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'\-]+$" required>
             </label>
         
             <label class="block">
@@ -34,14 +34,14 @@ import { Icon } from 'astro-icon';
             <label class="block">
                 <span>Phone number</span>
                 <span data-cf-error></span>
-                <input type="tel" name="cf_phone" id="cf_phone" class="block w-full rounded-xl border-zinc-400 focus:border-orange-300 focus:ring focus:ring-orange-200 focus:ring-opacity-50 valid:border-green-500" minlength="10" maxlength="17" pattern="[+ 0-9]{10,17}" required>
+                <input type="tel" name="cf_phone" id="cf_phone" class="block w-full rounded-xl border-zinc-400 focus:border-orange-300 focus:ring focus:ring-orange-200 focus:ring-opacity-50 valid:border-green-500" minlength="10" maxlength="17" pattern="^\+?[0-9 ]{10,17}$" required>
             </label>
         </div>
         <div class="space-y-4">
             <label class="block">
                 <span>Message</span>
                 <span data-cf-error></span>
-                <textarea name="cf_message" id="cf_message" rows="6" class="block w-full rounded-xl border-zinc-400 focus:border-orange-300 focus:ring focus:ring-orange-200 focus:ring-opacity-50 valid:border-green-500" minlength="30" required></textarea>
+                <textarea name="cf_message" id="cf_message" rows="6" class="block w-full rounded-xl border-zinc-400 focus:border-orange-300 focus:ring focus:ring-orange-200 focus:ring-opacity-50 valid:border-green-500" minlength="10" required></textarea>
             </label>
 
             <button type="submit" id="submit" class="bg-orange-500 rounded-xl text-white py-2 px-4">
