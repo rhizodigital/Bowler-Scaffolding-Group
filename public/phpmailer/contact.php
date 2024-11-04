@@ -10,7 +10,7 @@ require 'src/SMTP.php';
 // Settings
 // Who message will be sent from. Use a fixed address in your own domain or 
 // it can cause your message to fail SPF checks
-$fromEmail = 'website@omnific.studio';
+$fromEmail = 'website@mkscaffolding.com';
 $fromName = 'MK Scaffolding Website Contact Form';
 // Who message will be sent to
 $toEmail = 'info@mkscaffolding.com';
@@ -29,7 +29,7 @@ $smtpPort = 587;
 $smtpUser = 'website@mkscaffolding.com';
 // Password for SMTP Authentication
 $smtpPass = 'Asq78424';
-$smtpSecure = 'ssl'; // Enable TLS or SSL encryption
+$smtpSecure = 'SSL'; // Enable TLS or SSL encryption
 $smtpAutoTLS = false; // Enable Auto TLS
 
 //======================================================
