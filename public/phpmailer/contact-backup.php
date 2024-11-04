@@ -10,8 +10,8 @@ require 'src/SMTP.php';
 // Settings
 // Who message will be sent from. Use a fixed address in your own domain or 
 // it can cause your message to fail SPF checks
-$fromEmail = 'website@omnific.studio';
-$fromName = 'MK Scaffolding Website Contact Form';
+$fromEmail = 'michael.sables@omnific.studio';
+$fromName = 'Michael Sables';
 // Who message will be sent to
 $toEmail = 'info@mkscaffolding.com';
 $toName = 'MK Scaffolding';
@@ -22,13 +22,13 @@ $subject = 'Message from Milton Keynes Scaffolding Contact Form';
 // SMTP Settings
 
 // Hostname of SMTP server
-$smtpHost = 'smtp.office365.com';
+$smtpHost = 'smtppro.zoho.eu';
 // Set the SMTP port number - likely to be 25, 465 or 587
-$smtpPort = 587;
+$smtpPort = 465;
 // Username for SMTP Autentication
-$smtpUser = 'website@mkscaffolding.com';
+$smtpUser = 'michael.sables@omnific.studio';
 // Password for SMTP Authentication
-$smtpPass = 'Asq78424';
+$smtpPass = 'AYvDNMyhCTEa';
 $smtpSecure = 'ssl'; // Enable TLS or SSL encryption
 $smtpAutoTLS = false; // Enable Auto TLS
 
