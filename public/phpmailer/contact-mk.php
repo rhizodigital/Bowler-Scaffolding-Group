@@ -10,8 +10,8 @@ require 'src/SMTP.php';
 // Settings
 // Who message will be sent from. Use a fixed address in your own domain or 
 // it can cause your message to fail SPF checks
-$fromEmail = 'michael.sables@omnific.studio';
-$fromName = 'Michael Sables';
+$fromEmail = 'website@mkscaffolding.com';
+$fromName = 'MK Scaffolding Website Contact Form';
 // Who message will be sent to
 $toEmail = 'info@mkscaffolding.com';
 $toName = 'MK Scaffolding';
@@ -22,14 +22,14 @@ $subject = 'Message from Milton Keynes Scaffolding Contact Form';
 // SMTP Settings
 
 // Hostname of SMTP server
-$smtpHost = 'smtppro.zoho.eu';
+$smtpHost = 'smtp.office365.com';
 // Set the SMTP port number - likely to be 25, 465 or 587
-$smtpPort = 465;
+$smtpPort = 587;
 // Username for SMTP Autentication
-$smtpUser = 'michael.sables@omnific.studio';
+$smtpUser = 'website@mkscaffolding.com';
 // Password for SMTP Authentication
-$smtpPass = 'AYvDNMyhCTEa';
-$smtpSecure = 'ssl'; // Enable TLS or SSL encryption
+$smtpPass = 'Asq78424';
+$smtpSecure = 'tls'; // Enable TLS or SSL encryption
 $smtpAutoTLS = false; // Enable Auto TLS
 
 //======================================================
@@ -43,7 +43,7 @@ if (array_key_exists('email', $data)) {
     $isAjax = !empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) === 'xmlhttprequest';
 
     // Create PHPMailer Instance
-    $mail = new PHPMailer();
+    $mail = new PHPMailer(true);
     // Tell PHPMailer to use SMTP;
     $mail->isSMTP();
 
