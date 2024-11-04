@@ -43,7 +43,7 @@ if (array_key_exists('email', $data)) {
     $isAjax = !empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) === 'xmlhttprequest';
 
     // Create PHPMailer Instance
-    $mail = new PHPMailer();
+    $mail = new PHPMailer(true);
     // Tell PHPMailer to use SMTP;
     $mail->isSMTP();
 
