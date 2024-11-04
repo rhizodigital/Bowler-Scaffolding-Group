@@ -30,7 +30,7 @@ $smtpUser = 'website@mkscaffolding.com';
 // Password for SMTP Authentication
 $smtpPass = 'Asq78424';
 $smtpSecure = 'tls'; // Enable TLS or SSL encryption
-$smtpAutoTLS = true; // Enable Auto TLS
+$smtpAutoTLS = false; // Enable Auto TLS
 
 //======================================================
     if (isset($_POST)) {
