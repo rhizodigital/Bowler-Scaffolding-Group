@@ -1,0 +1,109 @@
+---
+import Layout from "../layouts/Layout.astro";
+import ContactForm from "../components/ContactForm/ContactForm.astro";
+import Container from "../components/Container.astro";
+import Testimonials from "../components/Testimonials.astro";
+import Grid from "../components/Grid.astro";
+import { Icon } from "astro-icon/components";
+
+const contactInfo = [
+  {
+    type: "address",
+    heading: "Our address",
+    info: "21, Shenley Pavilions, Milton Keynes MK5 6LB",
+  },
+  {
+    type: "landline",
+    heading: "Let's talk",
+    info: `<a href="tel:01908224709">01908 224 709</a>`,
+  },
+  {
+    type: "email",
+    heading: "Email us",
+    info: `<a href="mailto:info@mkscaffolding.com">info@mkscaffolding.com</a>`,
+  },
+];
+const description =
+  "Contact Milton Keynes Scaffolding Specialists for expert scaffolding solutions. Get in touch for reliable, safe, and tailored services across all project types.";
+
+const subjectOptions = [
+  "Industrial Scaffolding Quote",
+  "Domestic Scaffolding Quote",
+  "Commercial Scaffolding Quote",
+  "Other Quote",
+];
+
+const successMessage = {
+  title: "Thank You for Requesting a Quote!",
+  body: "We’ve received your request! A member of our team will contact you shortly to discuss your scaffolding needs and provide a personalised quote. If you have any urgent queries, please don’t hesitate to reach out directly.",
+  buttonText: "Continue",
+};
+---
+
+<Layout
+  title="Free Scaffolding Quote from Milton Keynes Scaffolding Specialists"
+  description={description}
+>
+  <main>
+    <div class="relative bg-zinc-800 py-16 md:py-24">
+      <div
+        class="w-full h-full absolute top-0 bottom-0 left-0 right-0 text-zinc-700 opacity-40"
+      >
+        <Grid size="100" id="slide-pattern" />
+      </div>
+      <Container className="relative">
+        <div class="grid lg:grid-cols-2 lg:grid-rows-2 gap-8 items-start">
+          <div>
+            <h1 class="text-5xl text-white font-semibold text-balance">
+              <span class="text-orange-500">Get a Free,</span> no-obligation scaffolding
+              quote Today!
+            </h1>
+            <p class="text-xl text-zinc-400 mt-8">
+              Why settle for less? Discover our reliable, cost-effective
+              scaffolding solutions tailored to your needs. Contact us now to
+              secure a competitive quote from Milton Keynes' trusted experts!
+            </p>
+          </div>
+          <div class="order-3 lg:order-2 lg:col-start-1">
+            <h2 class="text-xl text-zinc-200 font-semibold leading-none">
+              Contact information:
+            </h2>
+            <dl class="mt-6 space-y-6">
+              {
+                contactInfo.map((item) => (
+                  <div class="relative pl-12">
+                    <dt class="text-white font-semibold">
+                      <div class="w-8 h-8 bg-orange-500 rounded-md flex items-center justify-center text-white absolute top-0 left-0">
+                        {item.type === "address" && (
+                          <Icon name="material-symbols:pin-drop" size={20} />
+                        )}
+                        {item.type === "landline" && (
+                          <Icon name="ic:round-phone" size={20} />
+                        )}
+                        {item.type === "email" && (
+                          <Icon name="ic:round-email" size={20} />
+                        )}
+                      </div>
+                      {item.heading}
+                    </dt>
+                    <dd class="text-zinc-400">
+                      <Fragment set:html={item.info} />
+                    </dd>
+                  </div>
+                ))
+              }
+            </dl>
+          </div>
+          <div class="lg:col-start-2 lg:row-start-1 lg:row-span-2 shadow-xl">
+            <ContactForm
+              heading="Request a Quote"
+              subjects={subjectOptions}
+              successMessage={successMessage}
+            />
+          </div>
+        </div>
+      </Container>
+    </div>
+    <Testimonials />
+  </main>
+</Layout>

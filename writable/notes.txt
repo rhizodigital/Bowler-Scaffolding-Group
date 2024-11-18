@@ -1,0 +1,10 @@
+permissions to set for rate_limits.json
+try first (sabre is non root user)
+sudo chown sabre:www-data /var/www/planetwide.uk/writable
+
+then try
+sudo chmod 775 /var/www/planetwide.uk/writable
+
+chmod 664 rate_limits.json
+
+

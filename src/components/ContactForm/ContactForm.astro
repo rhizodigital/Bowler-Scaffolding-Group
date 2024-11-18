@@ -1,0 +1,201 @@
+---
+import { Icon } from "astro-icon/components";
+export interface Props {
+  heading: string;
+  subjects: string[];
+  successMessage: {
+    title: string;
+    body: string;
+    buttonText: string;
+  };
+}
+
+const { subjects, successMessage, heading } = Astro.props as Props;
+---
+
+<contact-form>
+  <div
+    class="bg-white border border-zinc-200 rounded-2xl relative p-4 sm:p-6 lg:p-8"
+  >
+    <form
+      method="POST"
+      class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 relative text-zinc-700"
+      id="contactForm"
+    >
+      {
+        heading && (
+          <h2 class="text-2xl font-semibold md:col-span-2">{heading}</h2>
+        )
+      }
+      <div class="flex flex-col">
+        <label for="name">Name</label>
+        <input
+          class="border-zinc-400 rounded-lg focus:ring-2 focus:border-zinc-600 focus:ring-zinc-500/50"
+          type="text"
+          id="name"
+          name="name"
+          minlength="3"
+          maxlength="40"
+          required
+        />
+        <div class="hidden text-red-500 text-sm" data-input-error></div>
+      </div>
+      <div class="flex flex-col">
+        <label for="email">Email</label>
+        <input
+          type="email"
+          class="border-zinc-400 rounded-lg focus:ring-2 focus:border-zinc-600 focus:ring-zinc-500/50"
+          id="email"
+          name="email"
+          required
+        />
+        <div class="hidden text-red-500 text-sm" data-input-error></div>
+      </div>
+      <div class="flex flex-col">
+        <label for="phone">Phone</label>
+        <input
+          class="border-zinc-400 rounded-lg focus:ring-2 focus:border-zinc-600 focus:ring-zinc-500/50"
+          type="tel"
+          id="phone"
+          name="phone"
+          minlength="9"
+          maxlength="16"
+          required
+        />
+        <div class="hidden text-red-500 text-sm" data-input-error></div>
+      </div>
+
+      <div class="flex flex-col">
+        <label for="subject">Subject</label>
+        <select
+          id="subject"
+          name="subject"
+          class="border-zinc-400 rounded-lg focus:ring-2 focus:border-zinc-600 focus:ring-zinc-500/50"
+          required
+        >
+          <option value="">Select a subject</option>
+          {subjects.map((option) => <option value={option}>{option}</option>)}
+        </select>
+        <div class="hidden text-red-500 text-sm" data-input-error></div>
+      </div>
+      <div class="flex flex-col md:col-span-2">
+        <label for="message">Message</label>
+        <textarea
+          id="message"
+          name="message"
+          class="border-zinc-400 rounded-lg focus:ring-2 focus:border-zinc-600 focus:ring-zinc-500/50"
+          required></textarea>
+        <div class="hidden text-red-500 text-sm" data-input-error></div>
+      </div>
+      <input
+        type="text"
+        name="manuca"
+        style="display:none"
+        tabindex="-1"
+        autocomplete="off"
+      />
+      <div class="md:col-span-2 flex gap-8 items center">
+        <button
+          type="submit"
+          class="flex bg-emerald-500 py-3 px-6 items-center text-white font-semibold rounded-full"
+        >
+          <svg
+            class="animate-spin -ml-1 mr-3 h-5 w-5 text-white hidden"
+            data-form-indicator
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+          >
+            <circle
+              class="opacity-25"
+              cx="12"
+              cy="12"
+              r="10"
+              stroke="currentColor"
+              stroke-width="4"></circle>
+            <path
+              class="opacity-75"
+              fill="currentColor"
+              d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+            ></path>
+          </svg>
+          <span data-form-submit-text>Send</span>
+        </button>
+        <label class="flex gap-4 items-center">
+          <input
+            type="checkbox"
+            name="privacy_policy"
+            class="size-4 rounded border-gray-300 text-orange-600 focus:ring-orange-600"
+            required
+          />
+          <span
+            >I accept the <a
+              href="/privacy-policy"
+              class="font-medium underline"
+              target="_blank">Privacy Policy</a
+            ></span
+          >
+        </label>
+      </div>
+      <!-- Error message -->
+      <div
+        data-form-error
+        class="hidden data-[form-error=true]:block border border-red-500 rounded-md bg-red-500/10 p-4 md:col-span-2"
+      >
+        <div class="flex gap-4 items-center text-red-500">
+          <svg class="size-8" viewBox="0 -960 960 960" fill="currentColor"
+            ><path
+              d="M480-280q17 0 28.5-11.5T520-320q0-17-11.5-28.5T480-360q-17 0-28.5 11.5T440-320q0 17 11.5 28.5T480-280Zm-40-160h80v-240h-80v240Zm40 360q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"
+            ></path></svg
+          >
+          <p data-form-error-text></p>
+        </div>
+      </div>
+      <!-- Thank you (success) message -->
+      <div
+        data-form-success
+        class="hidden data-[form-success=true]:block absolute inset-0 size-full bg-white rounded-2xl"
+      >
+        <div
+          class="bg-white p-4 flex flex-col items-start justify-between h-full"
+        >
+          <div>
+            <Icon
+              name="ic:round-mark-email-read"
+              size={96}
+              class="mb-8 text-emerald-500"
+            />
+            <h2 class="text-3xl font-semibold">{successMessage.title}</h2>
+            <p class="mt-4">{successMessage.body}</p>
+          </div>
+          <button
+            type="button"
+            class="bg-emerald-600 py-3 px-6 text-white rounded-full"
+          >
+            <span>{successMessage.buttonText}</span>
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</contact-form>
+
+<script>
+  import "./contact-form";
+</script>
+
+<style>
+  :root {
+    --invalid-color: #e53e3e;
+  }
+  [data-input-valid="false"] {
+    --tw-ring-color: var(--invalid-color);
+    --tw-ring-focus: var(--invalid-color);
+    border-color: var(--invalid-color);
+    color: var(--invalid-color);
+  }
+  :global(form .error-message) {
+    color: var(--invalid-color);
+    font-size: 0.875rem;
+  }
+</style>

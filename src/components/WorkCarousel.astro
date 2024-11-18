@@ -1,7 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import 'swiper/css';
-
+import 'swiper/css/autoplay';
 
 export interface Props {
 	slides: {
@@ -63,9 +63,11 @@ const { slides }  = Astro.props;
     }
 </style>
 <script>
-    import Swiper, { Autoplay } from 'swiper';
+    import Swiper from 'swiper';
+    import { Autoplay } from 'swiper/modules';
+    let swiper: Swiper;
     
-    var swiper1 = new Swiper('.swiper', {
+    swiper = new Swiper('.swiper', {
         modules: [Autoplay],
         spaceBetween: 0,
         centeredSlides: false,

@@ -1,77 +1,112 @@
 ---
-import 'swiper/css';
+import "swiper/css";
+import "swiper/css/autoplay";
+import "swiper/css/navigation";
 
-import Grid from "./Grid.astro"
-import { Icon } from 'astro-icon'
+import Grid from "./Grid.astro";
+import { Icon } from "astro-icon/components";
 
 const testimonials = [
-    {
-        quote: "I'm not joking, this is the best scaffold i've seen in many many years. I'm very pleased, thank you very much!",
-        author: "Steve Mann",
-        company: "Neville Construction",
-    },
-    {
-        quote: "I am an electrician by trade and when i needed scaffolding to install solar panels on my roof at home, I contacted Milton Keynes Scaffolding. I was extremely happy with the service I received. So much so that they are now the chosen scaffolding company for the energy company I work for.",
-        author: "Pete W",
-        company: "Electrician",
-    },
-    {
-        quote: "I have used Milton Keynes Scaffolding on numerous occasions and always found them to be extremely efficient and helpful. The team are always willing to think outside the box and on many occasions offered some great advice!",
-        author: "Andy L",
-        company: "Snozone",
-    },
-]
+  {
+    quote:
+      "I'm not joking, this is the best scaffold i've seen in many many years. I'm very pleased, thank you very much!",
+    author: "Steve Mann",
+    company: "Neville Construction",
+  },
+  {
+    quote:
+      "I am an electrician by trade and when i needed scaffolding to install solar panels on my roof at home, I contacted Milton Keynes Scaffolding. I was extremely happy with the service I received. So much so that they are now the chosen scaffolding company for the energy company I work for.",
+    author: "Pete W",
+    company: "Electrician",
+  },
+  {
+    quote:
+      "I have used Milton Keynes Scaffolding on numerous occasions and always found them to be extremely efficient and helpful. The team are always willing to think outside the box and on many occasions offered some great advice!",
+    author: "Andy L",
+    company: "Snozone",
+  },
+];
 ---
-<section class="bg-orange-500 py-24 overflow-hidden relative">
-    <div class="absolute w-1/4 h-1/2 top-0 left-0 text-orange-400">
-        <Grid size="100" id="testimonial-bg-top" />
-    </div>
-    <div class="absolute w-1/4 h-1/2 bottom-0 right-0 text-orange-400">
-        <Grid size="100" id="testimonial-bg-bottom" />
-    </div>
-    <div class="max-w-7xl mx-auto px-4 md:px-6">
-        <div class="flex gap-8 items-center justify-center">
 
+<section class="bg-zinc-200 py-24 overflow-hidden relative">
+  <div class="absolute size-full inset-0 text-zinc-300/50">
+    <Grid size="100" id="testimonial-bg-top" />
+  </div>
 
-            <div class="w-2/3">
-                <div class="swiper testimonials w-full">
-                    <div class="swiper-wrapper flex items-center">
-                        {testimonials.map(testimonial => (
-                            <div class="swiper-slide">
-                                <blockquote>
-                                    <div>
-                                        <Icon name="fa:quote-left" size={48} class="text-orange-400 shrink-0 grow-0" />
+  <div class="max-w-7xl mx-auto">
+    <div class="swiper testimonials">
+      <div class="swiper-wrapper flex items-center">
+        {
+          testimonials.map((testimonial) => (
+            <div class="swiper-slide py-10 md:py-8 px-10 md:px-14">
+              <blockquote class="bg-white p-10 md:p-12 rounded-3xl text-center shadow-lg">
+                <div class="max-w-4xl mx-auto space-y-8">
+                  <Icon
+                    name="material-symbols:format-quote-rounded"
+                    size={64}
+                    class="text-orange-500 shrink-0 grow-0 rotate-180 mx-auto"
+                  />
 
-                                        <p class="text-white font-medium text-xl mt-6">{testimonial.quote}</p>
-                                    </div>
+                  <p class="text-zinc-900 font-medium text-lg md:text-xl">
+                    &ldquo;{testimonial.quote}&rdquo;
+                  </p>
 
-                                    <footer class="mt-6">
-                                        <p class="text-base font-medium text-white">{testimonial.author}</p>
-                                        <p class="text-base font-medium text-orange-100">{testimonial.company}</p>
-                                    </footer>
-                                </blockquote>
-                            </div>
-                        ))}
-                    </div>
-
+                  <footer>
+                    <p class="text-lg font-medium text-orange-500">
+                      {testimonial.author}
+                    </p>
+                    <p class="text-xs font-medium text-orange-500 mb-4">
+                      {testimonial.company}
+                    </p>
+                  </footer>
                 </div>
+              </blockquote>
             </div>
-        </div>
+          ))
+        }
+      </div>
+      <div
+        class="bg-white transition-all ring-4 ring-zinc-900/10 text-zinc-800 shadow-2xl hover:shadow-lg size-10 md:size-14 rounded-full flex items-center justify-center absolute left-0 top-1/2 z-10 -translate-y-1/2 translate-x-1/2 cursor-pointer"
+        data-testimonial-prev
+      >
+        <Icon
+          name="material-symbols:arrow-left-alt-rounded"
+          class="size-4 md:size-6 pointer-events-none"
+          aria-hidden="true"
+          size={30}
+        />
+      </div>
+      <div
+        class="bg-white transition-all ring-4 ring-zinc-900/10 text-zinc-800 shadow-2xl hover:shadow-lg size-10 md:size-14 rounded-full flex items-center justify-center absolute right-0 top-1/2 z-10 -translate-y-1/2 -translate-x-1/2 cursor-pointer"
+        data-testimonial-next
+      >
+        <Icon
+          name="material-symbols:arrow-right-alt-rounded"
+          aria-hidden="true"
+          class="size-4 md:size-6 pointer-events-none"
+          size={30}
+        />
+      </div>
     </div>
+  </div>
 </section>
 
-
-
 <script>
-    import Swiper, { Autoplay } from 'swiper';
-    
-    var testimonialSwiper = new Swiper('.testimonials', {
-        modules: [Autoplay],
-        spaceBetween: 20,
-        centeredSlides: true,
-        autoplay: {
-            delay: 7500,
-            disableOnInteraction: false,
-        }
-    });
+  import Swiper from "swiper";
+  import { Navigation } from "swiper/modules";
+  import watchSwiper from "../utils/watchswiper";
+  let testimonialSwiper: Swiper;
+
+  testimonialSwiper = new Swiper(".testimonials", {
+    modules: [Navigation],
+    spaceBetween: 20,
+
+    loop: true,
+    navigation: {
+      nextEl: "[data-testimonial-next]",
+      prevEl: "[data-testimonial-prev]",
+    },
+  });
+
+  watchSwiper(".testimonials", testimonialSwiper);
 </script>

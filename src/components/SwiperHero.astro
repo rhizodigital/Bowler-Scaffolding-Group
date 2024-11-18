@@ -1,0 +1,106 @@
+---
+import { Image } from "astro:assets";
+import "swiper/css";
+import "swiper/css/autoplay";
+import Grid from "../components/Grid.astro";
+import Bars from "./MKBars.astro";
+import Container from "./Container.astro";
+
+export interface Props {
+  eyebrow: string;
+  headline: string;
+  supporting: string;
+
+  slides: {
+    image: ImageMetadata;
+    caption: string;
+  }[];
+}
+
+const { eyebrow, headline, supporting, slides } = Astro.props;
+---
+
+<div class="relative bg-zinc-800 isolate">
+  <div
+    class="w-full h-full absolute top-0 bottom-0 left-0 right-0 -z-10 text-zinc-700 opacity-60"
+  >
+    <Grid size="100" id="slide-pattern" />
+    <div
+      class="absolute inset-0 bg-gradient-to-b from-transparent to-zinc-800 size-full"
+    >
+    </div>
+  </div>
+  <Container className="h-full py-24 lg:pt-28 lg:pb-32">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+      <div class="max-w-2xl mx-auto md:text-center lg:text-left">
+        <h1 class="text-orange-500">{eyebrow}</h1>
+        {
+          headline && (
+            <p
+              class="text-balance text-gray-50 text-4xl leading-tight md:text-5xl font-medium mt-4 md:leading-tight"
+              set:html={headline}
+            />
+          )
+        }
+        {
+          supporting && (
+            <p class="text-zinc-400 text-lg md:text-xl mt-6 md:mt-8">
+              {supporting}
+            </p>
+          )
+        }
+      </div>
+
+      <div class="relative py-6">
+        <div
+          class="border border-zinc-800 shadow-2xl rounded-3xl overflow-hidden max-w-2xl md:max-w-none mx-auto"
+        >
+          <Bars
+            class="absolute bottom-0 right-0 h-12 z-10 w-auto -translate-x-6 fill-orange-500"
+          />
+          <div class="swiper heroswiper">
+            <div class="swiper-wrapper">
+              {
+                slides.map((slide) => (
+                  <div class="swiper-slide">
+                    <div class="w-full aspect-video lg:aspect-[2.8/2]">
+                      <Image
+                        src={slide.image}
+                        loading="eager"
+                        alt="Milton Keynes Scaffolding Specialists"
+                        class="h-full w-full object-cover rounded-3xl md:rounded-l-3xl shadow-2xl"
+                      />
+                    </div>
+                    <h2 class="bg-white py-2 px-4 absolute bottom-4 left-4 rounded-xl z-10 text-sm">
+                      {slide.caption}
+                    </h2>
+                  </div>
+                ))
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </Container>
+</div>
+
+<script>
+  import Swiper from "swiper";
+  import { Autoplay } from "swiper/modules";
+  import watchSwiper from "../utils/watchswiper";
+  let homeSwiper: Swiper;
+
+  homeSwiper = new Swiper(".heroswiper", {
+    modules: [Autoplay],
+    spaceBetween: 0,
+    centeredSlides: true,
+
+    autoplay: {
+      delay: 3500,
+      disableOnInteraction: false,
+    },
+  });
+
+  watchSwiper(".heroswiper", homeSwiper);
+</script>

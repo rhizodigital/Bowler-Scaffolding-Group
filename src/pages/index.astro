@@ -1,22 +1,65 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Swiper from '../components/Swiper.astro';
-import Services from '../components/ServicesShowcase.astro';
-import About from '../components/AboutSection.astro';
-import Testimonials from '../components/Testimonials.astro';
-import Cta from '../components/cta.astro';
+import Layout from "../layouts/Layout.astro";
+import Grid from "../components/Grid.astro";
+import SwiperHero from "../components/SwiperHero.astro";
+import Services from "../components/ServicesShowcase.astro";
+import About from "../components/AboutSection.astro";
+import Testimonials from "../components/Testimonials.astro";
+import CtaOverlay from "../components/CtaOverlay.astro";
+import SlideOneImage from "../images/home/scaff-1200-900.jpg";
+import IndustrialSlideImage from "../images/industrial/industrial-slide-1.jpeg";
+import DomesticSlideImage from "../images/domestic/domestic-slide-1.jpeg";
 
-const description = "Reliable scaffolding services based in Milton Keynes. We specialise in domestic, commercial, industrial, and specialist scaffolding. Contact us for top-quality solutions."
+const slides = [
+  {
+    image: DomesticSlideImage,
+    caption: "Domestic Scaffolding Milton Keynes",
+  },
+  {
+    image: SlideOneImage,
+    caption: "Commercial Scaffolding Milton Keynes",
+  },
+  {
+    image: IndustrialSlideImage,
+    caption: "Industrial Scaffolding Milton Keynes",
+  },
+];
 
+const hero = {
+  eyebrow: "Milton Keynes Scaffolding Specialists",
+  headline: `Safe, Reliable, Certified <strong class="text-orange-500">Scaffolding</strong> Solutions`,
+  supporting: `Delivering Expert Scaffolding Services Across Milton Keynes, Northampton, Luton, and Beyond`,
+};
+
+const description =
+  "Reliable scaffolding services based in Milton Keynes. We specialise in domestic, commercial, industrial, and specialist scaffolding. Contact us for top-quality solutions.";
 ---
 
-<Layout title="Milton Keynes Scaffolding Specialists LTD" description={description}>
-	<main>
-		<Swiper />
-		<Cta />
-		<Services />
-		<About />
-		<Testimonials />
-	</main>
+<Layout
+  title="Milton Keynes Scaffolding Specialists LTD"
+  description={description}
+>
+  <main>
+    <SwiperHero
+      eyebrow={hero.eyebrow}
+      headline={hero.headline}
+      supporting={hero.supporting}
+      slides={slides}
+    />
+    <div class="relative bg-zinc-200 isolate pb-8">
+      <div class="absolute size-full bottom-0 right-0 -z-[1] text-zinc-300">
+        <Grid size="100" id="services-bg-bottom" />
+        <div
+          class="absolute inset-0 bg-gradient-to-b from-transparent to-zinc-200 size-full"
+        >
+        </div>
+      </div>
+      <div class="md:-translate-y-8">
+        <CtaOverlay />
+      </div>
+      <Services />
+    </div>
+    <About />
+    <Testimonials />
+  </main>
 </Layout>
-

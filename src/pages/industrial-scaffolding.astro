@@ -1,89 +1,94 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Hero from '../components/Hero.astro';
-import Container from '../components/Container.astro';
-import WorkCarousel from '../components/WorkCarousel.astro';
-import Grid from '../components/Grid.astro';
-import IndustrialHeroImage from '../images/industrial/industrial-01.jpg';
-import IndustrialHeroImage2 from '../images/industrial/scaffolding-tower.jpg';
-import IndustrialSlide1 from '../images/industrial/industrial-slide-1.jpeg';
-import IndustrialSlide2 from '../images/industrial/industrial-slide-2.jpeg';
+import Layout from "../layouts/Layout.astro";
+import PageHero from "../components/PageHero.astro";
+import Container from "../components/Container.astro";
+import WorkCarousel from "../components/WorkCarousel.astro";
+import Grid from "../components/Grid.astro";
+import IndustrialHeroImage from "../images/industrial/industrial-01.jpg";
+import IndustrialHeroImage2 from "../images/industrial/scaffolding-tower.jpg";
+import IndustrialSlide1 from "../images/industrial/industrial-slide-1.jpeg";
+import IndustrialSlide2 from "../images/industrial/industrial-slide-2.jpeg";
 
 const pageContent = {
-    heading: "Industrial Scaffolding",
-    subheading: "With two decades of experience in the scaffolding industry, we are able to offer a dynamic, seamless service and one that our customers have come to rely on.",
-    heroImageWide: IndustrialHeroImage,
-    heroImageTall: IndustrialHeroImage2,
-    ctaLink: "/contact",
-    ctaText: "Contact us",
-    features: [
-        "maintenance work in power plants",
-        "lift shaft and void access scaffold",
-        "stairwell scaffolding",
-        "confined/isolated spaces",
-        "protection/storage gantries",
-        "demolition works",
-        "tank access scaffold",
-        "asbestos removal",
-        "oil rig works",
-        "concrete, formwork and shoring",
-        "slung access scaffolds",
-        "lifting gantries",
-    ]
-}
+  heading: `Industrial <span class="text-orange-500">Scaffolding</span>`,
+  subheading:
+    "With two decades of experience in the scaffolding industry, we are able to offer a dynamic, seamless service and one that our customers have come to rely on.",
+  heroImageWide: IndustrialHeroImage,
+  heroImageTall: IndustrialHeroImage2,
+  ctaLink: "/contact",
+  ctaText: "Contact us",
+  features: [
+    "maintenance work in power plants",
+    "lift shaft and void access scaffold",
+    "stairwell scaffolding",
+    "confined/isolated spaces",
+    "protection/storage gantries",
+    "demolition works",
+    "tank access scaffold",
+    "asbestos removal",
+    "oil rig works",
+    "concrete, formwork and shoring",
+    "slung access scaffolds",
+    "lifting gantries",
+  ],
+};
 
 const slides = [
-    {
-        image: IndustrialSlide1,
-        caption: "Industrial Scaffolding"
-    },
-    {
-        image: IndustrialSlide2,
-        caption: "Industrial Scaffolding"
-    },
-]
+  {
+    image: IndustrialSlide1,
+    caption: "Industrial Scaffolding",
+  },
+  {
+    image: IndustrialSlide2,
+    caption: "Industrial Scaffolding",
+  },
+];
 
-const description = "Milton Keynes-based experts in industrial scaffolding, offering safe, reliable solutions for construction, maintenance, and access needs.";
+const description =
+  "Milton Keynes-based experts in industrial scaffolding, offering safe, reliable solutions for construction, maintenance, and access needs.";
 ---
 
 <Layout title="Industrial Scaffolding" description={description}>
-	<main>
-        <Hero 
-            heading={pageContent.heading} 
-            subheading={pageContent.subheading} 
-            imageWide={pageContent.heroImageWide}
-            imageTall={pageContent.heroImageTall}
-            ctaLink={pageContent.ctaLink}
-            ctaText={pageContent.ctaText}
-        />
+  <main>
+    <PageHero
+      heading={pageContent.heading}
+      subheading={pageContent.subheading}
+      imageWide={pageContent.heroImageWide}
+      imageTall={pageContent.heroImageTall}
+      ctaLink={pageContent.ctaLink}
+      ctaText={pageContent.ctaText}
+    />
 
-        <div class="py-16 relative isolate bg-white">
-            <div class="absolute w-1/4 top-0 left-0 h-full text-zinc-100">
-                <Grid size="100" id="about-bg" />
+    <div class="py-16 relative isolate bg-white">
+      <div class="absolute w-1/4 top-0 left-0 h-full text-zinc-100">
+        <Grid size="100" id="about-bg" />
+      </div>
+      <Container className="relative">
+        <div class="grid grid-cols-1 md:grid-cols-2 h-full items-center gap-16">
+          <div>
+            <p class="text-zinc-600 mb-12 text-lg">
+              The staff here at <span class="text-orange-500 font-semibold"
+                >Milton Keynes Scaffolding Specialists</span
+              > are qualified and certified in working to every specification – from
+              confined spaces to National Grid scale projects, asbestos removal and
+              demolition works.
+            </p>
+            <WorkCarousel slides={slides} />
+          </div>
+          <div>
+            <div class="bg-zinc-800 rounded-2xl px-12 py-12">
+              <p class="font-bold text-lg text-orange-500">Experienced in:</p>
+              <ul class="list-disc marker:text-orange-600 text-zinc-200 mt-4">
+                {
+                  pageContent.features.map((item) => (
+                    <li class="ml-5 capitalize mb-4 text-lg">{item}</li>
+                  ))
+                }
+              </ul>
             </div>
-            <Container className="relative">
-                <div class="grid grid-cols-1 md:grid-cols-2 h-full items-center gap-16">
-                    <div>
-                        <p class="text-zinc-600 mb-12 text-lg">The staff here at <span class="text-orange-500 font-semibold">Milton Keynes Scaffolding Specialists</span> are qualified and certified in working to every specification – from confined spaces to National Grid scale projects, asbestos removal and demolition works.</p>
-                        <WorkCarousel slides={slides} />
-                    </div>
-                    <div>
-                        <div class="bg-zinc-800 rounded-2xl px-12 py-12">
-                            <p class="font-bold text-lg text-orange-500">Experienced in:</p>
-                            <ul class="list-disc marker:text-orange-600 text-zinc-200 mt-4">
-                                {pageContent.features.map((item) => (
-                                    <li class="ml-5 capitalize mb-4 text-lg">{item}</li>
-                                ))}
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </Container>
+          </div>
         </div>
-
-	</main>
+      </Container>
+    </div>
+  </main>
 </Layout>
-
-
-
-
