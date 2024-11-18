@@ -25,7 +25,7 @@ if (in_array($origin, $allowedOrigins)) {
 function checkRateLimit() {
     $ip = $_SERVER['REMOTE_ADDR'];
     $file = "../../writable/rate_limits.json";
-    $timeFrame = 60; // 1 hour
+    $timeFrame = 3600; // 1 hour
     $maxAttempts = 5;  // Allow 5 attempts per hour
 
     // Load existing rate limits
