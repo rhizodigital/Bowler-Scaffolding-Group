@@ -82,9 +82,9 @@ $companyLogo = 'https://mkscaffolding.com/images/logo.png';
 // Who message will be sent from. Use a fixed address in your own domain or
 // it can cause your message to fail SPF checks
 $fromEmail = 'michael.sables@omnific.studio';
-$fromName = 'Michael Sables';
+$fromName = 'Milton Keynes Scaffolding';
 // Who message will be sent to
-$toEmail = 'rhizodigital@gmail.com';
+$toEmail = $_ENV['EMAIL_TO'];
 $toName = 'MK Scaffolding';
 // The message subject line
 $subject = 'Message from Milton Keynes Scaffolding Contact Form';
