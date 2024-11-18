@@ -2,7 +2,7 @@
 // Define cors config
 $allowedOrigins = [
     'http://localhost:4321',
-    'http://planetwide.uk',
+    'https://www.miltonkeynesscaffolding.co.uk',
 ];
 // handle CORS
 $origin = isset($_SERVER['HTTP_ORIGIN']) ? $_SERVER['HTTP_ORIGIN'] : '';
