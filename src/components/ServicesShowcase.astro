@@ -1,5 +1,5 @@
 ---
-import { Image } from "astro:assets";
+import { Picture } from "astro:assets";
 import Container from "./Container.astro";
 import { Icon } from "astro-icon/components";
 
@@ -46,9 +46,12 @@ const services = [
         services.map((service) => (
           <div class="bg-white rounded-3xl overflow-hidden relative hover:shadow-xl lg:hover:-translate-y-2 transiton-all">
             <a href={service.url} class="group ">
-              <Image
+              <Picture
                 src={service.image}
                 alt={service.heading}
+                formats={["avif", "webp"]}
+                widths={[480, 600]}
+                sizes={`(max-width: 1024px) 600px, 480px`}
                 loading="eager"
                 class="w-full aspect-video lg:aspect-[4/3] object-cover rounded-3xl"
               />

@@ -1,5 +1,5 @@
 ---
-import { Image } from "astro:assets";
+import { Picture } from "astro:assets";
 import "swiper/css";
 import "swiper/css/autoplay";
 import Grid from "../components/Grid.astro";
@@ -64,9 +64,12 @@ const { eyebrow, headline, supporting, slides } = Astro.props;
                 slides.map((slide) => (
                   <div class="swiper-slide">
                     <div class="w-full aspect-video lg:aspect-[2.8/2]">
-                      <Image
+                      <Picture
                         src={slide.image}
                         loading="eager"
+                        formats={["avif", "webp"]}
+                        widths={[480, 900, 600]}
+                        sizes={`(max-width: 600px) 480px, (max-width: 1024px) 900px, 600px`}
                         alt="Milton Keynes Scaffolding Specialists"
                         class="h-full w-full object-cover rounded-3xl md:rounded-l-3xl shadow-2xl"
                       />
