@@ -1,19 +1,17 @@
 ---
-
-import Grid from "./Grid.astro"
-
+import Grid from "./Grid.astro";
 ---
-<section class="bg-orange-500 py-24 overflow-hidden relative">
-    <div class="absolute w-1/4 h-1/2 top-0 left-0 text-orange-400">
-        <Grid size="100" id="testimonial-bg-top" />
-    </div>
-    <div class="absolute w-1/4 h-1/2 bottom-0 right-0 text-orange-400">
-        <Grid size="100" id="testimonial-bg-bottom" />
-    </div>
-    <div class="max-w-7xl mx-auto px-4 md:px-6">
-        <div class="mx-auto max-w-2xl text-center">
-            <slot />
 
-        </div>
+<section class="bg-orange-500 py-24 overflow-hidden relative">
+  <div class="absolute w-1/4 h-1/2 top-0 left-0 text-orange-400">
+    <Grid size="100" id="testimonial-bg-top" />
+  </div>
+  <div class="absolute w-1/4 h-1/2 bottom-0 right-0 text-orange-400">
+    <Grid size="100" id="testimonial-bg-bottom" />
+  </div>
+  <div class="max-w-7xl mx-auto px-4 md:px-6">
+    <div class="mx-auto max-w-2xl text-center">
+      <slot />
     </div>
+  </div>
 </section>

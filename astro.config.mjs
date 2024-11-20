@@ -12,6 +12,7 @@ import partytown from "@astrojs/partytown";
 // https://astro.build/config
 export default defineConfig({
   site: "https://www.miltonkeynesscaffolding.co.uk",
+  trailingSlash: "always",
   integrations: [
     tailwind(),
     sitemap(),
