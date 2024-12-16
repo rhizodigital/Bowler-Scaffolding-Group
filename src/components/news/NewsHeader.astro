@@ -1,0 +1,24 @@
+---
+import Container from "@components/Container.astro";
+import Grid from "@components/Grid.astro";
+import NewsCategories from "./NewsCategories.astro";
+
+export interface Props {
+  heading: string;
+}
+
+const { heading } = Astro.props;
+---
+
+<div class="bg-zinc-800 py-20 md:py-24 relative">
+  <div class="absolute inset-0 text-zinc-700 opacity-40">
+    <Grid size="100" id="header-pattern" />
+  </div>
+  <Container className="relative">
+    <h1
+      class="text-white text-5xl font-semibold mb-8 lg:mb-12"
+      set:html={heading}
+    />
+    <NewsCategories />
+  </Container>
+</div>

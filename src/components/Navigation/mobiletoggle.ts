@@ -4,35 +4,38 @@ export class MobileMenuToggle extends HTMLElement {
   private button: HTMLButtonElement | null;
   private menu: HTMLElement | null;
   private transitioning: boolean = false;
+  private isMenuState(state: "open" | "closed"): boolean {
+    return this.menu?.getAttribute("data-mobile-menu") === state;
+  }
 
   constructor() {
     super();
-    this.handleClick = this.handleClick.bind(this);
-  }
-
-  connectedCallback() {
     this.button = this.querySelector("button");
-    if (!this.button) {
-      console.warn("[MobileMenuToggle] Button not found inside the component");
-      return;
-    }
-    const targetSelector = this.getAttribute("menu-target");
-
-    if (!targetSelector) {
-      console.warn("[MobileMenuToggle] Mobile menu target not found");
-      return;
-    }
-
-    this.menu = document.querySelector(targetSelector);
+    const targetSelector = this.getAttribute("menu-target") || "";
+    this.menu = targetSelector ? document.querySelector(targetSelector) : null;
 
     if (!this.menu) {
       console.warn(
         `[MobileMenuToggle] Menu element not found with selector ${targetSelector}`
       );
+    }
+
+    this.handleClick = this.handleClick.bind(this);
+    this.handleOutsideClick = this.handleOutsideClick.bind(this);
+  }
+
+  connectedCallback() {
+    if (!this.button) {
+      console.warn("[MobileMenuToggle] Button not found inside the component");
+      return;
+    }
+
+    if (!this.menu) {
+      console.warn(`[MobileMenuToggle] Menu element not found`);
       return;
     }
     this.button.addEventListener("click", this.handleClick);
-    document.addEventListener("click", this.handleOutsideClick.bind(this));
+    document.addEventListener("click", this.handleOutsideClick);
   }
 
   handleClick() {
@@ -53,15 +56,13 @@ export class MobileMenuToggle extends HTMLElement {
   }
 
   async openMobileMenu() {
-    if (
-      this.transitioning ||
-      this.menu.getAttribute("data-mobile-menu") === "open"
-    ) {
+    if (!this.menu || this.transitioning || this.isMenuState("open")) {
       return;
     }
     this.buttonState(true);
     this.menu.classList.remove("hidden");
     requestAnimationFrame(async () => {
+      if (!this.menu) return;
       this.menu.setAttribute("data-mobile-menu", "open");
       this.transitioning = true;
       await transitionCompleted(this.menu);
@@ -70,10 +71,7 @@ export class MobileMenuToggle extends HTMLElement {
   }
 
   async closeMobileMenu() {
-    if (
-      this.transitioning ||
-      this.menu.getAttribute("data-mobile-menu") === "closed"
-    ) {
+    if (!this.menu || this.transitioning || this.isMenuState("closed")) {
       return;
     }
     this.buttonState(false);
@@ -85,7 +83,7 @@ export class MobileMenuToggle extends HTMLElement {
   }
 
   toggleMobileMenu() {
-    if (this.menu.getAttribute("data-mobile-menu") === "open") {
+    if (this.isMenuState("open")) {
       this.closeMobileMenu();
     } else {
       this.openMobileMenu();
@@ -99,7 +97,7 @@ export class MobileMenuToggle extends HTMLElement {
     document.removeEventListener("click", this.handleOutsideClick.bind(this));
   }
 
-  buttonState(menustate: Boolean = false) {
+  buttonState(menustate: boolean = false) {
     const openIcon = this.button?.querySelector(".open-icon");
     const closeIcon = this.button?.querySelector(".close-icon");
     if (menustate) {

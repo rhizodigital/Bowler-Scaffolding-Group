@@ -1,0 +1,16 @@
+---
+const { url, name } = Astro.props;
+
+import { activeLink } from "@utils/path";
+
+const active = activeLink(url, Astro.url.pathname);
+---
+
+<a
+  href={url}
+  class:list={[
+    "py-2 px-3 rounded-md block",
+    { "bg-zinc-200": !active },
+    { "bg-orange-500 text-white": active },
+  ]}>{name}</a
+>

@@ -1,0 +1,45 @@
+---
+import type { Page } from "astro";
+import type { HTMLAttributes } from "astro/types";
+import { collapseRange } from "../utils/paginate";
+export type Props = Omit<HTMLAttributes<"nav">, "slot"> & {
+  page: Page<unknown>;
+  indexPage: string;
+};
+const {
+  page,
+  indexPage,
+  "aria-label": ariaLabel = "Pagination",
+  ...attrs
+} = Astro.props;
+
+const collapsedPages = collapseRange(page, indexPage);
+---
+
+<nav aria-label={ariaLabel} {...attrs} class="py-4">
+  <ul class="flex items-center gap-2">
+    {page.url.prev && <a href={page.url.prev}>Prev</a>}
+    {
+      collapsedPages.map((link) => (
+        <li>
+          {!link.href ? (
+            <span class="relative flex h-10 w-10 items-center justify-center rounded-md text-gray-600 border border-gray-200">
+              {link.text}
+            </span>
+          ) : (
+            <a
+              href={link.href}
+              class:list={[
+                link.pageNum === page.currentPage && "font-bold bg-gray-200",
+                "relative flex h-10 w-10 items-center justify-center rounded-sm text-gray-600 border border-gray-200",
+              ]}
+            >
+              {link.pageNum}
+            </a>
+          )}
+        </li>
+      ))
+    }
+    {page.url.next && <a href={page.url.next}>Next</a>}
+  </ul>
+</nav>

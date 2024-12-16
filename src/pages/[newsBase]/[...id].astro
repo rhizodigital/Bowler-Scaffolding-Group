@@ -1,0 +1,42 @@
+---
+import { SITE } from "@config";
+import { Image } from "astro:assets";
+import { ClientRouter } from "astro:transitions";
+import { type CollectionEntry, getCollection, render } from "astro:content";
+import { getEntries } from "astro:content";
+import Layout from "@layouts/Layout.astro";
+import ArticleHeader from "@components/news/ArticleHeader.astro";
+import Container from "@components/Container.astro";
+
+interface Props {
+  entry: CollectionEntry<"news">;
+}
+
+// Get all news articles and generate static paths
+export async function getStaticPaths() {
+  const newsArticles = await getCollection("news");
+  return newsArticles.map((entry: CollectionEntry<"news">) => ({
+    params: { newsBase: SITE.news.base, id: entry.id },
+    props: { entry },
+  }));
+}
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+
+// Get all authors for the news article
+const authors = await getEntries(
+  entry.data.authors as CollectionEntry<"authors">[]
+);
+---
+
+<Layout title={entry.data.title} description={entry.data.description}>
+  <ClientRouter slot="head" />
+  <ArticleHeader article={entry} authors={authors} />
+  <Container>
+    <article transition:name=`${entry.id}-article` class="py-24">
+      <div class="prose lg:prose-lg mx-auto">
+        <Content />
+      </div>
+    </article>
+  </Container>
+</Layout>

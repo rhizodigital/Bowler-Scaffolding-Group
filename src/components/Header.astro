@@ -2,6 +2,7 @@
 import Logo from "./Logo.astro";
 import { Icon } from "astro-icon/components";
 import Container from "./Container.astro";
+import { SITE } from "@config";
 
 const menu = [
   {
@@ -33,6 +34,11 @@ const menu = [
   {
     name: "About",
     url: "/about/",
+  },
+
+  {
+    name: "News",
+    url: `/${SITE.news.base}/`,
   },
 ];
 ---

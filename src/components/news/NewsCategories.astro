@@ -1,0 +1,35 @@
+---
+import { SITE, NEWS_CATEGORIES } from "src/site.config";
+import { type CollectionEntry, getCollection } from "astro:content";
+import { generateTaxonomies } from "@utils/taxonomies";
+
+import Tag from "@components/Tag.astro";
+
+const newsArticles = await getCollection(
+  "news",
+  ({ data }: CollectionEntry<"news">) => data.draft !== true
+);
+const cats = NEWS_CATEGORIES.filter((category) =>
+  newsArticles.some((post) => post.data.categories.includes(category))
+);
+
+const categories = generateTaxonomies(cats);
+---
+
+<div class="mb-8">
+  <ul class="flex gap-2">
+    <li>
+      <Tag name="All" url={`/${SITE.news.base}/`} />
+    </li>
+    {
+      categories.map((category) => (
+        <li>
+          <Tag
+            name={category.name}
+            url={`/${SITE.news.base}/category/${category.slug}/`}
+          />
+        </li>
+      ))
+    }
+  </ul>
+</div>

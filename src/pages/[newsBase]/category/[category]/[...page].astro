@@ -1,0 +1,60 @@
+---
+import { SITE, NEWS_CATEGORIES } from "@config";
+import type { NewsCategory, NewsEntry } from "@env";
+import type { GetStaticPathsOptions, Page } from "astro";
+import { getCollection } from "astro:content";
+import NewsIndex from "@components/news/NewsIndex.astro";
+import { generateTaxonomies } from "@utils/taxonomies";
+
+// This page generates the category pages for the news articles
+// It will generate a page for each category with the news articles
+// that belong to that category eg. /news/category/technology/ or /news/category/business/
+
+export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
+  // Get all news articles that are not drafts
+  const newsArticles = await getCollection(
+    "news",
+    ({ data }: NewsEntry) => data.draft !== true
+  );
+
+  // Get all categories that have at least one post
+  const categoriesWithPosts = NEWS_CATEGORIES.filter((category) =>
+    newsArticles.some((post) => post.data.categories.includes(category))
+  );
+
+  // Generate the categories with their slugs
+  const categories = generateTaxonomies(categoriesWithPosts);
+
+  return categories.flatMap(({ slug, name }) => {
+    // Filter the news articles by category
+    const newsFiltered = newsArticles.filter((post: NewsEntry) =>
+      post.data.categories.includes(name as NewsCategory)
+    );
+
+    // Sort the news articles by publish date
+    const newsSorted = newsFiltered.sort((a: NewsEntry, b: NewsEntry) => {
+      return b.data.publishDate.getTime() - a.data.publishDate.getTime();
+    });
+
+    // Paginate the news articles
+    return paginate(newsSorted, {
+      params: { newsBase: SITE.news.base, category: slug },
+      props: { categoryName: name, categorySlug: slug },
+      pageSize: SITE.news.perPage,
+    });
+  });
+}
+
+export interface Props {
+  page: Page<NewsEntry>;
+  categoryName: string;
+  categorySlug: string;
+}
+
+const { page, categorySlug } = Astro.props;
+
+// The index page for the category pagination
+const indexPage = `/${SITE.news.base}/category/${categorySlug}/`;
+---
+
+<NewsIndex page={page} indexPage={indexPage} />

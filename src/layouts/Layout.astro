@@ -69,7 +69,7 @@ const { title, description } = Astro.props;
       name="twitter:image"
       content="https://www.miltonkeynesscaffolding.co.uk/og.jpg"
     />
-
+    <slot name="head" />
     <style>
       a,
       button {
@@ -81,5 +81,5 @@ const { title, description } = Astro.props;
     <Header />
     <slot />
     <Footer />
-  </body>
-</html>
+  </body></html
+>

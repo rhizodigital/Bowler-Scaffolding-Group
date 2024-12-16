@@ -1,0 +1,37 @@
+---
+import { SITE } from "@config";
+import { getCollection } from "astro:content";
+import type { NewsEntry } from "@env";
+import type { GetStaticPathsOptions, Page } from "astro";
+
+import NewsIndex from "@components/news/NewsIndex.astro";
+
+export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
+  // Get all news articles that are not drafts
+  const newsArticles = await getCollection(
+    "news",
+    ({ data }: NewsEntry) => data.draft !== true
+  );
+
+  // Sort the news articles by publish date
+  const sortedArticles = newsArticles.sort((a: NewsEntry, b: NewsEntry) => {
+    return b.data.publishDate.getTime() - a.data.publishDate.getTime();
+  });
+
+  // Paginate the news articles
+  return paginate(sortedArticles, {
+    pageSize: SITE.news.perPage,
+    params: { newsBase: SITE.news.base },
+  });
+}
+
+export interface Props {
+  page: Page<NewsEntry>;
+}
+
+const { page } = Astro.props;
+
+const indexPage = `/${SITE.news.base}/`;
+---
+
+<NewsIndex page={page} indexPage={indexPage} />
