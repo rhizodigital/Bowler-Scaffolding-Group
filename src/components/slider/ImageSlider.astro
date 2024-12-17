@@ -1,0 +1,45 @@
+---
+import "swiper/css";
+import "swiper/css/autoplay";
+import "swiper/css/navigation";
+import "swiper/css/thumbs";
+---
+
+<div class="swiper case-studies-swiper not-prose">
+  <div class="swiper-wrapper">
+    <slot name="slides" />
+  </div>
+  <div class="swiper-button-next" style="color:white"></div>
+  <div class="swiper-button-prev" style="color:white"></div>
+</div>
+
+<div class="swiper thumbs-swiper not-prose mt-4">
+  <div class="swiper-wrapper">
+    <slot name="thumbs" />
+  </div>
+</div>
+
+<script>
+  import Swiper from "swiper";
+  import { Navigation, Thumbs } from "swiper/modules";
+
+  var swiper = new Swiper(".thumbs-swiper", {
+    spaceBetween: 10,
+    slidesPerView: 4,
+    freeMode: true,
+    watchSlidesProgress: true,
+  });
+
+  var swiper2 = new Swiper(".case-studies-swiper", {
+    modules: [Navigation, Thumbs],
+    spaceBetween: 0,
+    centeredSlides: true,
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
+    thumbs: {
+      swiper: swiper,
+    },
+  });
+</script>

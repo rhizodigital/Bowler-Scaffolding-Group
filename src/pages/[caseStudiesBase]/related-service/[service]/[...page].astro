@@ -1,0 +1,66 @@
+---
+import { SITE, RELATED_SERVICES } from "@config";
+import type { CaseStudiesEntry, RelatedService } from "@env";
+import { type CollectionEntry, getCollection } from "astro:content";
+import type { GetStaticPathsOptions, Page } from "astro";
+import Layout from "@layouts/Layout.astro";
+import CaseStudyPreview from "@components/caseStudies/CaseStudyPreview.astro";
+import { generateTaxonomies } from "@utils/taxonomies";
+import CaseStudiesHeader from "@components/caseStudies/CaseStudiesHeader.astro";
+import CaseStudiesIndex from "@components/caseStudies/CaseStudiesIndex.astro";
+
+export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
+  const caseStudies = await getCollection(
+    "caseStudies",
+    ({ data }: CollectionEntry<"caseStudies">) => data.draft !== true
+  );
+
+  const relatedServicesWithPosts = RELATED_SERVICES.filter((service) =>
+    caseStudies.some((post) => post.data.relatedServices.includes(service))
+  );
+
+  const relatedServices = generateTaxonomies(relatedServicesWithPosts);
+
+  return relatedServices.flatMap(({ slug, name }) => {
+    const caseStudiesFiltered = caseStudies.filter((post: CaseStudiesEntry) =>
+      post.data.relatedServices.includes(name as RelatedService)
+    );
+
+    const caseStudiesSorted = caseStudiesFiltered.sort(
+      (a: CaseStudiesEntry, b: CaseStudiesEntry) => {
+        return b.data.publishDate.getTime() - a.data.publishDate.getTime();
+      }
+    );
+
+    return paginate(caseStudiesSorted, {
+      params: { caseStudiesBase: SITE.caseStudies.base, service: slug },
+      props: { serviceName: name, serviceSlug: slug },
+      pageSize: 2,
+    });
+  });
+}
+
+export interface Props {
+  page: Page<CollectionEntry<"caseStudies">>;
+  serviceName: string;
+  serviceSlug: string;
+}
+
+const { page, serviceName, serviceSlug } = Astro.props;
+
+const indexPage = `/${SITE.caseStudies.base}/related-service/${serviceSlug}/`;
+---
+
+<CaseStudiesIndex page={page} indexPage={indexPage} />
+<Layout
+  title={`Case studies related to ${serviceName}`}
+  description={`Case studies related to ${serviceName}`}
+>
+  <CaseStudiesHeader
+    heading={`Case studies related to ${serviceName}`}
+    subheading="Filter by related services"
+  />
+  <div class="max-w-3xl">
+    {page.data.map((entry) => <CaseStudyPreview article={entry} />)}
+  </div>
+</Layout>

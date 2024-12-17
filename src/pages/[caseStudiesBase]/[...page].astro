@@ -1,0 +1,37 @@
+---
+import { SITE } from "@config";
+import { getCollection } from "astro:content";
+import type { CaseStudiesEntry } from "@env";
+import type { GetStaticPathsOptions, Page } from "astro";
+import CaseStudiesIndex from "@components/caseStudies/CaseStudiesIndex.astro";
+
+export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
+  // Get all case studies that are not drafts
+  const caseStudies = await getCollection(
+    "caseStudies",
+    ({ data }: CaseStudiesEntry) => data.draft !== true
+  );
+
+  // Sort the case studies by publish date
+  const sortedArticles = caseStudies.sort(
+    (a: CaseStudiesEntry, b: CaseStudiesEntry) => {
+      return b.data.publishDate.getTime() - a.data.publishDate.getTime();
+    }
+  );
+
+  // Paginate the case studies
+  return paginate(sortedArticles, {
+    pageSize: 2,
+    params: { caseStudiesBase: SITE.caseStudies.base },
+  });
+}
+
+export interface Props {
+  page: Page<CaseStudiesEntry>;
+}
+const { page } = Astro.props;
+
+const indexPage = `/${SITE.caseStudies.base}/`;
+---
+
+<CaseStudiesIndex page={page} indexPage={indexPage} />

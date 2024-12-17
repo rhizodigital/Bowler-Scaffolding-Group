@@ -10,7 +10,7 @@
         "description": {
           "type": "string",
           "minLength": 150,
-          "maxLength": 200
+          "maxLength": 250
         },
         "publishDate": {
           "anyOf": [

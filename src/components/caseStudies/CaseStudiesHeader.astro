@@ -1,6 +1,6 @@
 ---
-import NewsCategories from "./NewsCategories.astro";
 import PageHeading from "@components/PageHeading.astro";
+import RelatedServicesFilter from "@components/caseStudies/RelatedServicesFilter.astro";
 
 export interface Props {
   heading: string;
@@ -11,5 +11,5 @@ const { heading, subheading } = Astro.props;
 ---
 
 <PageHeading heading={heading} subheading={subheading}>
-  <NewsCategories slot="filter" />
+  <RelatedServicesFilter slot="filter" />
 </PageHeading>

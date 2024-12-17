@@ -1,0 +1,34 @@
+---
+import { SITE, RELATED_SERVICES } from "src/site.config";
+import { type CollectionEntry, getCollection } from "astro:content";
+import { generateTaxonomies } from "@utils/taxonomies";
+import Tag from "@components/Tag.astro";
+
+const caseStudies = await getCollection(
+  "caseStudies",
+  ({ data }: CollectionEntry<"caseStudies">) => data.draft !== true
+);
+const relatedServicesWithPosts = RELATED_SERVICES.filter((service) =>
+  caseStudies.some((post) => post.data.relatedServices.includes(service))
+);
+
+const relatedServices = generateTaxonomies(relatedServicesWithPosts);
+---
+
+<div>
+  <ul class="flex space-x-2">
+    <li>
+      <Tag name="All" url={`/${SITE.caseStudies.base}/`} />
+    </li>
+    {
+      relatedServices.map((service) => (
+        <li>
+          <Tag
+            name={service.name}
+            url={`/${SITE.caseStudies.base}/related-service/${service.slug}/`}
+          />
+        </li>
+      ))
+    }
+  </ul>
+</div>

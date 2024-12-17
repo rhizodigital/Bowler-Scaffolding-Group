@@ -1,0 +1,85 @@
+---
+import { SITE } from "src/site.config";
+import { Image } from "astro:assets";
+import Container from "@components/Container.astro";
+import Grid from "@components/Grid.astro";
+import { type CollectionEntry, getCollection, render } from "astro:content";
+import Layout from "@layouts/Layout.astro";
+
+interface Props {
+  entry: CollectionEntry<"caseStudies">;
+}
+
+// Get all case studies and generate static paths
+export async function getStaticPaths() {
+  const caseStudies = await getCollection("caseStudies");
+  return caseStudies.map((entry: CollectionEntry<"caseStudies">) => ({
+    params: { caseStudiesBase: SITE.caseStudies.base, id: entry.id },
+    props: { entry },
+  }));
+}
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+
+const dateOptions: Intl.DateTimeFormatOptions = {
+  month: "long",
+  year: "numeric",
+  day: "numeric",
+};
+---
+
+<Layout title={entry.data.title} description={entry.data.description}>
+  <div class="bg-zinc-800 py-20 md:py-24 relative">
+    <div class="absolute inset-0 text-zinc-700 opacity-40">
+      <Grid size="100" id="header-pattern" />
+    </div>
+    <Container className="relative">
+      <div class="flex flex-col items-center text-center max-w-4xl mx-auto">
+        <p class="text-orange-500 text-lg mb-6">Case Study</p>
+        <h1
+          class="text-white text-4xl lg:text-5xl font-medium text-balance"
+          transition:name={`${entry.id}-title`}>{entry.data.title}</h1
+        >
+        <p
+          class="text-zinc-400 mt-8 text-lg"
+          set:html={entry.data.description}
+        />
+      </div>
+    </Container>
+  </div>
+  <div class="bg-zinc-800 border-t border-zinc-700/50">
+    <Container>
+      <div
+        class="flex flex-col md:flex-row md:justify-center md:items-center divide-y-2 md:divide-y-0 md:divide-x-2 divide-zinc-700/50 md:space-x-4"
+      >
+        <div class="py-4 md:px-8">
+          <p class="text-white font-medium">Client:</p>
+          <p class="text-zinc-400">{entry.data.client}</p>
+        </div>
+        <div class="py-4 md:px-8">
+          <p class="text-white font-medium">Date:</p>
+          <time
+            datetime={entry.data.publishDate.toISOString()}
+            class="text-zinc-400"
+          >
+            {entry.data.publishDate.toLocaleDateString("en-GB", dateOptions)}
+          </time>
+        </div>
+        <div class="py-4 md:px-8">
+          <p class="text-white font-medium">Related Services:</p>
+          <p class="text-zinc-400">{entry.data.relatedServices.join(", ")}</p>
+        </div>
+      </div>
+    </Container>
+  </div>
+  <Container>
+    <div
+      class="prose
+            lg:prose-lg
+            mx-auto
+            py-12 md:py-24"
+    >
+      <Content />
+    </div>
+  </Container>
+</Layout>

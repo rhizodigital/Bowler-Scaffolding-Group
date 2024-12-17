@@ -26,7 +26,7 @@ const newsCollection = defineCollection({
       title: z.string(),
       authors: z.array(reference("authors")).optional(),
       publishDate: z.coerce.date(),
-      description: z.string().min(150).max(200),
+      description: z.string().min(150).max(250),
       draft: z.boolean().optional(),
       categories: z.array(z.enum(NEWS_CATEGORIES)).default([]),
       coverImage: image(),
@@ -42,7 +42,7 @@ const caseStudiesCollection = defineCollection({
   schema: ({ image }) =>
     z.object({
       title: z.string(),
-      description: z.string().min(150).max(200),
+      description: z.string().min(150).max(250),
       publishDate: z.coerce.date(),
       draft: z.boolean().optional(),
       relatedServices: z.enum(RELATED_SERVICES).array().default([]),

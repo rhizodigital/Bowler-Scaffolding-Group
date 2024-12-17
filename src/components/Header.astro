@@ -35,7 +35,10 @@ const menu = [
     name: "About",
     url: "/about/",
   },
-
+  {
+    name: "Work",
+    url: "/work/",
+  },
   {
     name: "News",
     url: `/${SITE.news.base}/`,
@@ -64,7 +67,7 @@ const menu = [
         </mobile-menu-toggle>
         <nav class="hidden lg:flex" id="nav">
           <dropdown-wrapper>
-            <div class="flex gap-x-4">
+            <div class="flex gap-x-2">
               {
                 menu.map((menuitem) =>
                   menuitem.submenu ? (

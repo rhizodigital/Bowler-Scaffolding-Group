@@ -30,8 +30,9 @@ const collapsedPages = collapseRange(page, indexPage);
             <a
               href={link.href}
               class:list={[
-                link.pageNum === page.currentPage && "font-bold bg-gray-200",
-                "relative flex h-10 w-10 items-center justify-center rounded-sm text-gray-600 border border-gray-200",
+                link.pageNum === page.currentPage &&
+                  "font-bold bg-orange-500 text-white",
+                "relative flex h-10 w-10 items-center justify-center rounded-md text-gray-600 border border-gray-200",
               ]}
             >
               {link.pageNum}

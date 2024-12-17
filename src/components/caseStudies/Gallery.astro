@@ -1,0 +1,15 @@
+---
+import { Image } from "astro:assets";
+interface Props {
+  images: ImageMetadata[];
+}
+const { images } = Astro.props;
+---
+
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+  {
+    images.map((image) => (
+      <Image src={image} alt="Gallery Image" class="rounded-lg" />
+    ))
+  }
+</div>
