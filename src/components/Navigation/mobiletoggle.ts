@@ -59,7 +59,7 @@ export class MobileMenuToggle extends HTMLElement {
     if (!this.menu || this.transitioning || this.isMenuState("open")) {
       return;
     }
-    this.buttonState(true);
+    this.updateButtonUI(true);
     this.menu.classList.remove("hidden");
     requestAnimationFrame(async () => {
       if (!this.menu) return;
@@ -74,7 +74,7 @@ export class MobileMenuToggle extends HTMLElement {
     if (!this.menu || this.transitioning || this.isMenuState("closed")) {
       return;
     }
-    this.buttonState(false);
+    this.updateButtonUI(false);
     this.menu.setAttribute("data-mobile-menu", "closed");
     this.transitioning = true;
     await transitionCompleted(this.menu);
@@ -97,10 +97,10 @@ export class MobileMenuToggle extends HTMLElement {
     document.removeEventListener("click", this.handleOutsideClick.bind(this));
   }
 
-  buttonState(menustate: boolean = false) {
+  updateButtonUI(open: boolean = false) {
     const openIcon = this.button?.querySelector(".open-icon");
     const closeIcon = this.button?.querySelector(".close-icon");
-    if (menustate) {
+    if (open) {
       this.button?.setAttribute("aria-expanded", "true");
       openIcon?.classList.add("hidden");
       closeIcon?.classList.remove("hidden");

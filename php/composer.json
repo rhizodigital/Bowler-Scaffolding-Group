@@ -1,6 +1,10 @@
 {
     "require": {
         "phpmailer/phpmailer": "^6.9",
-        "vlucas/phpdotenv": "^5.6"
+        "vlucas/phpdotenv": "^5.6",
+        "league/oauth2-google": "^4.0",
+        "hayageek/oauth2-yahoo": "^2.0",
+        "stevenmaguire/oauth2-microsoft": "^2.2",
+        "greew/oauth2-azure-provider": "^2.0"
     }
 }
