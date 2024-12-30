@@ -33,10 +33,10 @@ const { eyebrow, headline, supporting, slides } = Astro.props;
   <Container className="h-full py-24 lg:pt-28 lg:pb-32">
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
       <div class="max-w-2xl mx-auto md:text-center lg:text-left">
-        <h1 class="text-orange-500">{eyebrow}</h1>
+        <h1 class="text-orange-500 text-lg">{eyebrow}</h1>
         {
           headline && (
-            <p
+            <h2
               class="text-balance text-gray-50 text-4xl leading-tight md:text-5xl font-medium mt-4 md:leading-tight"
               set:html={headline}
             />

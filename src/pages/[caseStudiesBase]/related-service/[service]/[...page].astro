@@ -3,10 +3,7 @@ import { SITE, RELATED_SERVICES } from "@config";
 import type { CaseStudiesEntry, RelatedService } from "@env";
 import { type CollectionEntry, getCollection } from "astro:content";
 import type { GetStaticPathsOptions, Page } from "astro";
-import Layout from "@layouts/Layout.astro";
-import CaseStudyPreview from "@components/caseStudies/CaseStudyPreview.astro";
 import { generateTaxonomies } from "@utils/taxonomies";
-import CaseStudiesHeader from "@components/caseStudies/CaseStudiesHeader.astro";
 import CaseStudiesIndex from "@components/caseStudies/CaseStudiesIndex.astro";
 
 export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
@@ -52,15 +49,3 @@ const indexPage = `/${SITE.caseStudies.base}/related-service/${serviceSlug}/`;
 ---
 
 <CaseStudiesIndex page={page} indexPage={indexPage} />
-<Layout
-  title={`Case studies related to ${serviceName}`}
-  description={`Case studies related to ${serviceName}`}
->
-  <CaseStudiesHeader
-    heading={`Case studies related to ${serviceName}`}
-    subheading="Filter by related services"
-  />
-  <div class="max-w-3xl">
-    {page.data.map((entry) => <CaseStudyPreview article={entry} />)}
-  </div>
-</Layout>
