@@ -3,13 +3,15 @@ import Container from "./Container.astro";
 import { Icon } from "astro-icon/components";
 import Bars from "./MKBars.astro";
 
+export type CTA = {
+  heading: string;
+  subheading?: string;
+  href: string;
+  buttonText: string;
+};
+
 interface Props {
-  cta: {
-    heading: string;
-    subheading?: string;
-    href: string;
-    buttonText: string;
-  };
+  cta: CTA;
 }
 
 const { cta } = Astro.props;
