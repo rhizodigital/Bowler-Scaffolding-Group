@@ -1,0 +1,46 @@
+---
+import Section from "@components/Section.astro";
+import FeatureList from "@components/FeatureList.astro";
+
+const features = [
+  {
+    title: "Fully Guaranteed",
+    body: "All our work is fully insured and guaranteed, giving you peace of mind.",
+  },
+  {
+    title: "Certified & Accredited",
+    body: "We're CHAS, CITB, and SafeContractor approved, meeting the highest industry standards.",
+  },
+  {
+    title: "Over 25 Years of Experience",
+    body: "With decades of experience, our team delivers expert scaffolding solutions you can trust.",
+  },
+  {
+    title: "Customised Solutions",
+    body: "Tailored scaffolding solutions designed to meet the specific needs of every project.",
+  },
+
+  {
+    title: "Safety-First Approach",
+    body: "Dedicated to maintaining the strictest safety standards on every site.",
+  },
+  {
+    title: "Competitive Pricing",
+    body: "Offering quality service with fair, transparent pricing.",
+  },
+  {
+    title: "Reliable & On-Time",
+    body: "Count on us for dependable, punctual service from start to finish.",
+  },
+];
+---
+
+<Section pattern="none" theme="white">
+  <div class="bg-zinc-800 rounded-3xl p-8 lg:p-16">
+    <FeatureList
+      items={features}
+      dark={true}
+      class="space-y-8 md:space-y-0 md:grid md:grid-cols-2 md:gap-12"
+    />
+  </div>
+</Section>

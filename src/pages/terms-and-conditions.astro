@@ -1,8 +1,7 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import PageHeading from "../components/PageHeading.astro";
-import Container from "../components/Container.astro";
-import Grid from "../components/Grid.astro";
+import Layout from "@layouts/Layout.astro";
+import Section from "@components/Section.astro";
+import PageHeading from "@components/PageHeading.astro";
 
 const pageContent = {
   heading: "Terms and Conditions",
@@ -19,196 +18,156 @@ const description =
       heading={pageContent.heading}
       subheading={pageContent.subheading}
     />
+    <Section>
+      <div
+        id="terms-and-conditions"
+        class="px-6 md:px-12 pb-8 md:pb-12 pt-2 bg-white shadow-lg rounded-3xl max-w-5xl mx-auto prose prose-zinc"
+      >
+        <!-- Section 1 -->
+        <div>
+          <h2> 1. Use of the Site </h2>
+          <ul>
+            <li>
+              You agree to use this Site only for lawful purposes and in a
+              manner that does not infringe the rights of others or restrict or
+              inhibit their use of the Site.
+            </li>
+            <li>
+              You are prohibited from:
+              <ul>
+                <li>
+                  Using the Site in any way that causes or may cause damage to
+                  the Site or impair its functionality.
+                </li>
+                <li>
+                  Using the Site to upload or transmit harmful or malicious
+                  content, including viruses, worms, or spyware.
+                </li>
+              </ul>
+            </li>
+            <li>
+              We reserve the right to suspend or terminate access to the Site
+              for users who violate these terms.
+            </li>
+          </ul>
+        </div>
 
-    <div class="py-16 relative isolate bg-zinc-50">
-      <div class="absolute w-full top-0 left-0 h-full text-zinc-100">
-        <Grid size="100" id="about-bg" />
+        <!-- Section 2 -->
+        <div>
+          <h2> 2. Intellectual Property </h2>
+          <ul>
+            <li>
+              All content on this Site, including text, images, logos, and other
+              materials, is owned by or licensed to <strong
+                >Milton Keynes Scaffolding</strong
+              >. It is protected by copyright, trademark, and other intellectual
+              property laws.
+            </li>
+            <li>
+              You may:
+              <ul>
+                <li>Access and view the content for personal use.</li>
+                <li>
+                  Print or download content for personal, non-commercial
+                  purposes.
+                </li>
+              </ul>
+            </li>
+            <li>
+              You may not:
+              <ul>
+                <li>
+                  Copy, distribute, or reproduce content without prior written
+                  consent.
+                </li>
+                <li>Use content for commercial purposes.</li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Section 3 -->
+        <div>
+          <h2> 3. Third-Party Links </h2>
+          <ul>
+            <li>
+              This Site may contain links to third-party websites. These links
+              are provided for your convenience and do not signify our
+              endorsement of such websites.
+            </li>
+            <li>
+              We are not responsible for the content, policies, or practices of
+              any third-party websites.
+            </li>
+          </ul>
+        </div>
+
+        <!-- Section 4 -->
+        <div>
+          <h2> 4. Limitation of Liability </h2>
+          <ul>
+            <li>
+              While we strive to keep the Site accurate and up-to-date, we make
+              no warranties or representations about the accuracy, completeness,
+              or reliability of the content.
+            </li>
+            <li>
+              To the fullest extent permitted by law, **Milton Keynes
+              Scaffolding** shall not be liable for any damages arising from
+              your use of the Site, including:
+              <ul>
+                <li>Direct, indirect, or consequential losses.</li>
+                <li>Loss of data or profits.</li>
+              </ul>
+            </li>
+            <li>
+              This limitation of liability does not exclude or limit liability
+              for death or personal injury caused by negligence or fraudulent
+              misrepresentation.
+            </li>
+          </ul>
+        </div>
+
+        <!-- Section 5 -->
+        <div>
+          <h2> 5. Privacy </h2>
+          <p>
+            Your use of the Site is also governed by our <a
+              href="/privacy-policy">Privacy Policy</a
+            >.
+          </p>
+        </div>
+
+        <!-- Section 6 -->
+        <div>
+          <h2> 6. Cookies </h2>
+          <p>
+            This Site uses cookies to improve user experience and analyse
+            traffic. By using the Site, you consent to the use of cookies in
+            accordance with our <a href="/cookie-policy">Cookie Policy</a>.
+          </p>
+        </div>
+
+        <!-- Section 7 -->
+        <div>
+          <h2> 7. Contact Us </h2>
+          <p>
+            If you have any questions about these Terms and Conditions, please
+            contact us:
+          </p>
+          <ul>
+            <li>
+              Email: <a href="mailto:info@mkscaffolding.com"
+                >info@mkscaffolding.com</a
+              >
+            </li>
+            <li>
+              Phone: <a href="tel:01908224709">01908 224 709</a>
+            </li>
+            <li>Address: 21, Shenley Pavilions, Milton Keynes MK5 6LB</li>
+          </ul>
+        </div>
       </div>
-      <Container className="relative">
-        <section
-          id="terms-and-conditions"
-          class="p-6 md:p-12 bg-white shadow-lg rounded-3xl max-w-5xl mx-auto"
-        >
-          <div>
-            <div class="space-y-8">
-              <!-- Section 1 -->
-              <div>
-                <h2 class="text-2xl font-semibold text-zinc-800 mb-4">
-                  1. Use of the Site
-                </h2>
-                <ul class="list-disc list-inside text-zinc-600 space-y-2 ml-5">
-                  <li>
-                    You agree to use this Site only for lawful purposes and in a
-                    manner that does not infringe the rights of others or
-                    restrict or inhibit their use of the Site.
-                  </li>
-                  <li>
-                    You are prohibited from:
-                    <ul
-                      class="list-disc list-inside text-zinc-600 space-y-2 ml-5"
-                    >
-                      <li>
-                        Using the Site in any way that causes or may cause
-                        damage to the Site or impair its functionality.
-                      </li>
-                      <li>
-                        Using the Site to upload or transmit harmful or
-                        malicious content, including viruses, worms, or spyware.
-                      </li>
-                    </ul>
-                  </li>
-                  <li>
-                    We reserve the right to suspend or terminate access to the
-                    Site for users who violate these terms.
-                  </li>
-                </ul>
-              </div>
-
-              <!-- Section 2 -->
-              <div>
-                <h2 class="text-2xl font-semibold text-zinc-800 mb-4">
-                  2. Intellectual Property
-                </h2>
-                <ul class="list-disc list-inside text-zinc-600 space-y-2 ml-5">
-                  <li>
-                    All content on this Site, including text, images, logos, and
-                    other materials, is owned by or licensed to **Milton Keynes
-                    Scaffolding**. It is protected by copyright, trademark, and
-                    other intellectual property laws.
-                  </li>
-                  <li>
-                    You may:
-                    <ul
-                      class="list-disc list-inside text-zinc-600 space-y-2 ml-5"
-                    >
-                      <li>Access and view the content for personal use.</li>
-                      <li>
-                        Print or download content for personal, non-commercial
-                        purposes.
-                      </li>
-                    </ul>
-                  </li>
-                  <li>
-                    You may not:
-                    <ul
-                      class="list-disc list-inside text-zinc-600 space-y-2 ml-5"
-                    >
-                      <li>
-                        Copy, distribute, or reproduce content without prior
-                        written consent.
-                      </li>
-                      <li>Use content for commercial purposes.</li>
-                    </ul>
-                  </li>
-                </ul>
-              </div>
-
-              <!-- Section 3 -->
-              <div>
-                <h2 class="text-2xl font-semibold text-zinc-800 mb-4">
-                  3. Third-Party Links
-                </h2>
-                <ul class="list-disc list-inside text-zinc-600 space-y-2 ml-5">
-                  <li>
-                    This Site may contain links to third-party websites. These
-                    links are provided for your convenience and do not signify
-                    our endorsement of such websites.
-                  </li>
-                  <li>
-                    We are not responsible for the content, policies, or
-                    practices of any third-party websites.
-                  </li>
-                </ul>
-              </div>
-
-              <!-- Section 4 -->
-              <div>
-                <h2 class="text-2xl font-semibold text-zinc-800 mb-4">
-                  4. Limitation of Liability
-                </h2>
-                <ul class="list-disc list-inside text-zinc-600 space-y-2 ml-5">
-                  <li>
-                    While we strive to keep the Site accurate and up-to-date, we
-                    make no warranties or representations about the accuracy,
-                    completeness, or reliability of the content.
-                  </li>
-                  <li>
-                    To the fullest extent permitted by law, **Milton Keynes
-                    Scaffolding** shall not be liable for any damages arising
-                    from your use of the Site, including:
-                    <ul
-                      class="list-disc list-inside text-zinc-600 space-y-2 ml-5"
-                    >
-                      <li>Direct, indirect, or consequential losses.</li>
-                      <li>Loss of data or profits.</li>
-                    </ul>
-                  </li>
-                  <li>
-                    This limitation of liability does not exclude or limit
-                    liability for death or personal injury caused by negligence
-                    or fraudulent misrepresentation.
-                  </li>
-                </ul>
-              </div>
-
-              <!-- Section 5 -->
-              <div>
-                <h2 class="text-2xl font-semibold text-zinc-800 mb-4">
-                  5. Privacy
-                </h2>
-                <p class="text-zinc-600">
-                  Your use of the Site is also governed by our <a
-                    href="/privacy-policy"
-                    class="text-blue-600 hover:underline">Privacy Policy</a
-                  >.
-                </p>
-              </div>
-
-              <!-- Section 6 -->
-              <div>
-                <h2 class="text-2xl font-semibold text-zinc-800 mb-4">
-                  6. Cookies
-                </h2>
-                <p class="text-zinc-600">
-                  This Site uses cookies to improve user experience and analyse
-                  traffic. By using the Site, you consent to the use of cookies
-                  in accordance with our <a
-                    href="/cookie-policy"
-                    class="text-blue-600 hover:underline">Cookie Policy</a
-                  >.
-                </p>
-              </div>
-
-              <!-- Section 10 -->
-              <div>
-                <h2 class="text-2xl font-semibold text-zinc-800 mb-4">
-                  10. Contact Us
-                </h2>
-                <p class="text-zinc-600">
-                  If you have any questions about these Terms and Conditions,
-                  please contact us:
-                </p>
-                <ul class="text-zinc-600 space-y-2">
-                  <li>
-                    Email: <a
-                      href="mailto:info@mkscaffolding.com"
-                      class="text-blue-600 hover:underline"
-                      >info@mkscaffolding.com</a
-                    >
-                  </li>
-                  <li>
-                    Phone: <a
-                      href="tel:01908224709"
-                      class="text-blue-600 hover:underline">01908 224 709</a
-                    >
-                  </li>
-                  <li>Address: 21, Shenley Pavilions, Milton Keynes MK5 6LB</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </section>
-      </Container>
-    </div>
+    </Section>
   </main>
 </Layout>

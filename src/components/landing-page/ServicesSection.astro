@@ -1,0 +1,35 @@
+---
+import Section from "@components/Section.astro";
+import GridPattern from "@components/GridPattern.astro";
+import CtaOverlay from "@components/CtaOverlay.astro";
+import Card from "@components/Card.astro";
+import type { CardType } from "@components/Card.astro";
+import type { CTA } from "@components/CtaOverlay.astro";
+
+export interface Props {
+  services: CardType[];
+  cta: CTA;
+}
+
+const { services, cta } = Astro.props;
+---
+
+<div class="relative bg-zinc-200 isolate pb-8">
+  <div class="absolute size-full bottom-0 right-0 -z-[1] text-zinc-300">
+    <GridPattern />
+    <div
+      class="absolute inset-0 bg-gradient-to-b from-transparent to-zinc-200 size-full"
+    >
+    </div>
+  </div>
+  <div class="md:-translate-y-8">
+    <CtaOverlay cta={cta} />
+  </div>
+  <Section pattern="none" theme="none">
+    <div
+      class="space-y-6 md:space-y-0 md:grid md:grid-cols-2 md:gap-8 lg:gap-12"
+    >
+      {services.map((service) => <Card card={service} />)}
+    </div>
+  </Section>
+</div>

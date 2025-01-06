@@ -1,96 +1,64 @@
 ---
-import { Image } from "astro:assets";
-import Layout from "../layouts/Layout.astro";
-import PageHero from "../components/PageHero.astro";
-import Container from "../components/Container.astro";
-import WorkCarousel from "../components/WorkCarousel.astro";
-import Grid from "../components/Grid.astro";
-import CommercialImage1 from "../images/commercial/commercial-1.jpg";
-import CommercialImage2 from "../images/commercial/commercial-2.jpg";
-import CommercialImage3 from "../images/commercial/commercial-3.jpg";
-import CommercialImage4 from "../images/commercial/commercial-4.png";
-import CommercialImage5 from "../images/commercial/commercial-5.jpeg";
+import ServiceContent from "@components/service-page/ServiceContent.astro";
+import Layout from "@layouts/Layout.astro";
+
+import CommercialImage1 from "@images/commercial/commercial-1.jpg";
+import CommercialImage2 from "@images/commercial/commercial-2.jpg";
+import CommercialImage3 from "@images/commercial/commercial-3.jpg";
+import CommercialImage4 from "@images/commercial/commercial-4.png";
+import CommercialImage5 from "@images/commercial/commercial-5.jpeg";
 
 const pageContent = {
-  heading: `Commercial <span class="text-orange-500">Scaffolding</span>`,
+  heading: `Commercial <span class="text-primary">Scaffolding</span>`,
   subheading:
-    "From shops and offices to factories and art galleries, Milton Keynes Scaffolding Specialists have worked on numerous projects in the commercial sector. With expertise built up over two decades, our customers rely on us, for those hard-to-do jobs, that require that extra precision and skill.",
+    "From shops and office buildings to factories and museums, we've handled a wide variety of commercial projects. With over two decades of experience, our team brings the precision and expertise needed for even the most complex jobs. Whether it's a high street refurbishment or work in confined spaces, clients trust us to deliver safe, reliable scaffolding tailored to their specific needs.",
   heroImageWide: CommercialImage4,
   heroImageTall: CommercialImage2,
   ctaLink: "/contact/",
   ctaText: "Contact us",
   features: [
-    "office blocks and schools",
-    "warehouses and factories",
-    "residential developments",
-    "retail outlet refurbishments",
-    "art galleries and museums",
-    "confined spaces",
-    "temporary roofs",
-    "church repairs",
-    "public access staircases",
-    "birdcage scaffolds",
+    "Office blocks and schools",
+    "Warehouses and factories",
+    "Residential developments",
+    "Retail outlet refurbishments",
+    "Art galleries and museums",
+    "Confined spaces",
+    "Temporary roofs",
+    "Church repairs",
+    "Public access staircases",
+    "Birdcage scaffolds",
+  ],
+  slides: [
+    {
+      image: CommercialImage1,
+      caption: "Commercial Scaffolding",
+    },
+    {
+      image: CommercialImage3,
+      caption: "Commercial Scaffolding",
+    },
+    {
+      image: CommercialImage5,
+      caption: "Commercial Scaffolding",
+    },
   ],
 };
 
-const slides = [
-  {
-    image: CommercialImage1,
-    caption: "Commercial Scaffolding",
-  },
-  {
-    image: CommercialImage3,
-    caption: "Commercial Scaffolding",
-  },
-  {
-    image: CommercialImage5,
-    caption: "Commercial Scaffolding",
-  },
-];
 const description =
   "Milton Keynes-based specialists in commercial scaffolding, providing safe and efficient solutions for construction and maintenance projects.";
 ---
 
 <Layout title="Commercial Scaffolding" description={description}>
-  <main>
-    <PageHero
-      heading={pageContent.heading}
-      subheading={pageContent.subheading}
-      imageWide={pageContent.heroImageWide}
-      imageTall={pageContent.heroImageTall}
-      ctaLink={pageContent.ctaLink}
-      ctaText={pageContent.ctaText}
-    />
+  <ServiceContent pageContent={pageContent}>
+    <h2>Comprehensive Project Support</h2>
 
-    <div class="py-16 relative isolate bg-white">
-      <div class="absolute w-1/4 top-0 left-0 h-full text-zinc-100">
-        <Grid size="100" id="about-bg" />
-      </div>
-      <Container className="relative">
-        <div class="grid grid-cols-1 md:grid-cols-2 items-center gap-16">
-          <div>
-            <p class="text-zinc-600 mb-12 text-lg">
-              We will see your project through from beginning to end, and our
-              project manager will be on call 24/7 happy to work alongside you
-              every step of the way. We are COVID secure and offer a socially
-              distanced service to give you and your customers peace of mind.
-            </p>
-            <WorkCarousel slides={slides} />
-          </div>
-          <div>
-            <div class="bg-zinc-800 rounded-2xl px-12 py-12">
-              <p class="font-bold text-lg text-orange-500">Experienced in:</p>
-              <ul class="list-disc marker:text-orange-600 text-zinc-200 mt-4">
-                {
-                  pageContent.features.map((item) => (
-                    <li class="ml-5 capitalize mb-4 text-lg">{item}</li>
-                  ))
-                }
-              </ul>
-            </div>
-          </div>
-        </div>
-      </Container>
-    </div>
-  </main>
+    <p
+      >We manage your project from start to finish, with a dedicated project
+      manager available 24/7 to assist and collaborate with you at every stage.
+      Our services are fully COVID secure, offering a socially distanced
+      approach to ensure the safety of your staff and customers. From temporary
+      roofs to public access staircases, we're committed to providing solutions
+      that give you complete peace of mind.</p
+    >
+  </ServiceContent>
 </Layout>

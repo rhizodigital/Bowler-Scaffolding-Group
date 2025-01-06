@@ -1,23 +1,32 @@
 ---
+import type { HTMLAttributes } from "astro/types";
 import { Icon } from "astro-icon/components";
-export interface Props {
-  items: {
-    title: string;
-    body: string;
-    icon?: string;
-  }[];
+
+export type FeatureList = {
+  title: string;
+  body: string;
+  icon?: string;
+};
+
+export type Props = HTMLAttributes<"dl"> & {
+  items: FeatureList[];
   dark?: boolean;
-}
-const { items, dark } = Astro.props;
+};
+
+const { items, dark, class: className, ...attrs } = Astro.props;
 ---
 
-<dl class="space-y-8">
+<dl class:list={[className]} {...attrs}>
   {
     items.map((item) => (
       <div class="relative">
         <dt>
-          <div class="absolute top-1 flex size-8 items-center justify-center rounded-lg border-2 border-orange-500 text-orange-500">
-            <Icon name="ic:round-check" size={36} class="size-6" />
+          <div class="absolute top-1 flex size-8 items-center justify-center rounded-lg border-2 border-primary-500 text-primary-500">
+            <Icon
+              name={item.icon || "ic:round-check"}
+              size={36}
+              class="size-6"
+            />
           </div>
           <p
             class:list={[

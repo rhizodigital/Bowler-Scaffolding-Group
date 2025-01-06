@@ -1,19 +1,23 @@
 ---
+import type { HTMLAttributes } from "astro/types";
 import { Image } from "astro:assets";
 import { Icon } from "astro-icon/components";
-interface Props {
-  transitionId: string;
+
+type Props = HTMLAttributes<"article"> & {
   url: string;
   image: ImageMetadata;
   alt: string;
-}
+};
 
-const { transitionId, url, image, alt } = Astro.props;
+const { url, image, alt, class: className, ...attrs } = Astro.props;
 ---
 
 <article
-  class="bg-white rounded-3xl overflow-hidden relative hover:shadow-xl lg:hover:-translate-y-2 transiton-all"
-  transition:name={transitionId && `${transitionId}-article`}
+  class:list={[
+    "bg-white rounded-3xl overflow-hidden relative hover:shadow-xl lg:hover:-translate-y-2 transiton-all",
+    className,
+  ]}
+  {...attrs}
 >
   <a href={url} class="block group">
     <Image
@@ -21,7 +25,6 @@ const { transitionId, url, image, alt } = Astro.props;
       alt={alt}
       width={700}
       class="w-full mb-3 aspect-video object-cover rounded-3xl"
-      transition:name={transitionId && `${transitionId}-featured`}
     />
     <div
       class="w-12 h-12 absolute top-2 right-2 flex items-center justify-center rounded-full backdrop-blur-lg"

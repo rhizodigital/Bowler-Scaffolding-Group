@@ -1,11 +1,10 @@
 ---
 import { SITE } from "@config";
-import { ClientRouter } from "astro:transitions";
+import Section from "@components/Section.astro";
+import { Image } from "astro:assets";
 import { type CollectionEntry, getCollection, render } from "astro:content";
 import { getEntries } from "astro:content";
 import Layout from "@layouts/Layout.astro";
-import ArticleHeader from "@components/news/ArticleHeader.astro";
-import Container from "@components/Container.astro";
 
 interface Props {
   entry: CollectionEntry<"news">;
@@ -22,6 +21,11 @@ export async function getStaticPaths() {
 const { entry } = Astro.props;
 const { Content } = await render(entry);
 
+const dateOptions: Intl.DateTimeFormatOptions = {
+  month: "long",
+  year: "numeric",
+  day: "numeric",
+};
 // Get all authors for the news article
 const authors = await getEntries(
   entry.data.authors as CollectionEntry<"authors">[]
@@ -29,13 +33,74 @@ const authors = await getEntries(
 ---
 
 <Layout title={entry.data.title} description={entry.data.description}>
-  <ClientRouter slot="head" />
-  <ArticleHeader article={entry} authors={authors} />
-  <Container>
-    <article transition:name=`${entry.id}-article` class="py-24">
+  <article>
+    <Section
+      as="header"
+      theme="dark"
+      pattern="full-fade"
+      id="news-article-header"
+    >
+      <div class="flex flex-col lg:flex-row gap-8 items-center">
+        <div class="flex flex-col gap-4">
+          <div>
+            {
+              entry.data.categories && (
+                <div class="flex flex-wrap gap-2">
+                  {entry.data.categories.map((category) => (
+                    <span class="text-primary-500 bg-primary-100 px-2 py-1 font-semibold rounded-full text-xs">
+                      {category}
+                    </span>
+                  ))}
+                </div>
+              )
+            }
+          </div>
+          <h1
+            class="text-balance text-gray-50 text-4xl leading-tight font-medium mt-4 md:leading-tight mb-4"
+            set:html={entry.data.title}
+            transition:name={`${entry.id} title`}
+          />
+          <p class="text-zinc-200 text-lg">
+            Written on{" "}
+            <time
+              datetime={entry.data.publishDate.toISOString()}
+              class="text-primary"
+            >
+              {entry.data.publishDate.toLocaleDateString("en-GB", dateOptions)}
+            </time>
+            {
+              authors.length > 0 && (
+                <span>
+                  {" by "}
+                  {authors.map((author, index) => (
+                    <span class="text-primary">
+                      {author.data.name}
+                      {index < authors.length - 1 ? ", " : ""}
+                    </span>
+                  ))}
+                </span>
+              )
+            }
+          </p>
+        </div>
+        {
+          entry.data.coverImage && (
+            <Image
+              src={entry.data.coverImage}
+              alt={entry.data.title}
+              width={700}
+              class="w-full mb-3 aspect-video object-cover lg:w-1/2 rounded-3xl"
+              transition:name={`${entry.id} cover`}
+            />
+          )
+        }
+      </div>
+    </Section>
+
+    <Section as="div" theme="white" pattern="none">
       <div class="prose lg:prose-lg mx-auto">
         <Content />
       </div>
-    </article>
-  </Container>
+    </Section>
+  </article>
 </Layout>

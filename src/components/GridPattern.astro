@@ -1,0 +1,38 @@
+---
+import crypto from "node:crypto";
+interface Props {
+  size?: number;
+  stroke?: number;
+}
+const id = crypto.randomBytes(4).toString("hex");
+const { size = 100, stroke = 1 } = Astro.props;
+---
+
+<svg width="100%" height="100%">
+  <pattern
+    id={`grid-${id}`}
+    patternUnits="userSpaceOnUse"
+    width={size}
+    height={size}
+    viewBox={`0 0 ${size} ${size}`}
+  >
+    <g id={`grid-lines-${id}`}>
+      <line
+        x1={size / 2}
+        y1="0"
+        x2={size / 2}
+        y2={size}
+        stroke="currentColor"
+        stroke-width={stroke}></line>
+      <line
+        x1="0"
+        y1={size / 2}
+        x2={size}
+        y2={size / 2}
+        stroke="currentColor"
+        stroke-width={stroke}></line>
+    </g>
+    <use x="0" y="0" xlink:href={`#grid-lines-${id}`}></use>
+  </pattern>
+  <rect x="0" y="0" width="100%" height="100%" fill={`url(#grid-${id})`}></rect>
+</svg>

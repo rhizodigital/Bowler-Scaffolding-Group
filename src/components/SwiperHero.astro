@@ -2,7 +2,7 @@
 import { Picture } from "astro:assets";
 import "swiper/css";
 import "swiper/css/autoplay";
-import Grid from "../components/Grid.astro";
+import GridPattern from "../components/GridPattern.astro";
 import Bars from "./MKBars.astro";
 import Container from "./Container.astro";
 
@@ -20,24 +20,18 @@ export interface Props {
 const { eyebrow, headline, supporting, slides } = Astro.props;
 ---
 
-<div class="relative bg-zinc-800 isolate">
-  <div
-    class="w-full h-full absolute top-0 bottom-0 left-0 right-0 -z-10 text-zinc-700 opacity-60"
-  >
-    <Grid size="100" id="slide-pattern" />
-    <div
-      class="absolute inset-0 bg-gradient-to-b from-transparent to-zinc-800 size-full"
-    >
-    </div>
+<div class="relative bg-gradient-to-b from-zinc-900 to-zinc-800 isolate">
+  <div class="size-full absolute inset-0 -z-10 text-zinc-800">
+    <GridPattern />
   </div>
   <Container className="h-full py-24 lg:pt-28 lg:pb-32">
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
       <div class="max-w-2xl mx-auto md:text-center lg:text-left">
-        <h1 class="text-orange-500 text-lg">{eyebrow}</h1>
+        <h1 class="text-primary text-lg">{eyebrow}</h1>
         {
           headline && (
             <h2
-              class="text-balance text-gray-50 text-4xl leading-tight md:text-5xl font-medium mt-4 md:leading-tight"
+              class="text-balance text-gray-50 text-4xl leading-tight md:text-5xl font-semibold mt-4 md:leading-tight"
               set:html={headline}
             />
           )

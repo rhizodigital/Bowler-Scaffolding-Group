@@ -1,5 +1,4 @@
 ---
-import { ClientRouter } from "astro:transitions";
 import type { Page } from "astro";
 import type { CaseStudiesEntry } from "@env";
 import Layout from "@layouts/Layout.astro";
@@ -20,7 +19,6 @@ const { page, indexPage } = Astro.props;
   title="News and Insights"
   description="News & Insights from Milton Keynes Scaffolding Specialists LTD"
 >
-  <ClientRouter slot="head" />
   <CaseStudiesHeader heading="Our Work" />
   <div class="bg-zinc-100">
     <Container>

@@ -4,7 +4,7 @@ import type { CaseStudiesEntry, RelatedService } from "@env";
 import { type CollectionEntry, getCollection } from "astro:content";
 import type { GetStaticPathsOptions, Page } from "astro";
 import { generateTaxonomies } from "@utils/taxonomies";
-import CaseStudiesIndex from "@components/caseStudies/CaseStudiesIndex.astro";
+import CaseStudiesIndex from "@components/case-studies/CaseStudiesIndex.astro";
 
 export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
   const caseStudies = await getCollection(

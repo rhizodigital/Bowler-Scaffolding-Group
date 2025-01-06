@@ -1,21 +1,53 @@
 ---
-export interface Props {
-	title: string;
-	body: string;
-	href: string;
+import { Image } from "astro:assets";
+import { Icon } from "astro-icon/components";
+import type { ImageMetadata } from "astro";
+
+export type CardType = {
+  title: string;
+  body: string;
+  href: string;
+  src: ImageMetadata;
+};
+
+interface Props {
+  card: CardType;
 }
 
-const { href, title, body } = Astro.props;
+const { card } = Astro.props;
 ---
 
-<li class="link-card">
-	<a href={href}>
-		<h2>
-			{title}
-			<span>&rarr;</span>
-		</h2>
-		<p>
-			{body}
-		</p>
-	</a>
-</li>
+<div
+  class="bg-white rounded-3xl overflow-hidden relative hover:shadow-lg lg:hover:-translate-y-2 transiton-all"
+>
+  <a href={card.href} class="group">
+    <Image
+      src={card.src}
+      alt={card.title}
+      width={800}
+      loading="eager"
+      class="w-full aspect-video object-cover rounded-3xl"
+    />
+
+    <div
+      class="w-12 h-12 absolute top-2 right-2 flex items-center justify-center rounded-full backdrop-blur-lg"
+    >
+      <div
+        class="group-hover:bg-white flex items-center justify-center rounded-full w-8 h-8 transition-all"
+      >
+        <Icon
+          name="material-symbols:arrow-outward-rounded"
+          size={24}
+          class="group-hover:text-zinc-800 shrink-0 grow-0 flex text-white transition-all"
+        />
+      </div>
+    </div>
+
+    <div class="p-6">
+      <h2 class="text-lg md:text-xl font-bold mb-2 text-zinc-800">
+        {card.title}
+      </h2>
+      <p class="text-sm md:text-base text-zinc-600">{card.body}</p>
+    </div>
+  </a>
+</div>

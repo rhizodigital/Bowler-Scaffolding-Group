@@ -1,0 +1,56 @@
+---
+import PageHero from "@components/PageHero.astro";
+import Section from "@components/Section.astro";
+import WorkCarousel from "@components/WorkCarousel.astro";
+import type { Slide } from "@components/WorkCarousel.astro";
+type ServiceContent = {
+  heading: string;
+  subheading: string;
+  heroImageWide: ImageMetadata;
+  heroImageTall: ImageMetadata;
+  ctaLink?: string;
+  ctaText?: string;
+  features: string[];
+  slides: Slide[];
+};
+export type Props = {
+  pageContent: ServiceContent;
+};
+
+const { pageContent } = Astro.props;
+---
+
+<PageHero
+  heading={pageContent.heading}
+  subheading={pageContent.subheading}
+  imageWide={pageContent.heroImageWide}
+  imageTall={pageContent.heroImageTall}
+  ctaLink={pageContent.ctaLink}
+  ctaText={pageContent.ctaText}
+/>
+
+<Section theme="white" pattern="full-fade">
+  <div class="space-y-16">
+    <div class="max-w-3xl prose prose-zinc lg:prose-lg text-lg">
+      <slot />
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 h-full items-start gap-16">
+      <div>
+        <WorkCarousel slides={pageContent.slides} />
+      </div>
+      <div>
+        <div class="bg-zinc-800 rounded-3xl px-12 py-12">
+          <p class="font-bold text-lg text-orange-500">Experienced in:</p>
+          <ul class="list-disc marker:text-orange-600 text-zinc-200 mt-4">
+            {
+              pageContent.features.map((item) => (
+                <li class="ml-5 capitalize mb-4 text-lg">{item}</li>
+              ))
+            }
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</Section>

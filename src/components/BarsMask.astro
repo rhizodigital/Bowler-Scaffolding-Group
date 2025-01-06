@@ -12,8 +12,8 @@ const { image, alt } = Astro.props;
 <Image
   src={image}
   alt={alt}
-  width={image.width / 2}
+  width={image.width}
   densities={[1.5, 2]}
-  class="w-full object-cover size-80 bars-mask"
+  class="w-full object-cover aspect-square"
   style=`mask-image: url(${LogoMark.src}); mask-repeat: no-repeat; mask-size: contain;`
 />

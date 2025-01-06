@@ -1,7 +1,7 @@
 ---
 import { SITE } from "src/site.config";
 import type { CollectionEntry } from "astro:content";
-import ImageCard from "@components/ImageCard.astro";
+import EntryCard from "@components/EntryCard.astro";
 interface Props {
   article: CollectionEntry<"news">;
 }
@@ -17,14 +17,14 @@ const dateOptions: Intl.DateTimeFormatOptions = {
 const url = `/${SITE.news.base}/${article.id}/`;
 ---
 
-<ImageCard
+<EntryCard
   url={url}
   image={article.data.coverImage}
   alt={article.data.title}
-  transitionId={article.id}
+  transition:name={`${article.id} article`}
 >
   <div slot="body">
-    <h2 class="text-2xl font-semibold" transition:name={`${article.id} title`}>
+    <h2 class="text-2xl font-semibold">
       {article.data.title}
     </h2>
     <time
@@ -34,4 +34,4 @@ const url = `/${SITE.news.base}/${article.id}/`;
       {article.data.publishDate.toLocaleDateString("en-GB", dateOptions)}
     </time>
   </div>
-</ImageCard>
+</EntryCard>

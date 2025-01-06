@@ -1,70 +1,64 @@
 ---
 import { Image } from "astro:assets";
-import Container from "../components/Container.astro";
-import Grid from "../components/Grid.astro";
+import Section from "@components/Section.astro";
 
-export interface Props {
+export type Props = {
   heading: string;
   subheading: string;
   imageTall: ImageMetadata;
   imageWide: ImageMetadata;
   ctaText?: string;
   ctaLink?: string;
-}
+};
 
 const { heading, subheading, imageTall, imageWide, ctaLink, ctaText } =
   Astro.props;
 ---
 
-<div class="bg-zinc-800 py-20 md:py-24 relative">
-  <div class="absolute inset-0 text-zinc-700 opacity-40">
-    <Grid size="100" id="header-pattern" />
-  </div>
-  <Container className="relative">
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-      <div>
-        <h1 class="text-white text-5xl font-semibold" set:html={heading} />
-        <p class="text-zinc-400 mt-8 text-lg" set:html={subheading} />
-        {
-          ctaLink && (
-            <div class="mt-8">
-              <a
-                href={ctaLink}
-                class="py-3 px-6 bg-orange-500 hover:ring-4 hover:ring-orange-500/20 transition-all inline-block rounded-full text-white"
-              >
-                {ctaText}
-              </a>
-            </div>
-          )
-        }
-      </div>
-      <div>
-        <div class="grid grid-cols-12 gap-4 items-center">
-          <div class="col-span-5">
-            <div class="grid grid-cols-1 gap-4">
-              <Image
-                src={imageWide}
-                alt="Scaffolding"
-                loading="eager"
-                class="w-full object-cover aspect-square rounded-2xl"
-              />
-              <div class="ml-auto">
-                <div class="size-36 bg-zinc-500 rounded-2xl opacity-50"></div>
-              </div>
-            </div>
+<Section theme="dark" pattern="full-fade">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+    <div>
+      <h1 class="text-white text-5xl font-semibold" set:html={heading} />
+      <p class="text-zinc-400 mt-8 text-lg" set:html={subheading} />
+      {
+        ctaLink && (
+          <div class="mt-8">
+            <a
+              href={ctaLink}
+              class="py-3 px-6 bg-primary hover:ring-4 hover:ring-primary/30 transition-all inline-block rounded-full text-white"
+            >
+              {ctaText}
+            </a>
           </div>
-          <div class="col-span-7">
-            <div class="grid grid-cols-1 gap-4">
-              <Image
-                src={imageTall}
-                alt="Scaffolding"
-                loading="eager"
-                class="block max-w-full h-auto align-middle rounded-2xl"
-              />
+        )
+      }
+    </div>
+    <div>
+      <div class="grid grid-cols-12 gap-4 items-center">
+        <div class="col-span-5">
+          <div class="grid grid-cols-1 gap-4">
+            <Image
+              src={imageWide}
+              alt="Scaffolding"
+              loading="eager"
+              class="w-full object-cover aspect-square rounded-2xl"
+            />
+            <div class="ml-auto">
+              <div class="size-36 bg-zinc-500 rounded-2xl opacity-50"></div>
             </div>
           </div>
         </div>
+        <div class="col-span-7">
+          <div class="grid grid-cols-1 gap-4">
+            <Image
+              src={imageTall}
+              alt="Scaffolding"
+              loading="eager"
+              class="block max-w-full h-auto align-middle rounded-2xl"
+            />
+          </div>
+        </div>
       </div>
-    </div></Container
-  >
-</div>
+    </div>
+  </div>
+</Section>

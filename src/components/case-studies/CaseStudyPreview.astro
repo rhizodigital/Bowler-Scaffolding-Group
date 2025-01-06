@@ -1,6 +1,6 @@
 ---
 import { SITE } from "src/site.config";
-import ImageCard from "@components/ImageCard.astro";
+import EntryCard from "@components/EntryCard.astro";
 import type { CollectionEntry } from "astro:content";
 
 interface Props {
@@ -12,12 +12,7 @@ const { article } = Astro.props;
 const url = `/${SITE.caseStudies.base}/${article.id}/`;
 ---
 
-<ImageCard
-  url={url}
-  image={article.data.coverImage}
-  alt={article.data.title}
-  transitionId={article.id}
->
+<EntryCard url={url} image={article.data.coverImage} alt={article.data.title}>
   <div slot="body">
     <h2 class="text-2xl font-semibold" transition:name={`${article.id} title`}>
       {article.data.title}
@@ -31,4 +26,4 @@ const url = `/${SITE.caseStudies.base}/${article.id}/`;
       }
     </div>
   </div>
-</ImageCard>
+</EntryCard>

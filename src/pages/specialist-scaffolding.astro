@@ -1,88 +1,56 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import PageHero from "../components/PageHero.astro";
-import Container from "../components/Container.astro";
-import WorkCarousel from "../components/WorkCarousel.astro";
-import Grid from "../components/Grid.astro";
-import SpecialistImage1 from "../images/specialist/specialist-1.jpg";
-import SpecialistImage2 from "../images/specialist/specialist-2.jpeg";
-import SpecialistImage3 from "../images/specialist/specialist-3.jpg";
+import Layout from "@layouts/Layout.astro";
+import ServiceContent from "@components/service-page/ServiceContent.astro";
+import SpecialistImage1 from "@images/specialist/specialist-1.jpg";
+import SpecialistImage2 from "@images/specialist/specialist-2.jpeg";
+import SpecialistImage3 from "@images/specialist/specialist-3.jpg";
 
 const pageContent = {
   heading: `Specialist <span class="text-orange-500">Scaffolding</span>`,
   subheading:
-    "For bespoke scaffolds like suspended, truss-out and free-standing structures, Milton Keynes Scaffolding Specialists has the expertise to deliver precisely what you need. Using tube & fitting and the Layher System of scaffolding, we utilise the best of both systems, to get your scaffold spot-on. Plus, you won’t have to worry about the finishing touches, as we supply hoarding and signage – which is part of our 360-degree service.",
+    "When your project requires something beyond standard scaffolding, we're here to help. Our expertise covers bespoke scaffolds, including cantilevered, truss-out, and free-standing structures. Whether using tube & fitting or the versatile Layher System, we combine the strengths of both methods to deliver precise, dependable scaffolding solutions. To make things even easier, we also provide hoarding, banners, and signage as part of our comprehensive service.",
   heroImageWide: SpecialistImage1,
   heroImageTall: SpecialistImage2,
   ctaLink: "/contact/",
   ctaText: "Contact us",
   features: [
-    "cantilevered scaffolds",
-    "truss-out Scaffolds",
-    "façade retention",
-    "buttressed free-standing scaffolds",
-    "temporary roofs and temporary buildings",
-    "public access Layher staircases",
-    "support scaffolds",
-    "pedestrian footbridges & walkways",
-    "slung and suspended scaffolds",
-    "protection fans",
-    "pavement gantries",
-    "marine scaffolds",
-    "hoardings, banners & signage",
+    "Cantilevered scaffolds",
+    "Truss-out scaffolds",
+    "Façade retention",
+    "Buttressed free-standing scaffolds",
+    "Temporary roofs and temporary buildings",
+    "Public access Layher staircases",
+    "Support scaffolds",
+    "Pedestrian footbridges & walkways",
+    "Slung and suspended scaffolds",
+    "Protection fans",
+    "Pavement gantries",
+    "Marine scaffolds",
+    "Hoardings, banners & signage",
+  ],
+  slides: [
+    {
+      image: SpecialistImage3,
+      caption: "Specialist Scaffolding",
+    },
   ],
 };
 
-const slides = [
-  {
-    image: SpecialistImage3,
-    caption: "Specialist Scaffolding",
-  },
-];
 const description =
   "Milton Keynes-based specialist scaffolding solutions for complex projects, ensuring safety, precision, and tailored access for unique requirements.";
 ---
 
 <Layout title="Specialist Scaffolding" description={description}>
-  <main>
-    <PageHero
-      heading={pageContent.heading}
-      subheading={pageContent.subheading}
-      imageWide={pageContent.heroImageWide}
-      imageTall={pageContent.heroImageTall}
-      ctaLink={pageContent.ctaLink}
-      ctaText={pageContent.ctaText}
-    />
+  <ServiceContent pageContent={pageContent}>
+    <h2>Designed and Managed by Experts</h2>
 
-    <div class="py-16 relative isolate bg-white">
-      <div class="absolute w-1/4 top-0 left-0 h-full text-zinc-100">
-        <Grid size="100" id="about-bg" />
-      </div>
-      <Container className="relative">
-        <div class="grid grid-cols-1 md:grid-cols-2 items-center gap-16">
-          <div>
-            <p class="text-zinc-600 mb-12 text-lg">
-              Our in-house design team will draft a design for your approval
-              before it’s erected, and only senior scaffolders (with CISRS
-              Advanced Scaffolder qualification cards) will manage and sign-off
-              its construction.
-            </p>
-            <WorkCarousel slides={slides} />
-          </div>
-          <div>
-            <div class="bg-zinc-800 rounded-2xl px-12 py-12">
-              <p class="font-bold text-lg text-orange-500">Experienced in:</p>
-              <ul class="list-disc marker:text-orange-600 text-zinc-200 mt-4">
-                {
-                  pageContent.features.map((item) => (
-                    <li class="ml-5 capitalize mb-4 text-lg">{item}</li>
-                  ))
-                }
-              </ul>
-            </div>
-          </div>
-        </div>
-      </Container>
-    </div>
-  </main>
+    <p>
+      Every bespoke scaffold begins with a carefully crafted plan from our
+      in-house design team. Once the design is approved, only senior scaffolders
+      holding CISRS Advanced Scaffolder qualification cards will oversee and
+      sign off on its construction. This ensures that every structure meets the
+      highest safety standards while being perfectly tailored to your project’s
+      requirements.
+    </p>
+  </ServiceContent>
 </Layout>

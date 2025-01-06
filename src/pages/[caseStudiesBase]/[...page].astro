@@ -3,7 +3,7 @@ import { SITE } from "@config";
 import { getCollection } from "astro:content";
 import type { CaseStudiesEntry } from "@env";
 import type { GetStaticPathsOptions, Page } from "astro";
-import CaseStudiesIndex from "@components/caseStudies/CaseStudiesIndex.astro";
+import CaseStudiesIndex from "@components/case-studies/CaseStudiesIndex.astro";
 
 export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
   // Get all case studies that are not drafts

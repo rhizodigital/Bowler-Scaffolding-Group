@@ -1,0 +1,67 @@
+---
+import type { HTMLAttributes, HTMLTag } from "astro/types";
+export type Props<T extends HTMLTag> = HTMLAttributes<T> & {
+  theme?: "dark" | "mid" | "light" | "white" | "none";
+  pattern?: "none" | "full" | "full-fade";
+  as?: T;
+};
+import Container from "./Container.astro";
+import GridPattern from "./GridPattern.astro";
+
+const {
+  as: Component = "section",
+  class: className,
+  theme = "light",
+  pattern = "none",
+  ...attrs
+} = Astro.props;
+---
+
+<Component
+  {...attrs}
+  class:list={[
+    theme === "dark" && "bg-zinc-900 text-zinc-200",
+    theme === "mid" && "bg-zinc-800 text-zinc-200",
+    theme === "light" && "bg-zinc-200",
+    theme === "white" && "bg-white text-zinc-900",
+    theme === "none" && "bg-transparent",
+    "relative py-20 md:py-24 lg:py-32",
+    className,
+  ]}
+>
+  {
+    pattern !== "none" && (
+      <div
+        class:list={[
+          "absolute",
+          pattern === "full" && "inset-0 size-full",
+          pattern === "full-fade" && "inset-0 size-full",
+          theme === "dark" && "text-zinc-800/90",
+          theme === "mid" && "text-zinc-700/40",
+          theme === "light" && "text-zinc-300/50",
+          theme === "white" && "text-zinc-100/70",
+        ]}
+      >
+        <GridPattern />
+      </div>
+    )
+  }
+
+  {
+    pattern === "full-fade" && (
+      <div
+        class:list={[
+          "absolute inset-0 size-full bg-gradient-to-b from-transparent",
+          theme === "dark" && "to-zinc-800",
+          theme === "mid" && "to-zinc-800",
+          theme === "light" && "to-zinc-200",
+          theme === "white" && "to-white",
+        ]}
+      />
+    )
+  }
+
+  <Container className="relative">
+    <slot />
+  </Container>
+</Component>

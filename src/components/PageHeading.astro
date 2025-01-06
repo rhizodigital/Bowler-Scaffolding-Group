@@ -1,6 +1,5 @@
 ---
-import Container from "../components/Container.astro";
-import Grid from "../components/Grid.astro";
+import Section from "@components/Section.astro";
 
 export interface Props {
   heading: string;
@@ -10,25 +9,20 @@ export interface Props {
 const { heading, subheading } = Astro.props;
 ---
 
-<div class="bg-zinc-800 py-20 md:py-24 relative">
-  <div class="absolute inset-0 text-zinc-700 opacity-40">
-    <Grid size="100" id="header-pattern" />
+<Section theme="dark" pattern="full-fade">
+  <div class="flex flex-col items-center text-center">
+    <h1 class="text-white text-5xl font-semibold" set:html={heading} />
+    {
+      subheading && (
+        <p class="text-zinc-400 mt-8 text-lg" set:html={subheading} />
+      )
+    }
+    {
+      Astro.slots.has("filter") && (
+        <div class="mt-12 text-zinc-800">
+          <slot name="filter" />
+        </div>
+      )
+    }
   </div>
-  <Container className="relative">
-    <div class="flex flex-col items-center text-center">
-      <h1 class="text-white text-5xl font-semibold" set:html={heading} />
-      {
-        subheading && (
-          <p class="text-zinc-400 mt-8 text-lg" set:html={subheading} />
-        )
-      }
-      {
-        Astro.slots.has("filter") && (
-          <div class="mt-12">
-            <slot name="filter" />
-          </div>
-        )
-      }
-    </div>
-  </Container>
-</div>
+</Section>

@@ -3,12 +3,14 @@ import { Picture } from "astro:assets";
 import "swiper/css";
 import "swiper/css/autoplay";
 
-export interface Props {
-  slides: {
-    image: ImageMetadata;
-    caption: string;
-  }[];
-}
+export type Slide = {
+  image: ImageMetadata;
+  caption: string;
+};
+
+export type Props = {
+  slides: Slide[];
+};
 
 const { slides } = Astro.props;
 ---
@@ -18,7 +20,7 @@ const { slides } = Astro.props;
     {
       slides.map((slide) => (
         <div class="swiper-slide relative">
-          <div class="rounded-xl overflow-hidden">
+          <div class="rounded-3xl overflow-hidden">
             <Picture
               src={slide.image}
               alt={slide.caption}
@@ -30,20 +32,26 @@ const { slides } = Astro.props;
             />
           </div>
 
-          <div class="absolute bottom-0 right-0 bg-white p-4 inset-caption">
+          <div class="absolute bottom-0 right-0 bg-white py-4 px-6 inset-caption border-1 border-white rounded-tl-3xl">
             <svg
-              class="inset-corner-bl"
+              class="absolute w-6 bottom-0 right-full"
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 100 100"
             >
-              <path d="M0 100h100V0c0 55.23-44.77 100-100 100Z" />
+              <path
+                d="M0 100h100V0c0 55.23-44.77 100-100 100Z"
+                class="fill-white"
+              />
             </svg>
             <svg
-              class="inset-corner-tr"
+              class="w-6 absolute bottom-full right-0"
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 100 100"
             >
-              <path d="M0 100h100V0c0 55.23-44.77 100-100 100Z" />
+              <path
+                d="M0 100h100V0c0 55.23-44.77 100-100 100Z"
+                class="fill-white"
+              />
             </svg>
             <p class="font-bold">{slide.caption}</p>
           </div>
@@ -53,31 +61,6 @@ const { slides } = Astro.props;
   </div>
 </div>
 
-<style>
-  .inset-caption {
-    border-top-left-radius: 1rem;
-    transform: translateY(0.05rem);
-    padding-right: 20px;
-    right: -1px;
-  }
-  .inset-caption svg {
-    fill: white;
-    width: 1rem;
-    height: auto;
-    position: absolute;
-    overflow: hidden;
-  }
-  .inset-corner-bl {
-    bottom: 0;
-    left: -1rem;
-    transform: translateX(0.05rem);
-  }
-  .inset-corner-tr {
-    right: 0;
-    top: -1rem;
-    transform: translateY(0.05rem);
-  }
-</style>
 <script>
   import Swiper from "swiper";
   import { Autoplay } from "swiper/modules";

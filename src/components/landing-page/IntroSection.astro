@@ -1,0 +1,123 @@
+---
+import { Image } from "astro:assets";
+import Section from "@components/Section.astro";
+import Layher from "@images/layher.jpg";
+import Chas from "@images/chas.png";
+import Safe from "@images/safe.png";
+import Citb from "@images/citb.png";
+
+import FeatureList from "@components/FeatureList.astro";
+
+const features = [
+  {
+    title: "Fully Guaranteed",
+    body: "All our work is fully insured and guaranteed, giving you peace of mind.",
+  },
+  {
+    title: "Certified & Accredited",
+    body: "We're CHAS, CITB, and SafeContractor approved, meeting the highest industry standards.",
+  },
+  {
+    title: "Over 25 Years of Experience",
+    body: "With decades of experience, our team delivers expert scaffolding solutions you can trust.",
+  },
+  {
+    title: "Customised Solutions",
+    body: "Tailored scaffolding solutions designed to meet the specific needs of every project.",
+  },
+
+  {
+    title: "Safety-First Approach",
+    body: "Dedicated to maintaining the strictest safety standards on every site.",
+  },
+  {
+    title: "Competitive Pricing",
+    body: "Offering quality service with fair, transparent pricing.",
+  },
+  {
+    title: "Reliable & On-Time",
+    body: "Count on us for dependable, punctual service from start to finish.",
+  },
+];
+
+const certificates = [
+  {
+    name: "Chas",
+    imgsrc: Chas,
+  },
+  {
+    name: "Safe Contractor",
+    imgsrc: Safe,
+  },
+  {
+    name: "CITB",
+    imgsrc: Citb,
+  },
+];
+---
+
+<Section theme="white" pattern="full-fade">
+  <div class="space-y-20 md:space-y-24 lg:space-y-32">
+    <div class="md:grid md:grid-cols-2 md:gap-12 md:items-center">
+      <div>
+        <Image
+          src={Layher}
+          alt="Milton Keynes Scaffolding Specialists"
+          class="rounded-3xl lg:aspect-square object-cover"
+        />
+      </div>
+      <div class="prose prose-zinc prose-h2:text-3xl">
+        <h2>Welcome to Milton Keynes Scaffolding Specialists</h2>
+        <p
+          >Your trusted partner for safe and dependable access solutions. As a
+          CHAS Accredited, CITB certified, and Safe Contractor Approved
+          business, we prioritise safety and quality in everything we do. From
+          our base in Milton Keynes, we offer expert services across the region,
+          covering areas such as Northampton, Luton, Oxford, Bedford, London,
+          Cambridge, Coventry, and Stevenage.</p
+        >
+        <p
+          >Whether your project is residential, commercial, or industrial, our
+          skilled team provides customised support structures designed to suit
+          your needs. Contact us today to explore our range of services and see
+          why clients across the region choose us for secure and professional
+          access solutions.
+        </p>
+        <div class="flex items-center gap-8">
+          {
+            certificates.map((cert) => (
+              <div class="h-24 w-24">
+                <Image
+                  src={cert.imgsrc}
+                  alt="{cert.name}"
+                  class="h-full w-full object-contain"
+                />
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+    <div class="bg-zinc-800 rounded-3xl p-8 lg:p-16 space-y-8 md:space-y-12">
+      <div class="max-w-2xl">
+        <p class="text-primary-500 text-lg">Why Clients Choose Us</p>
+        <h2 class="text-3xl text-zinc-50 font-medium mt-4"
+          >Experienced, Reliable, and Client-Focused</h2
+        >
+        <p class="text-zinc-400 mt-6"
+          >With over 25 years of hands-on experience, we’re known for our
+          dependable service and customised approach. Our team adapts to the
+          specific requirements of each project, ensuring efficient, safe, and
+          cost-effective solutions. We believe in transparency, clear
+          communication, and delivering on time, helping clients complete their
+          projects with confidence and minimal hassle.</p
+        >
+      </div>
+      <FeatureList
+        items={features}
+        dark={true}
+        class="space-y-8 md:space-y-0 md:grid md:grid-cols-2 md:gap-12"
+      />
+    </div>
+  </div>
+</Section>

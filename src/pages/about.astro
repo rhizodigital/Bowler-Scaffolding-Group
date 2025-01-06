@@ -1,16 +1,15 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import PageHero from "../components/PageHero.astro";
-import Container from "../components/Container.astro";
-import WorkCarousel from "../components/WorkCarousel.astro";
-import Grid from "../components/Grid.astro";
-import AboutImage1 from "../images/about/about-1.jpg";
-import AboutImage2 from "../images/about/about-2.jpg";
+import Layout from "@layouts/Layout.astro";
+import Section from "@components/Section.astro";
+import PageHero from "@components/PageHero.astro";
+import WorkCarousel from "@components/WorkCarousel.astro";
+import AboutImage1 from "@images/about/about-1.jpg";
+import AboutImage2 from "@images/about/about-2.jpg";
 
 const pageContent = {
-  heading: "About",
+  heading: `About Us<br> <span class="text-primary text-lg">Your Trusted Partner in Scaffolding Solutions</span>`,
   subheading:
-    "We are Milton Keynes Scaffolding Specialists and we are committed to providing customers with a reliable, first class service from start to finish, showcasing good working practices and an outstanding level of Health and Safety. It is our policy to ensure that all works are carried out in a manner which avoids, reduces, and controls all risks to our customers, employees, subcontractors, and public.",
+    "At Milton Keynes Scaffolding Specialists, we've built our reputation on delivering reliable and high-quality scaffolding services for over two decades. Serving sectors ranging from commercial and industrial to residential and bespoke projects, we are known for our attention to detail, professionalism, and commitment to safety. Whatever the scale or complexity of your project, our expert team is ready to provide a tailored solution that meets your needs.",
   heroImageWide: AboutImage1,
   heroImageTall: AboutImage2,
   ctaLink: "/contact/",
@@ -37,35 +36,43 @@ const description =
       ctaLink={pageContent.ctaLink}
       ctaText={pageContent.ctaText}
     />
-
-    <div class="py-16 relative isolate bg-white">
-      <div class="absolute w-1/4 top-0 left-0 h-full text-zinc-100">
-        <Grid size="100" id="about-bg" />
-      </div>
-      <Container className="relative">
-        <div class="grid grid-cols-1 md:grid-cols-2 h-full items-center gap-16">
-          <div>
-            <p class="text-zinc-600 mb-12 text-lg">
-              We are proud to have no reports of any accidents or health &
-              safety incidents in our entire tenure of trading which is
-              testament to our dedicated, vigilant, and professional staff. We
-              are COVID secure and offer a socially distanced service, giving
-              you peace of mind.
-            </p>
-            <p class="text-zinc-600 mb-12 text-lg">
-              The value of our company is based on the trust our customers have
-              with us to do what we say we will do. We use the term
-              ‘Specialists’ because we know that whatever the challenge, however
-              big, small or complex, we will always rise to the occasion,
-              delivering an award-winning scaffold service from beginning to
-              end.
-            </p>
-          </div>
-          <div>
-            <WorkCarousel slides={slides} />
-          </div>
+    <Section theme="white" pattern="full-fade">
+      <div class="grid grid-cols-1 md:grid-cols-2 h-full items-center gap-16">
+        <div class="prose prose-zinc">
+          <h2>Safety You Can Rely On</h2>
+          <p>
+            Safety is our top priority. With a flawless safety record, we ensure
+            that every scaffold is erected and managed with the utmost care. Our
+            qualified scaffolders follow strict safety standards, ensuring all
+            risks are minimised for clients, employees, subcontractors, and the
+            public. Whether it's confined space scaffolding, temporary roofs, or
+            pedestrian access solutions, we deliver safe and compliant scaffolds
+            every time.
+          </p>
+          <h2>Specialist Services with Proven Expertise</h2>
+          <p>
+            We confidently use the term 'Specialists' because we thrive on
+            complex challenges. From cantilevered and truss-out scaffolds to
+            marine and façade retention scaffolds, our team has the experience
+            and creativity to provide innovative solutions for unique
+            requirements. Using both tube & fitting and the advanced Layher
+            System, we offer flexible and efficient scaffolding tailored to each
+            project.
+          </p>
+          <h2>Built on Trust and Quality</h2>
+          <p
+            >Our company values are rooted in trust and reliability. We believe
+            in doing what we say we will do, delivering results on time and on
+            budget. Our clients know they can depend on us for clear
+            communication, thorough project management, and a seamless service
+            from start to finish. Whether you're a homeowner, contractor, or
+            developer, we're here to make your project run smoothly.</p
+          >
         </div>
-      </Container>
-    </div>
+        <div>
+          <WorkCarousel slides={slides} />
+        </div>
+      </div>
+    </Section>
   </main>
 </Layout>
