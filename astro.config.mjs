@@ -7,19 +7,13 @@ import sitemap from "@astrojs/sitemap";
 
 import icon from "astro-icon";
 
-import partytown from "@astrojs/partytown";
-
 import mdx from "@astrojs/mdx";
 
 // https://astro.build/config
 export default defineConfig({
   site: "https://www.miltonkeynesscaffolding.co.uk",
   trailingSlash: "always",
-  integrations: [tailwind(), sitemap(), icon(), partytown({
-    config: {
-      forward: ["dataLayer.push"],
-    },
-  }), mdx()],
+  integrations: [tailwind(), sitemap(), icon(), mdx()],
   vite: {
     ssr: {
       external: ["svgo"],
