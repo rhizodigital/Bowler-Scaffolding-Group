@@ -1,6 +1,6 @@
-# MK Scaffolding Website
+# Bowler Scaffolding Group Website
 
-Website for Milton Keynes Scaffolding
+Website for Bowler Scaffolding Group
 
 ## Built with
 - Asto.js
