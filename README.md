@@ -3,17 +3,17 @@
 Website for Bowler Scaffolding Group
 
 ## Built with
+
 - Asto.js
 - Tailwindcss
 - Swiper.js
 - Vanilla JavaScript
 
-
 ## 🚀 Project Structure
 
 Inside you'll see the following folders and files:
 
-```
+```plaintext
 /
 ├── public/
 │   └── favicon.svg
@@ -26,8 +26,6 @@ Inside you'll see the following folders and files:
 │       └── index.astro
 └── package.json
 ```
-
-
 
 ## 🧞 Commands
 
