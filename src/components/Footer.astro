@@ -76,11 +76,18 @@ const linkStyle = "text-base text-zinc-400 hover:text-white";
         class="col-span-2 grid grid-cols-1 md:grid-cols-2 gap-8 order-first lg:order-last"
       >
         <div>
-          <h3 class="text-base font-medium text-white">Headquarters</h3>
+          <h3 class="text-base font-medium text-white">Contacts</h3>
           <div class="grid sm:max-md:grid-cols-2 sm:max-md:gap-4">
-            <p class="text-base text-zinc-400 mt-4">
-              1 St Andrew's Hill, City of London, London EC4V&nbsp;5BY
-            </p>
+            <div class="text-sm text-zinc-400 mt-4 space-y-4">
+              <div
+                ><div class="text-zinc-200">Headquarters</div>21, Shenley
+                Pavilions, Milton Keynes MK5 6LB</div
+              >
+              <div
+                ><div class="text-zinc-200">Central London Office</div>1 St
+                Andrew's Hill, City of London, London EC4V&nbsp;5BY</div
+              >
+            </div>
             <ul class="mt-4 space-y-4">
               <li>
                 <a
@@ -93,12 +100,11 @@ const linkStyle = "text-base text-zinc-400 hover:text-white";
               </li>
               <li>
                 <a
-                  href="mailto:info@mkscaffolding.com"
+                  href="/contact/"
                   class:list={[linkStyle, "flex items-center gap-2"]}
+                  ><Icon name="ic:round-email" size={16} /> Send email via contact
+                  form.</a
                 >
-                  <Icon name="ic:round-email" size={16} />
-                  <span>info@mkscaffolding.com</span>
-                </a>
               </li>
             </ul>
           </div>
