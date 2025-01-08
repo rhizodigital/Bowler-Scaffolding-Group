@@ -14,6 +14,19 @@ const { title, description } = Astro.props;
 <html lang="en">
   <head>
     <!-- Google tag (gtag.js) -->
+    <script
+      async
+      is:inline
+      src="https://www.googletagmanager.com/gtag/js?id=G-XTXKVHDR5F"></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-XTXKVHDR5F");
+    </script>
 
     <meta charset="UTF-8" />
     <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
