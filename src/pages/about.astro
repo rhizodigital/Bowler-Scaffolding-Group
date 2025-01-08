@@ -7,9 +7,9 @@ import AboutImage1 from "@images/about/about-1.jpg";
 import AboutImage2 from "@images/about/about-2.jpg";
 
 const pageContent = {
-  heading: `About Us<br> <span class="text-primary text-lg">Your Trusted Partner in Scaffolding Solutions</span>`,
+  heading: `About Us<br> <span class="text-primary text-lg">Your Nationwide Scaffolding Partner</span>`,
   subheading:
-    "At Milton Keynes Scaffolding Specialists, we've built our reputation on delivering reliable and high-quality scaffolding services for over two decades. Serving sectors ranging from commercial and industrial to residential and bespoke projects, we are known for our attention to detail, professionalism, and commitment to safety. Whatever the scale or complexity of your project, our expert team is ready to provide a tailored solution that meets your needs.",
+    "At Bowler Scaffolding Group, we've built a strong reputation for delivering safe, reliable, and high-quality scaffolding solutions for over 25 years. Serving commercial, industrial, and specialist sectors across the UK, we are known for our expertise, precision, and commitment to safety. No matter the size or complexity of your project, our experienced team will provide a customised solution that fits your requirements.",
   heroImageWide: AboutImage1,
   heroImageTall: AboutImage2,
   ctaLink: "/contact/",
@@ -19,14 +19,15 @@ const pageContent = {
 const slides = [
   {
     image: AboutImage1,
-    caption: "MK Scaffolding Specialists",
+    caption: "Bowler Scaffolding Group",
   },
 ];
+
 const description =
-  "Milton Keynes Scaffolding Specialists deliver expert scaffolding services for industrial, commercial, and domestic projects, with a focus on safety and quality.";
+  "Bowler Scaffolding Group provides expert scaffolding services for commercial, industrial, and bespoke projects across the UK, with a focus on safety, reliability, and tailored solutions.";
 ---
 
-<Layout title="Industrial Scaffolding" description={description}>
+<Layout title="About Bowler Scaffolding Group" description={description}>
   <main>
     <PageHero
       heading={pageContent.heading}
@@ -39,35 +40,37 @@ const description =
     <Section theme="white" pattern="full-fade">
       <div class="grid grid-cols-1 md:grid-cols-2 h-full items-center gap-16">
         <div class="prose prose-zinc">
-          <h2>Safety You Can Rely On</h2>
+          <h2>Safety You Can Count On</h2>
           <p>
-            Safety is our top priority. With a flawless safety record, we ensure
-            that every scaffold is erected and managed with the utmost care. Our
-            qualified scaffolders follow strict safety standards, ensuring all
-            risks are minimised for clients, employees, subcontractors, and the
-            public. Whether it's confined space scaffolding, temporary roofs, or
-            pedestrian access solutions, we deliver safe and compliant scaffolds
-            every time.
+            Safety is at the core of everything we do. With a proven track
+            record for safe operations, we ensure every scaffold is erected and
+            maintained with precision and care. Our certified scaffolders adhere
+            to stringent safety protocols, minimising risks for clients, staff,
+            and the public. From confined space scaffolding to temporary roofing
+            and pedestrian access solutions, you can trust us to deliver safe,
+            compliant structures every time.
           </p>
-          <h2>Specialist Services with Proven Expertise</h2>
+
+          <h2>Specialist Solutions Backed by Experience</h2>
           <p>
-            We confidently use the term 'Specialists' because we thrive on
-            complex challenges. From cantilevered and truss-out scaffolds to
-            marine and façade retention scaffolds, our team has the experience
-            and creativity to provide innovative solutions for unique
-            requirements. Using both tube & fitting and the advanced Layher
-            System, we offer flexible and efficient scaffolding tailored to each
-            project.
+            At Bowler Scaffolding Group, we excel in tackling complex
+            scaffolding challenges. Whether it's cantilevered or truss-out
+            scaffolds, marine works, or façade retention systems, our team
+            brings a wealth of expertise and innovative thinking to every
+            project. Using both traditional tube & fitting and advanced Layher
+            systems, we provide adaptable and efficient solutions tailored to
+            your unique requirements.
           </p>
-          <h2>Built on Trust and Quality</h2>
-          <p
-            >Our company values are rooted in trust and reliability. We believe
-            in doing what we say we will do, delivering results on time and on
-            budget. Our clients know they can depend on us for clear
-            communication, thorough project management, and a seamless service
-            from start to finish. Whether you're a homeowner, contractor, or
-            developer, we're here to make your project run smoothly.</p
-          >
+
+          <h2>Committed to Trust and Excellence</h2>
+          <p>
+            Our business is built on trust, quality, and reliability. We stand
+            by our word, delivering projects on time and within budget. Clients
+            choose us for our transparent communication, meticulous project
+            management, and smooth execution from start to finish. Whether
+            you're a contractor, developer, or industrial client, we're here to
+            ensure your project runs seamlessly.
+          </p>
         </div>
         <div>
           <WorkCarousel slides={slides} />

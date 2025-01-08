@@ -29,9 +29,12 @@ const { title, description } = Astro.props;
       gtag("config", "G-7E3H01MWBG");
     </script>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="mask-icon" href="/mask-icon.svg" color="#f15a24" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="BSG" />
+    <link rel="manifest" href="/site.webmanifest" />
     <meta name="generator" content={Astro.generator} />
     <!-- HTML Meta Tags -->
     <title>{title}</title>
@@ -45,14 +48,14 @@ const { title, description } = Astro.props;
     <meta property="og:type" content="website" />
     <meta
       property="og:title"
-      content="Milton Keynes Scaffolding Specialists LTD"
+      content="Bowler Scaffolding Group - Scaffolding Services UK"
     />
     <meta property="og:description" content={description} />
     <meta
       property="og:image"
       content="https://www.miltonkeynesscaffolding.co.uk/og.jpg"
     />
-    <meta property="og:logo" content="/mask-icon.svg" />
+    <meta property="og:logo" content="/favicon.svg" />
     <!-- Twitter Meta Tags -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta property="twitter:domain" content="miltonkeynesscaffolding.co.uk" />
