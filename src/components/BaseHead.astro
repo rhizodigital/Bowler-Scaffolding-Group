@@ -1,0 +1,57 @@
+---
+import smartypants from "smartypants";
+import { SITE } from "@config";
+import SEO from "./SEO.astro";
+export type Props = {
+  title?: string;
+  rawTitle?: string;
+  description?: string;
+  image?: { src: string; alt: string };
+  canonicalURL?: URL | null;
+  pageType?: "website" | "article";
+};
+
+const twitterHandle = "";
+
+const {
+  rawTitle,
+  description = SITE.description,
+  image = SITE.image,
+  canonicalURL = new URL(Astro.request.url, Astro.site),
+  pageType = "website",
+} = Astro.props;
+
+const title =
+  rawTitle ?? [Astro.props.title, SITE.name].filter(Boolean).join(" | ");
+
+const resolvedImage = {
+  src: new URL(image.src, Astro.site).toString(),
+  alt: image.alt,
+};
+---
+
+<!-- High Priority Global Metadata -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width" />
+<title set:html={smartypants(title, 1)} />
+<meta name="generator" content={Astro.generator} />
+<meta name="theme-color" content="#111827" />
+
+<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<meta name="apple-mobile-web-app-title" content="Bowler Scaffolding Group" />
+<link rel="mask-icon" href="/favicon.svg" color="#111827" />
+<link rel="manifest" href="/site.webmanifest" />
+<link rel="sitemap" href="/sitemap-index.xml" />
+
+<SEO
+  name={SITE.name}
+  title={title}
+  description={description}
+  image={resolvedImage}
+  twitter={{ handle: twitterHandle }}
+  og={{ type: pageType }}
+  canonicalURL={canonicalURL}
+/>

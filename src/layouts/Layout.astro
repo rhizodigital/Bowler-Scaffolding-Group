@@ -1,13 +1,12 @@
 ---
+import BaseHead, { type Props as HeadProps } from "@components/BaseHead.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
-import Schema from "../components/Schema.astro";
-export interface Props {
-  title: string;
-  description: string;
-}
+
+export interface Props extends HeadProps {}
 import "@fontsource/montserrat/variable.css";
-const { title, description } = Astro.props;
+
+const { ...head } = Astro.props;
 ---
 
 <!doctype html>
@@ -28,50 +27,9 @@ const { title, description } = Astro.props;
       gtag("config", "G-XTXKVHDR5F");
     </script>
 
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="shortcut icon" href="/favicon.ico" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-    <meta name="apple-mobile-web-app-title" content="BSG" />
-    <link rel="manifest" href="/site.webmanifest" />
-    <meta name="generator" content={Astro.generator} />
-    <!-- HTML Meta Tags -->
-    <title>{title}</title>
-    <meta name="description" content={description} />
-    <Schema />
-    <!-- Facebook Meta Tags -->
-    <meta property="og:url" content="https://www.bowlerscaffolding.com/" />
-    <meta property="og:type" content="website" />
-    <meta
-      property="og:title"
-      content="Bowler Scaffolding Group - Scaffolding Services UK"
-    />
-    <meta property="og:description" content={description} />
-    <meta
-      property="og:image"
-      content="https://www.bowlerscaffolding.com/og.jpg"
-    />
-    <meta property="og:logo" content="/favicon.svg" />
-    <!-- Twitter Meta Tags -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta property="twitter:domain" content="bowlerscaffolding.com" />
-    <meta property="twitter:url" content="https://www.bowlerscaffolding.com" />
-    <meta name="twitter:title" content="Bowler Scaffolding Group" />
-    <meta name="twitter:description" content={description} />
-    <meta
-      name="twitter:image"
-      content="https://www.bowlerscaffolding.com/og.jpg"
-    />
+    <BaseHead {...head} />
     <slot name="head" />
-    <style>
-      a,
-      button {
-        cursor: pointer !important;
-      }
-    </style>
-  </head>
-  <body>
+  </head><body>
     <Header />
     <slot />
     <Footer />

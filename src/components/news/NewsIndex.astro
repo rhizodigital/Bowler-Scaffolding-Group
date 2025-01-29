@@ -1,6 +1,7 @@
 ---
 import type { Page } from "astro";
-import type { NewsEntry } from "@env";
+import { SITE } from "@config";
+import type { NewsEntry } from "@config";
 import Layout from "@layouts/Layout.astro";
 import NewsPreview from "@components/news/NewsPreview.astro";
 import Pagination from "@components/Pagination.astro";
@@ -13,11 +14,13 @@ export interface Props {
 }
 
 const { page, indexPage } = Astro.props;
+const canonicalURL = new URL(SITE.caseStudies.base, Astro.site);
 ---
 
 <Layout
   title="News and Insights"
-  description="News & Insights from Milton Keynes Scaffolding Specialists LTD"
+  description="Stay updated with Bowler Scaffolding Group's latest news and insights. Explore industry updates, expert tips, and project highlights from our London-based team."
+  canonicalURL={canonicalURL}
 >
   <NewsHeader heading="News & Insights" />
   <div class="bg-zinc-100">

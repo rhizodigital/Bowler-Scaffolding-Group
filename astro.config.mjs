@@ -9,9 +9,17 @@ import icon from "astro-icon";
 
 import mdx from "@astrojs/mdx";
 
+const SITE = import.meta.env.DEV
+  ? "http://localhost:4321/"
+  : "https://www.bowlerscaffolding.com";
+
 // https://astro.build/config
 export default defineConfig({
-  site: "https://www.miltonkeynesscaffolding.co.uk",
+  base: "",
+  site: SITE,
+  experimental: {
+    contentIntellisense: true,
+  },
   trailingSlash: "always",
   integrations: [tailwind(), sitemap(), icon(), mdx()],
   vite: {

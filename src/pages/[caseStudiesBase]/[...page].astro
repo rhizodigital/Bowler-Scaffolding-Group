@@ -1,7 +1,7 @@
 ---
 import { SITE } from "@config";
 import { getCollection } from "astro:content";
-import type { CaseStudiesEntry } from "@env";
+import type { CaseStudiesEntry } from "@config";
 import type { GetStaticPathsOptions, Page } from "astro";
 import CaseStudiesIndex from "@components/case-studies/CaseStudiesIndex.astro";
 
@@ -21,7 +21,7 @@ export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
 
   // Paginate the case studies
   return paginate(sortedArticles, {
-    pageSize: 2,
+    pageSize: SITE.caseStudies.perPage,
     params: { caseStudiesBase: SITE.caseStudies.base },
   });
 }

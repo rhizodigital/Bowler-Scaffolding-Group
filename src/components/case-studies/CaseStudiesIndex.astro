@@ -1,6 +1,7 @@
 ---
+import { SITE } from "@config";
 import type { Page } from "astro";
-import type { CaseStudiesEntry } from "@env";
+import type { CaseStudiesEntry } from "@config";
 import Layout from "@layouts/Layout.astro";
 import CaseStudyPreview from "./CaseStudyPreview.astro";
 import Pagination from "@components/Pagination.astro";
@@ -13,11 +14,13 @@ export interface Props {
 }
 
 const { page, indexPage } = Astro.props;
+const canonicalURL = new URL(SITE.caseStudies.base, Astro.site);
 ---
 
 <Layout
-  title="News and Insights"
-  description="News & Insights from Milton Keynes Scaffolding Specialists LTD"
+  title="Case Studies"
+  description="Explore Bowler Scaffolding Group's case studies. Discover our work on commercial, industrial, and specialist scaffolding projects across London and the UK."
+  canonicalURL={canonicalURL}
 >
   <CaseStudiesHeader heading="Our Work" />
   <div class="bg-zinc-100">

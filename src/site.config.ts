@@ -1,9 +1,38 @@
-import type { Site } from "./env";
+import type { CollectionEntry } from "astro:content";
+
+export type NewsEntry = CollectionEntry<"news">;
+export type CaseStudiesEntry = CollectionEntry<"caseStudies">;
+export type Entry = NewsEntry | CaseStudiesEntry;
+
+export type NewsCategory = (typeof NEWS_CATEGORIES)[number];
+export type RelatedService = (typeof RELATED_SERVICES)[number];
+
+export type Site = {
+  author: string;
+  name: string;
+  description: string;
+  image: {
+    src: string;
+    alt: string;
+  };
+  caseStudies: {
+    base: string;
+    perPage: number;
+  };
+  news: {
+    base: string;
+    perPage: number;
+  };
+};
 
 export const SITE: Site = {
   author: "Michael Sables",
+  name: "Bowler Scaffolding Group",
   description: "A portfolio site template for built with Astro",
-  title: "Portfolio site",
+  image: {
+    src: "/og/social-image.png",
+    alt: "Bowlers Scaffolding Group",
+  },
   caseStudies: {
     base: "work",
     perPage: 6,

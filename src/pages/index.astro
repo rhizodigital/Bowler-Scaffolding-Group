@@ -4,13 +4,13 @@ import ServicesSection from "@components/landing-page/ServicesSection.astro";
 import IntroSection from "@components/landing-page/IntroSection.astro";
 import SwiperHero from "@components/SwiperHero.astro";
 import Testimonials from "@components/Testimonials.astro";
-import SlideOneImage from "@images/home/scaff-1200-900.jpg";
-import IndustrialSlideImage from "@images/industrial/industrial-slide-1.jpeg";
-import DomesticSlideImage from "@images/domestic/domestic-slide-1.jpeg";
 
-import CommercialImage from "@images/home/6129-1200-900.jpg";
+import IndustrialSlideImage from "@images/industrial/industrial-slide-1.jpeg";
+import SpecialistSlideImage from "@images/specialist/comme-1.jpeg";
+import CommercialSlideImage from "@images/commercial/caldecote-commercial.jpg";
+
+import CommercialImage from "@images/commercial/northampton-conversion.jpg";
 import IndustrialImage from "@images/home/mk2-uai-900-900.jpg";
-import DomesticImage from "@images/home/domestic-tall-1000-1500.jpg";
 import SpecialistImage from "@images/home/fashion1-1000-743.jpg";
 
 const hero = {
@@ -49,26 +49,23 @@ const services = [
 
 const slides = [
   {
-    image: DomesticSlideImage,
-    caption: "Domestic Scaffolding UK",
-  },
-  {
-    image: SlideOneImage,
-    caption: "Commercial Scaffolding UK",
+    image: CommercialSlideImage,
+    caption: "Commercial Scaffolding",
   },
   {
     image: IndustrialSlideImage,
-    caption: "Industrial Scaffolding UK",
+    caption: "Industrial Scaffolding",
+  },
+  {
+    image: SpecialistSlideImage,
+    caption: "Specialist Scaffolding",
   },
 ];
-
-const description =
-  "Nationwide scaffolding experts based in London, specialising in commercial, industrial, and bespoke scaffolding solutions. Choose Bowler Scaffolding Group for reliable, safe, and innovative access systems.";
 ---
 
 <Layout
-  title="Bowler Scaffolding Group | Nationwide Commercial & Industrial Scaffolding Solutions"
-  description={description}
+  title="London Based Scaffolding Experts"
+  description="Bowler Scaffolding Group, based in London, offers expert scaffolding services nationwide. Specialists in commercial, industrial, and bespoke scaffolding solutions."
 >
   <main>
     <SwiperHero
